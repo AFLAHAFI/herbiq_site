@@ -1,0 +1,10 @@
+{
+  "name": "HerbiQ",
+  "description": "Educational medicinal-plant platform for botanical and Ayurvedic garden visitors.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
