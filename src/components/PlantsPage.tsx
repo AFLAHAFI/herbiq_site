@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Plant } from '../types';
-import { PLANTS, searchPlants, AR_CONFIG_PLANT_IDS } from '../data/plants';
+import { PLANTS, searchPlants } from '../data/plants';
 import { PlantImage } from './PlantImage';
 import { Search, ChevronRight, Eye, Filter } from 'lucide-react';
 
@@ -135,7 +135,7 @@ export const PlantsPage: React.FC<PlantsPageProps> = ({ onSelectPlant, onNavigat
                       <span className="px-2.5 py-1 rounded-full bg-[#060B18]/80 text-[10px] font-semibold text-[#00E5FF] border border-[#00E5FF]/30 backdrop-blur-sm">
                         {plant.category}
                       </span>
-                      {AR_CONFIG_PLANT_IDS.includes(plant.id) && (
+                      {plant.arAvailable && (
                         <span className="px-2 py-1 rounded-full bg-[#10B981]/20 text-[10px] font-semibold text-[#10B981] border border-[#10B981]/30 backdrop-blur-sm flex items-center gap-1">
                           <Eye className="w-3 h-3" />
                           <span>AR</span>

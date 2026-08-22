@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, Plant } from '../types';
-import { PLANTS, AR_CONFIG_PLANT_IDS } from '../data/plants';
+import { PLANTS } from '../data/plants';
 import { PlantImage } from './PlantImage';
 import { Compass, MessageSquareCode, Eye, Sparkles, ChevronRight, Flower2, ShieldCheck, Camera, ArrowRight, BookOpen } from 'lucide-react';
 
@@ -177,7 +177,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                   <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#060B18]/80 text-[10px] font-semibold text-[#00E5FF] border border-[#00E5FF]/30 backdrop-blur-sm">
                     {plant.category}
                   </div>
-                  {AR_CONFIG_PLANT_IDS.includes(plant.id) && (
+                  {plant.arAvailable && (
                     <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[10px] font-semibold text-[#10B981] border border-[#10B981]/30 backdrop-blur-sm flex items-center gap-1">
                       <Eye className="w-3 h-3" />
                       <span>AR</span>
