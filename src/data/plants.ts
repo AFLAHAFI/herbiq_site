@@ -1,5 +1,5 @@
 import { Plant } from '../types';
-import rawPlantsData from './herbiq-plants.json';
+import rawPlantsData from './herbiq-plants.json'; // Force Vite to reload this module and the JSON
 
 export const PLANTS: Plant[] = rawPlantsData as Plant[];
 
