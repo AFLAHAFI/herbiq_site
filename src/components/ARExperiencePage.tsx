@@ -221,21 +221,14 @@ export const ARExperiencePage: React.FC<ARExperiencePageProps> = ({
           </div>
 
           {/* Plant Parts Used */}
-          {activePlant.plantPartsTraditionallyUsed && activePlant.plantPartsTraditionallyUsed.length > 0 && (
+          {activePlant.plantPartsTraditionallyUsed && (
             <div className="space-y-2 pt-1">
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#10B981]">
                 Traditionally Used Parts
               </h4>
-              <div className="flex flex-wrap gap-1.5">
-                {activePlant.plantPartsTraditionallyUsed.map((part, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2.5 py-1 rounded-lg bg-[#060B18] text-xs text-[#10B981] border border-[#10B981]/30 font-medium"
-                  >
-                    ✓ {part}
-                  </span>
-                ))}
-              </div>
+              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
+                {activePlant.plantPartsTraditionallyUsed}
+              </p>
             </div>
           )}
 
