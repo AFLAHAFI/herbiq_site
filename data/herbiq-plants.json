@@ -26,7 +26,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; widely cultivated throughout India, including Kerala.",
     "cultivation": "Easily grown from seed or cuttings in pots or garden beds; prefers well-drained soil and regular watering.",
     "safety": "Generally regarded as safe for culinary and ceremonial use in small amounts; those on medication should consult a healthcare provider before regular herbal use.",
-    "image": "/assets/plants/tulsi.jpg",
+    "image": "/assets/plants/1.jpg",
     "arAvailable": false
   },
   {
@@ -56,7 +56,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; common throughout India.",
     "cultivation": "Propagated from seed; drought-tolerant once established and requires minimal maintenance.",
     "safety": "Neem oil and seed extracts are potent and are not intended for internal use without professional guidance; keep away from young children.",
-    "image": "/assets/plants/neem.jpg",
+    "image": "/assets/plants/2.jpg",
     "arAvailable": false
   },
   {
@@ -83,7 +83,7 @@
     "nativeOrCommonRegion": "Believed to originate from the Arabian Peninsula; naturalised and widely cultivated across India.",
     "cultivation": "Easily propagated from offsets; needs minimal watering and full to partial sun.",
     "safety": "Topical use of the gel is generally well tolerated; the yellow latex near the leaf skin can be irritating and is usually removed before use. Consult a professional before internal use.",
-    "image": "/assets/plants/aloe-vera.jpg",
+    "image": "/assets/plants/3.jpg",
     "arAvailable": false
   },
   {
@@ -110,7 +110,7 @@
     "nativeOrCommonRegion": "Native to South Asia; extensively cultivated across India, including Kerala.",
     "cultivation": "Propagated from rhizome pieces; harvested after the leaves die back, typically 8–10 months after planting.",
     "safety": "Widely used as a food spice and generally considered safe in culinary amounts; concentrated extracts should be used only under professional guidance.",
-    "image": "/assets/plants/turmeric.jpg",
+    "image": "/assets/plants/4.jpg",
     "arAvailable": false
   },
   {
@@ -137,7 +137,7 @@
     "nativeOrCommonRegion": "Native to Southeast Asia; extensively cultivated across India, including Kerala and the Western Ghats.",
     "cultivation": "Propagated from rhizome pieces; harvested roughly 8–10 months after planting.",
     "safety": "Commonly consumed as a food spice; concentrated forms may interact with certain medications, so professional advice is recommended for medicinal use.",
-    "image": "/assets/plants/ginger.jpg",
+    "image": "/assets/plants/5.jpg",
     "arAvailable": false
   },
   {
@@ -165,7 +165,7 @@
     "nativeOrCommonRegion": "Native to India, the Middle East and parts of Africa; cultivated across several Indian states.",
     "cultivation": "Propagated from seed; prefers a dry climate and sandy loam soil.",
     "safety": "Should be used only under professional guidance, particularly during pregnancy or alongside other medications, as it is a potent traditional root.",
-    "image": "/assets/plants/ashwagandha.jpg",
+    "image": "/assets/plants/6.jpg",
     "arAvailable": false
   },
   {
@@ -195,7 +195,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; widely grown throughout India, including Kerala.",
     "cultivation": "Propagated by grafting or seed; fruits are harvested in the cooler months.",
     "safety": "The fresh fruit is commonly eaten as food; concentrated extracts should be used with professional guidance.",
-    "image": "/assets/plants/amla.jpg",
+    "image": "/assets/plants/7.jpg",
     "arAvailable": false
   },
   {
@@ -223,7 +223,7 @@
     "nativeOrCommonRegion": "Native to South Asia and other wetland regions; found across India, including Kerala's waterlogged areas.",
     "cultivation": "Propagated from stem cuttings; requires consistently moist soil or shallow water.",
     "safety": "Generally used in traditional low-dose preparations; professional guidance is recommended, especially for children and pregnant women.",
-    "image": "/assets/plants/brahmi-bacopa.jpg",
+    "image": "/assets/plants/8.jpg",
     "arAvailable": false
   },
   {
@@ -255,7 +255,7 @@
     "nativeOrCommonRegion": "Native to the sub-Himalayan regions of India; widely cultivated across Kerala and South India.",
     "cultivation": "Easily grown from seed or stem cuttings; fast-growing and low maintenance.",
     "safety": "Leaves and pods are widely eaten as food; the root and root bark are traditionally used with caution and are not recommended without professional guidance.",
-    "image": "/assets/plants/moringa.jpg",
+    "image": "/assets/plants/9.jpg",
     "arAvailable": false
   },
   {
@@ -282,7 +282,7 @@
     "nativeOrCommonRegion": "Native to India and Sri Lanka; a common kitchen-garden plant throughout South India.",
     "cultivation": "Propagated from seed or root suckers; prefers well-drained, fertile soil and partial sun.",
     "safety": "Leaves are widely consumed as a culinary herb and are generally considered safe in normal food quantities.",
-    "image": "/assets/plants/curry-leaf.jpg",
+    "image": "/assets/plants/10.jpg",
     "arAvailable": false
   },
   {
@@ -310,7 +310,7 @@
     "nativeOrCommonRegion": "Native to South and Southeast Asia; widely cultivated across Kerala.",
     "cultivation": "Propagated by dividing established clumps; low maintenance and drought-tolerant once established.",
     "safety": "Commonly consumed as a herbal tea in moderate amounts; the essential oil is concentrated and not intended for direct internal use.",
-    "image": "/assets/plants/lemongrass.jpg",
+    "image": "/assets/plants/11.jpg",
     "arAvailable": false
   },
   {
@@ -337,7 +337,7 @@
     "nativeOrCommonRegion": "Various Mentha species are native to Europe, Asia and Africa; widely cultivated across India.",
     "cultivation": "Propagated easily from cuttings or runners; spreads readily and needs regular watering.",
     "safety": "Widely consumed as a culinary herb; generally well tolerated in normal food amounts.",
-    "image": "/assets/plants/mint.jpg",
+    "image": "/assets/plants/12.jpg",
     "arAvailable": false
   },
   {
@@ -367,7 +367,7 @@
     "nativeOrCommonRegion": "Native to East Asia; naturalised and extremely common throughout India, including Kerala.",
     "cultivation": "Propagated from stem cuttings; needs full sun and regular watering for best flowering.",
     "safety": "Generally regarded as safe for topical and traditional external use; not intended for internal medicinal use without guidance.",
-    "image": "/assets/plants/hibiscus.jpg",
+    "image": "/assets/plants/13.jpg",
     "arAvailable": false
   },
   {
@@ -395,7 +395,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; found in Kerala's forests and temple gardens.",
     "cultivation": "Propagated from seed; prefers partial shade and consistently moist soil when young.",
     "safety": "Bark preparations are traditionally used under professional guidance; the tree is also of conservation concern in parts of its range.",
-    "image": "/assets/plants/ashoka.jpg",
+    "image": "/assets/plants/14.jpg",
     "arAvailable": false
   },
   {
@@ -422,7 +422,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; found across peninsular India, including Kerala.",
     "cultivation": "Propagated from seed; prefers moist soil and does well near water bodies.",
     "safety": "Bark preparations should only be used under qualified professional guidance.",
-    "image": "/assets/plants/arjuna.jpg",
+    "image": "/assets/plants/15.jpg",
     "arAvailable": false
   },
   {
@@ -451,7 +451,7 @@
     "nativeOrCommonRegion": "Native to the Mediterranean and parts of Asia; cultivated in parts of India for traditional use.",
     "cultivation": "Propagated from root divisions or seed; requires deep soil for good root development.",
     "safety": "Excessive or prolonged use is not advised, particularly for those with high blood pressure; professional guidance is recommended.",
-    "image": "/assets/plants/licorice.jpg",
+    "image": "/assets/plants/16.jpg",
     "arAvailable": false
   },
   {
@@ -478,7 +478,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; found across India, including Kerala's forest margins.",
     "cultivation": "Propagated from root divisions or seed; needs support for its climbing habit.",
     "safety": "Should be used under professional guidance, particularly during pregnancy or alongside medication.",
-    "image": "/assets/plants/shatavari.jpg",
+    "image": "/assets/plants/17.jpg",
     "arAvailable": false
   },
   {
@@ -508,7 +508,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; found across India, including Kerala.",
     "cultivation": "Propagated from stem cuttings; needs a support structure or host tree to climb.",
     "safety": "Should be used under professional guidance; not recommended for self-medication.",
-    "image": "/assets/plants/guduchi.jpg",
+    "image": "/assets/plants/18.jpg",
     "arAvailable": false
   },
   {
@@ -539,7 +539,7 @@
     "nativeOrCommonRegion": "Native to wetland regions of Asia; common across Kerala's moist habitats.",
     "cultivation": "Propagated from stem cuttings or runners; needs consistent moisture.",
     "safety": "Generally used in traditional low-dose preparations; professional guidance is recommended for regular use.",
-    "image": "/assets/plants/gotu-kola.jpg",
+    "image": "/assets/plants/19.jpg",
     "arAvailable": false
   },
   {
@@ -566,7 +566,7 @@
     "nativeOrCommonRegion": "Native to India; widely cultivated across South India, including Kerala.",
     "cultivation": "Propagated by root or slip division; deep-rooted and useful for soil stabilisation.",
     "safety": "Primarily used for its fragrance in traditional applications; not intended for internal medicinal use.",
-    "image": "/assets/plants/vetiver.jpg",
+    "image": "/assets/plants/20.jpg",
     "arAvailable": false
   },
   {
@@ -593,7 +593,7 @@
     "nativeOrCommonRegion": "Native to the Western Ghats of Kerala; a signature crop of the Kerala spice belt.",
     "cultivation": "Propagated from stem cuttings, trained to climb support trees or poles; harvested when berries begin to redden.",
     "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/black-pepper.jpg",
+    "image": "/assets/plants/21.jpg",
     "arAvailable": false
   },
   {
@@ -620,7 +620,7 @@
     "nativeOrCommonRegion": "Native to the Western Ghats of Kerala and Karnataka; grown extensively in Kerala's cardamom hills.",
     "cultivation": "Propagated from rhizome division or seedlings; grown under forest canopy shade at higher elevations.",
     "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/cardamom.jpg",
+    "image": "/assets/plants/22.jpg",
     "arAvailable": false
   },
   {
@@ -650,7 +650,7 @@
     "nativeOrCommonRegion": "Native to Sri Lanka and South India; cultivated in Kerala's spice-growing regions.",
     "cultivation": "Propagated from seed or cuttings; bark is harvested periodically from mature stems.",
     "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/cinnamon.jpg",
+    "image": "/assets/plants/23.jpg",
     "arAvailable": false
   },
   {
@@ -677,7 +677,7 @@
     "nativeOrCommonRegion": "Native to the Maluku Islands of Indonesia; cultivated in Kerala's spice belt.",
     "cultivation": "Propagated from seed; buds are hand-harvested just before flowering and sun-dried.",
     "safety": "Widely used as a food spice in small quantities; concentrated clove oil is potent and not intended for undiluted use.",
-    "image": "/assets/plants/clove.jpg",
+    "image": "/assets/plants/24.jpg",
     "arAvailable": false
   },
   {
@@ -706,7 +706,7 @@
     "nativeOrCommonRegion": "Native to the Himalayan foothills and Northeast India; cultivated in parts of South India.",
     "cultivation": "Propagated from seed; leaves are harvested and dried for culinary use.",
     "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/indian-bay-leaf.jpg",
+    "image": "/assets/plants/25.jpg",
     "arAvailable": false
   },
   {
@@ -736,7 +736,7 @@
     "nativeOrCommonRegion": "Native to the Mediterranean region and Western Asia; widely cultivated across India.",
     "cultivation": "Propagated from seed; grows quickly and is often harvested young for leaves.",
     "safety": "Widely used as a food spice and vegetable; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/fenugreek.jpg",
+    "image": "/assets/plants/26.jpg",
     "arAvailable": false
   },
   {
@@ -766,7 +766,7 @@
     "nativeOrCommonRegion": "Native to the Mediterranean and Western Asia; widely cultivated across India.",
     "cultivation": "Propagated from seed; grows quickly and is harvested young for leaves or left to mature for seed.",
     "safety": "Widely used as a food herb and spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/coriander.jpg",
+    "image": "/assets/plants/27.jpg",
     "arAvailable": false
   },
   {
@@ -793,7 +793,7 @@
     "nativeOrCommonRegion": "Native to the Eastern Mediterranean and South Asia; cultivated across India.",
     "cultivation": "Propagated from seed; requires a relatively dry growing season for good seed set.",
     "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/cumin.jpg",
+    "image": "/assets/plants/28.jpg",
     "arAvailable": false
   },
   {
@@ -824,7 +824,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; found across India, including Kerala's temple groves.",
     "cultivation": "Propagated from seed; hardy and low maintenance once established.",
     "safety": "The ripe fruit pulp is commonly consumed as food; unripe fruit is generally avoided as food due to its astringency.",
-    "image": "/assets/plants/bael.jpg",
+    "image": "/assets/plants/29.jpg",
     "arAvailable": false
   },
   {
@@ -854,7 +854,7 @@
     "nativeOrCommonRegion": "Native to the Indian subcontinent; common throughout Kerala.",
     "cultivation": "Propagated from stem cuttings; hardy and requires minimal care.",
     "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/malabar-nut.jpg",
+    "image": "/assets/plants/30.jpg",
     "arAvailable": false
   },
   {
@@ -884,7 +884,7 @@
     "nativeOrCommonRegion": "Native to South and Southeast Asia; cultivated in parts of South India, including Kerala.",
     "cultivation": "Propagated from stem cuttings; needs a support structure to climb.",
     "safety": "Traditional preparations should be used under professional guidance.",
-    "image": "/assets/plants/indian-long-pepper.jpg",
+    "image": "/assets/plants/31.jpg",
     "arAvailable": false
   },
   {
@@ -911,7 +911,7 @@
     "nativeOrCommonRegion": "Native to the dry regions of northwestern India; the resin is traded across India for traditional use.",
     "cultivation": "Propagated from cuttings; requires a dry, well-drained environment and minimal watering.",
     "safety": "Traditional resin preparations should be used only under professional guidance; the species is also of conservation concern in parts of its native range.",
-    "image": "/assets/plants/guggul.jpg",
+    "image": "/assets/plants/32.jpg",
     "arAvailable": false
   },
   {
@@ -941,7 +941,7 @@
     "nativeOrCommonRegion": "Native to South and Southeast Asia; common in Kerala's moist lowlands.",
     "cultivation": "Propagated from seed; grows readily in moist, partially shaded conditions.",
     "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/kalmegh.jpg",
+    "image": "/assets/plants/33.jpg",
     "arAvailable": false
   },
   {
@@ -971,7 +971,7 @@
     "nativeOrCommonRegion": "Native to South Asia and other tropical regions; common throughout Kerala.",
     "cultivation": "Propagated from seed or stem cuttings; grows readily in moist conditions.",
     "safety": "Topical traditional use is generally well tolerated; internal use should only be under professional guidance.",
-    "image": "/assets/plants/bhringraj.jpg",
+    "image": "/assets/plants/34.jpg",
     "arAvailable": false
   },
   {
@@ -999,7 +999,7 @@
     "nativeOrCommonRegion": "Native to the tropics and subtropics worldwide; common throughout Kerala.",
     "cultivation": "Propagated from seed; grows as a hardy, low-maintenance ground cover.",
     "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/punarnava.jpg",
+    "image": "/assets/plants/35.jpg",
     "arAvailable": false
   },
   {
@@ -1028,7 +1028,7 @@
     "nativeOrCommonRegion": "Native to South and Southeast Asia; found in parts of Kerala's forests.",
     "cultivation": "Propagated from seed or root cuttings; requires shaded, moist conditions.",
     "safety": "This plant contains potent compounds and must never be used without qualified medical supervision; it is also a species of conservation concern.",
-    "image": "/assets/plants/sarpagandha.jpg",
+    "image": "/assets/plants/36.jpg",
     "arAvailable": false
   },
   {
@@ -1056,7 +1056,7 @@
     "nativeOrCommonRegion": "Native to South India; historically associated with Karnataka and cultivated in parts of Kerala.",
     "cultivation": "Propagated from seed alongside a suitable host plant; very slow-growing, taking decades to mature.",
     "safety": "The heartwood and oil are used in cultural and topical traditional applications; sourcing is subject to conservation regulation due to overharvesting.",
-    "image": "/assets/plants/sandalwood.jpg",
+    "image": "/assets/plants/37.jpg",
     "arAvailable": false
   },
   {
@@ -1086,7 +1086,7 @@
     "nativeOrCommonRegion": "Native to South and Southeast Asia; common throughout Kerala's field margins and open scrub.",
     "cultivation": "Propagated from stem cuttings or seed; hardy and low maintenance.",
     "safety": "Traditional external preparations are generally well tolerated; internal use should only be under professional guidance.",
-    "image": "/assets/plants/nirgundi.jpg",
+    "image": "/assets/plants/38.jpg",
     "arAvailable": false
   },
   {
@@ -1116,7 +1116,7 @@
     "nativeOrCommonRegion": "Believed to originate in southern and eastern Africa; long naturalised and widely grown across Kerala.",
     "cultivation": "Easily propagated from stem cuttings; grows quickly in pots or garden beds.",
     "safety": "Used in small culinary amounts in some households; concentrated preparations should be used with care and professional guidance.",
-    "image": "/assets/plants/karpooravalli.jpg",
+    "image": "/assets/plants/39.jpg",
     "arAvailable": false
   },
   {
@@ -1146,7 +1146,7 @@
     "nativeOrCommonRegion": "Native to South and Southeast Asia; traditionally grown in Kerala home gardens.",
     "cultivation": "Propagated from rhizome divisions; grows well in pots or shaded garden beds.",
     "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/kacholam.jpg",
+    "image": "/assets/plants/40.jpg",
     "arAvailable": false
   }
 ]
