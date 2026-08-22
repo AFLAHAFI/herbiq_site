@@ -534,7 +534,7 @@ export const Plant3DViewer: React.FC<Plant3DViewerProps> = ({
   };
 
   return (
-    <div id="ar-overlay-root" className="relative w-full h-[520px] sm:h-[600px] rounded-3xl overflow-hidden bg-[#060B18] border-2 border-[#00E5FF]/30 shadow-2xl flex flex-col justify-between">
+    <div id="ar-overlay-root" className={`relative w-full h-[520px] sm:h-[600px] rounded-3xl overflow-hidden ${webXRActive ? 'bg-transparent border-none shadow-none' : 'bg-[#060B18] border-2 border-[#00E5FF]/30 shadow-2xl'} flex flex-col justify-between`}>
       
       {/* 3D WebGL Canvas Layer */}
       <div
