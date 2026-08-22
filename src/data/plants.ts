@@ -27,9 +27,10 @@ export function searchPlants(query: string, category: string = 'All'): Plant[] {
     const malayalamMatch = plant.malayalamName.toLowerCase().includes(q);
     const familyMatch = plant.family.toLowerCase().includes(q);
     const categoryMatch = plant.category.toLowerCase().includes(q);
-    const altNamesMatch = plant.alternateNames.some((alt) => alt.toLowerCase().includes(q));
-    const descMatch = plant.shortDescription.toLowerCase().includes(q) || plant.description.toLowerCase().includes(q);
+    const descMatch = plant.description.toLowerCase().includes(q);
+    const traditionalMatch = plant.traditionalUses.toLowerCase().includes(q);
+    const partsMatch = plant.plantPartsTraditionallyUsed.toLowerCase().includes(q);
 
-    return nameMatch || scientificMatch || malayalamMatch || familyMatch || categoryMatch || altNamesMatch || descMatch;
+    return nameMatch || scientificMatch || malayalamMatch || familyMatch || categoryMatch || descMatch || traditionalMatch || partsMatch;
   });
 }

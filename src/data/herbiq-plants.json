@@ -1,121 +1,95 @@
 [
   {
     "id": "tulsi",
-    "name": "Tulsi",
+    "name": "Holy Basil / Tulsi",
     "malayalamName": "തുളസി",
     "scientificName": "Ocimum tenuiflorum",
     "family": "Lamiaceae",
-    "alternateNames": [
-      "Holy Basil"
-    ],
     "category": "Herb",
-    "shortDescription": "Aromatic herb with major cultural and traditional importance in Ayurveda.",
-    "description": "Tulsi is a much-branched, strongly aromatic herb or small shrub found across India and grown in most Kerala households, often in a dedicated courtyard planter. It holds deep religious and cultural significance in Hindu tradition and is one of the most widely referenced plants in Ayurvedic literature.",
-    "identification": {
-      "leaves": "Simple, ovate leaves with a toothed margin, arranged oppositely; strongly aromatic when crushed.",
-      "flowers": "Small purplish or white flowers borne on elongated terminal spikes.",
-      "fruit": "Tiny nutlets that form after flowering, not commonly used.",
-      "stem": "Erect, branching, slightly woody at the base, green to purplish in colour."
-    },
-    "traditionalKnowledge": "In traditional and Ayurvedic practice, Tulsi leaves are used in herbal teas and are considered sacred, associated with purification and everyday household rituals.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves",
-      "Seeds"
-    ],
-    "habitat": "Grows well in warm, tropical climates with moderate rainfall and good sunlight.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; widely cultivated throughout India, including Kerala.",
-    "cultivation": "Easily grown from seed or cuttings in pots or garden beds; prefers well-drained soil and regular watering.",
-    "safety": "Generally regarded as safe for culinary and ceremonial use in small amounts; those on medication should consult a healthcare provider before regular herbal use.",
+    "description": "Tulsi is an aromatic herb widely grown around homes and temples in India. It is highly valued in Ayurveda and Indian cultural traditions.",
+    "traditionalUses": "Traditionally used in Ayurvedic preparations and household herbal practices. It is commonly associated with respiratory and general wellness traditions.",
+    "traditionalBenefits": "Traditionally associated with supporting respiratory comfort, digestion and general wellness.",
+    "plantPartsTraditionallyUsed": "Leaves, stems and seeds.",
+    "traditionalUsage": "Leaves are commonly used fresh or dried in herbal preparations and traditional beverages.",
+    "habitat": "Tropical and subtropical regions; commonly cultivated in India.",
+    "identification": "Aromatic leaves, square stems, opposite leaves and small flowers arranged on spikes.",
     "image": "/assets/plants/1.jpg",
     "arAvailable": true,
-    "model3D": "/assets/models/tulsi.glb"
+    "model3D": "/assets/models/tulsi.glb",
+    "health": {
+      "issues": "Common issues may include fungal diseases, insect pests or environmental stress.",
+      "symptoms": "Leaf spots, yellowing, wilting or damaged leaves.",
+      "prevention": "Good airflow, suitable watering, healthy soil and removal of severely affected plant material."
+    }
   },
   {
     "id": "neem",
     "name": "Neem",
-    "malayalamName": "ആര്യവേപ്പ്",
+    "malayalamName": "ആര്യവേപ്പ് / വേപ്പ്",
     "scientificName": "Azadirachta indica",
     "family": "Meliaceae",
-    "alternateNames": [],
     "category": "Tree",
-    "shortDescription": "Evergreen tree widely known for its traditional uses and cultural significance.",
-    "description": "Neem is a fast-growing evergreen tree common across the Indian plains and cultivated in South India for shade and its traditionally valued leaves, bark and seeds. It is a familiar sight in villages and temple grounds and has long been associated with traditional hygiene practices.",
-    "identification": {
-      "leaves": "Pinnately compound leaves with serrated, pointed leaflets.",
-      "flowers": "Small, fragrant white flowers arranged in clusters.",
-      "fruit": "Smooth, olive-like drupe that ripens from green to yellow.",
-      "stem": "Straight trunk with rough, fissured, greyish-brown bark."
-    },
-    "traditionalKnowledge": "Various parts of the neem tree have a long history of use in traditional Indian practices, particularly related to skin and household applications; neem twigs have traditionally been used for oral hygiene.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves",
-      "Bark",
-      "Seeds",
-      "Twigs"
-    ],
-    "habitat": "Thrives in tropical and subtropical climates, tolerant of dry and poor soils.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; common throughout India.",
-    "cultivation": "Propagated from seed; drought-tolerant once established and requires minimal maintenance.",
-    "safety": "Neem oil and seed extracts are potent and are not intended for internal use without professional guidance; keep away from young children.",
+    "description": "Neem is a well-known evergreen tree of the Indian subcontinent and has a long history in traditional Indian practices.",
+    "traditionalUses": "Traditionally used in preparations associated with skin care, hygiene and general wellness.",
+    "traditionalBenefits": "Traditionally associated with skin and oral hygiene practices.",
+    "plantPartsTraditionallyUsed": "Leaves, bark, seeds, flowers and oil.",
+    "traditionalUsage": "Leaves and other parts have traditionally been incorporated into herbal preparations and household practices.",
+    "habitat": "Tropical and semi-arid regions, especially across India.",
+    "identification": "Large evergreen tree with pinnate leaves and small white fragrant flowers.",
     "image": "/assets/plants/2.jpg",
     "arAvailable": true,
-    "model3D": "/assets/models/neem.glb"
+    "model3D": "/assets/models/neem.glb",
+    "health": {
+      "issues": "Scale insects and mealybugs occasionally.",
+      "symptoms": "Sticky residue on leaves or stunted growth.",
+      "prevention": "Ensure good drainage and prune dead branches."
+    }
   },
   {
     "id": "aloe-vera",
     "name": "Aloe Vera",
-    "malayalamName": "കറ്റാര്‍വാഴ",
+    "malayalamName": "കറ്റാർവാഴ",
     "scientificName": "Aloe vera",
     "family": "Asphodelaceae",
-    "alternateNames": [],
     "category": "Succulent",
-    "shortDescription": "Succulent plant recognized for its gel and long history in traditional practices.",
-    "description": "Aloe vera is a stemless or short-stemmed succulent with thick, fleshy leaves that store a clear gel. It is grown widely in home gardens across Kerala and South India and is a familiar plant in both traditional herbal practice and modern personal care products.",
-    "identification": {
-      "leaves": "Thick, fleshy, lance-shaped leaves with serrated edges, arranged in a rosette.",
-      "flowers": "Tubular yellow flowers borne on a tall spike, though flowering is infrequent in cultivation.",
-      "fruit": "Not typically grown for fruit; occasional small capsule fruit after flowering.",
-      "stem": "Very short or absent, with leaves emerging directly near ground level."
-    },
-    "traditionalKnowledge": "The clear inner gel has a long history of topical traditional use for skin care, and the plant is a staple of home herbal gardens across South Asia.",
-    "plantPartsTraditionallyUsed": [
-      "Leaf gel"
-    ],
-    "habitat": "Prefers warm, dry conditions with well-drained soil; tolerates drought well.",
-    "nativeOrCommonRegion": "Believed to originate from the Arabian Peninsula; naturalised and widely cultivated across India.",
-    "cultivation": "Easily propagated from offsets; needs minimal watering and full to partial sun.",
-    "safety": "Topical use of the gel is generally well tolerated; the yellow latex near the leaf skin can be irritating and is usually removed before use. Consult a professional before internal use.",
+    "description": "Aloe vera is a succulent plant recognized by its thick, fleshy leaves containing clear gel.",
+    "traditionalUses": "Traditionally used in skin-care preparations and various Ayurvedic and household practices.",
+    "traditionalBenefits": "Traditionally associated with skin soothing and digestive preparations.",
+    "plantPartsTraditionallyUsed": "Leaf gel and latex.",
+    "traditionalUsage": "The clear inner gel is traditionally applied in certain skin-care preparations.",
+    "habitat": "Warm, dry and tropical regions.",
+    "identification": "Thick pointed succulent leaves arranged in a rosette, often with small teeth along the margins.",
     "image": "/assets/plants/3.jpg",
     "arAvailable": true,
-    "model3D": "/assets/models/aloe-vera.glb"
+    "model3D": "/assets/models/aloe-vera.glb",
+    "health": {
+      "issues": "Root rot from overwatering.",
+      "symptoms": "Mushy, yellowing leaves at the base.",
+      "prevention": "Plant in well-draining soil and water only when completely dry."
+    }
   },
   {
     "id": "turmeric",
     "name": "Turmeric",
-    "malayalamName": "മഞ്ഞള്‍",
+    "malayalamName": "മഞ്ഞൾ",
     "scientificName": "Curcuma longa",
     "family": "Zingiberaceae",
-    "alternateNames": [],
-    "category": "Herb",
-    "shortDescription": "Rhizomatous plant valued as a spice and for its traditional Ayurvedic importance.",
-    "description": "Turmeric is a rhizomatous perennial herb cultivated throughout India for its bright yellow-orange underground rhizome, a defining ingredient of South Indian cuisine and a plant with deep cultural and Ayurvedic significance in Kerala.",
-    "identification": {
-      "leaves": "Large, broad, lance-shaped leaves arising directly from the rhizome.",
-      "flowers": "Pale yellow flowers enclosed within pink or green bracts, borne on a central spike.",
-      "fruit": "Rarely produces viable fruit in cultivation; propagated vegetatively.",
-      "stem": "Underground, forming a branched, aromatic rhizome; the visible 'stem' is a leaf sheath."
-    },
-    "traditionalKnowledge": "The rhizome has a long history of culinary and traditional Ayurvedic use in India, including in ceremonial and household contexts.",
-    "plantPartsTraditionallyUsed": [
-      "Rhizome"
-    ],
-    "habitat": "Requires warm, humid climates with well-drained, fertile soil.",
-    "nativeOrCommonRegion": "Native to South Asia; extensively cultivated across India, including Kerala.",
-    "cultivation": "Propagated from rhizome pieces; harvested after the leaves die back, typically 8–10 months after planting.",
-    "safety": "Widely used as a food spice and generally considered safe in culinary amounts; concentrated extracts should be used only under professional guidance.",
+    "category": "Spice",
+    "description": "Turmeric is a rhizomatous plant widely cultivated in South and Southeast Asia.",
+    "traditionalUses": "A major ingredient in Ayurveda, traditional cuisine and cultural practices.",
+    "traditionalBenefits": "Traditionally associated with digestive and general wellness practices.",
+    "plantPartsTraditionallyUsed": "Rhizome.",
+    "traditionalUsage": "Fresh or dried rhizomes are used as a spice and in traditional preparations.",
+    "habitat": "Warm, humid tropical regions.",
+    "identification": "Broad green leaves and underground yellow-orange rhizomes.",
     "image": "/assets/plants/4.jpg",
     "arAvailable": true,
-    "model3D": "/assets/models/turmeric.glb"
+    "model3D": "/assets/models/turmeric.glb",
+    "health": {
+      "issues": "Rhizome rot and leaf blotch.",
+      "symptoms": "Yellowing of outer leaves and decaying roots.",
+      "prevention": "Avoid waterlogging and use disease-free seed rhizomes."
+    }
   },
   {
     "id": "ginger",
@@ -123,26 +97,21 @@
     "malayalamName": "ഇഞ്ചി",
     "scientificName": "Zingiber officinale",
     "family": "Zingiberaceae",
-    "alternateNames": [],
-    "category": "Herb",
-    "shortDescription": "Aromatic rhizome commonly used as a spice and in traditional herbal preparations.",
-    "description": "Ginger is a perennial herb grown for its pungent, aromatic rhizome, a key ingredient in South Indian cooking and traditional preparations. It is widely cultivated in Kerala's hill regions.",
-    "identification": {
-      "leaves": "Long, narrow, lance-shaped leaves arranged alternately along the stem.",
-      "flowers": "Yellow-green flowers with purple markings, borne on a separate short spike; flowering is uncommon in cultivation.",
-      "fruit": "Rarely fruits in cultivation; grown for its rhizome.",
-      "stem": "Slender, reed-like pseudostem formed by overlapping leaf sheaths."
-    },
-    "traditionalKnowledge": "The rhizome is a staple culinary spice with a long history of traditional use in warming preparations and herbal drinks across India.",
-    "plantPartsTraditionallyUsed": [
-      "Rhizome"
-    ],
-    "habitat": "Grows best in warm, humid climates with rich, well-drained soil and partial shade.",
-    "nativeOrCommonRegion": "Native to Southeast Asia; extensively cultivated across India, including Kerala and the Western Ghats.",
-    "cultivation": "Propagated from rhizome pieces; harvested roughly 8–10 months after planting.",
-    "safety": "Commonly consumed as a food spice; concentrated forms may interact with certain medications, so professional advice is recommended for medicinal use.",
+    "category": "Spice",
+    "description": "Ginger is a flowering plant cultivated mainly for its aromatic underground rhizome.",
+    "traditionalUses": "Widely used in Ayurveda and traditional food and herbal preparations.",
+    "traditionalBenefits": "Traditionally associated with digestion and relief of occasional digestive discomfort.",
+    "plantPartsTraditionallyUsed": "Rhizome.",
+    "traditionalUsage": "Fresh or dried ginger is used in food, beverages and traditional preparations.",
+    "habitat": "Warm tropical and subtropical climates.",
+    "identification": "Narrow lance-shaped leaves, upright stems and branching aromatic rhizomes.",
     "image": "/assets/plants/5.jpg",
-    "arAvailable": false
+    "arAvailable": false,
+    "health": {
+      "issues": "Soft rot and bacterial wilt.",
+      "symptoms": "Yellowing leaf tips extending downwards; soft foul-smelling rhizomes.",
+      "prevention": "Ensure excellent drainage and crop rotation."
+    }
   },
   {
     "id": "ashwagandha",
@@ -150,890 +119,65 @@
     "malayalamName": "അമുക്കുരം",
     "scientificName": "Withania somnifera",
     "family": "Solanaceae",
-    "alternateNames": [],
     "category": "Shrub",
-    "shortDescription": "Traditional Ayurvedic herb known for its long history in Indian herbal practices.",
-    "description": "Ashwagandha is a small, woody shrub whose roots are among the most referenced botanicals in classical Ayurvedic literature. It is cultivated in parts of India for traditional herbal use.",
-    "identification": {
-      "leaves": "Simple, ovate, slightly hairy leaves arranged alternately.",
-      "flowers": "Small, greenish-yellow, bell-shaped flowers.",
-      "fruit": "Small orange-red berries enclosed in a papery calyx.",
-      "stem": "Erect, branching, covered in fine hairs."
-    },
-    "traditionalKnowledge": "The root is a central herb in classical Ayurvedic texts, traditionally described within the category of rejuvenating tonics.",
-    "plantPartsTraditionallyUsed": [
-      "Root",
-      "Leaves"
-    ],
-    "habitat": "Grows in dry, subtropical regions with well-drained soil.",
-    "nativeOrCommonRegion": "Native to India, the Middle East and parts of Africa; cultivated across several Indian states.",
-    "cultivation": "Propagated from seed; prefers a dry climate and sandy loam soil.",
-    "safety": "Should be used only under professional guidance, particularly during pregnancy or alongside other medications, as it is a potent traditional root.",
+    "description": "Ashwagandha is a small shrub traditionally important in Ayurveda.",
+    "traditionalUses": "Traditionally classified as a Rasayana herb and used in various Ayurvedic preparations.",
+    "traditionalBenefits": "Traditionally associated with vitality, strength and general wellness.",
+    "plantPartsTraditionallyUsed": "Primarily root; leaves and berries are also used in some traditional practices.",
+    "traditionalUsage": "Roots are traditionally dried and powdered or incorporated into preparations.",
+    "habitat": "Dry and semi-arid regions.",
+    "identification": "Small shrub with oval leaves, pale flowers and small orange-red berries.",
     "image": "/assets/plants/6.jpg",
-    "arAvailable": false
+    "arAvailable": false,
+    "health": {
+      "issues": "Spider mites and leaf blight.",
+      "symptoms": "Webbing on leaves or brown spotting.",
+      "prevention": "Keep plants well-spaced for airflow and avoid overhead watering."
+    }
   },
   {
     "id": "amla",
-    "name": "Amla",
+    "name": "Amla / Indian Gooseberry",
     "malayalamName": "നെല്ലിക്ക",
     "scientificName": "Phyllanthus emblica",
     "family": "Phyllanthaceae",
-    "alternateNames": [
-      "Indian Gooseberry"
-    ],
     "category": "Tree",
-    "shortDescription": "Fruit-bearing tree traditionally valued for its nutritional and Ayurvedic importance.",
-    "description": "Amla, also called Indian Gooseberry, is a deciduous tree bearing small, translucent green fruits that are a well-known feature of Ayurvedic tradition and South Indian cuisine. It is commonly grown in home gardens across Kerala.",
-    "identification": {
-      "leaves": "Small, feathery, closely spaced leaflets giving a fern-like appearance.",
-      "flowers": "Small, greenish-yellow flowers clustered along the branchlets.",
-      "fruit": "Round, pale green, translucent fruit with a sharp, sour taste.",
-      "stem": "Greyish bark that peels in thin flakes; slender branches."
-    },
-    "traditionalKnowledge": "The fruit has a long history of use in Ayurvedic preparations and in traditional pickles and preserves across India.",
-    "plantPartsTraditionallyUsed": [
-      "Fruit",
-      "Seeds"
-    ],
-    "habitat": "Grows in a range of soils from dry to moist, tolerating both drought and mild waterlogging.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; widely grown throughout India, including Kerala.",
-    "cultivation": "Propagated by grafting or seed; fruits are harvested in the cooler months.",
-    "safety": "The fresh fruit is commonly eaten as food; concentrated extracts should be used with professional guidance.",
+    "description": "Amla is a small to medium-sized tree producing greenish-yellow fruits.",
+    "traditionalUses": "Important in Ayurveda and commonly included in traditional formulations.",
+    "traditionalBenefits": "Traditionally associated with digestive and general wellness practices.",
+    "plantPartsTraditionallyUsed": "Fruit, seeds, bark and leaves.",
+    "traditionalUsage": "Fruit is eaten fresh, dried or used in traditional preparations.",
+    "habitat": "Tropical and subtropical parts of India.",
+    "identification": "Small feathery-looking leaves and round pale-green fruits.",
     "image": "/assets/plants/7.jpg",
-    "arAvailable": false
+    "arAvailable": false,
+    "health": {
+      "issues": "Bark eating caterpillars and rust.",
+      "symptoms": "Webbed frass on branches or rusty spots on leaves.",
+      "prevention": "Prune affected branches and maintain overall tree vigor."
+    }
   },
   {
-    "id": "brahmi-bacopa",
+    "id": "brahmi",
     "name": "Brahmi",
     "malayalamName": "ബ്രഹ്മി",
     "scientificName": "Bacopa monnieri",
     "family": "Plantaginaceae",
-    "alternateNames": [],
     "category": "Herb",
-    "shortDescription": "Small creeping herb traditionally associated with learning and cognitive wellness.",
-    "description": "Brahmi is a small, succulent, creeping herb that grows in wet or marshy ground and is one of the most referenced herbs in Ayurvedic tradition, particularly in the context of study and memory.",
-    "identification": {
-      "leaves": "Small, fleshy, oblong leaves arranged oppositely along creeping stems.",
-      "flowers": "Small, pale purple to white flowers with four to five petals.",
-      "fruit": "Small oval capsule containing tiny seeds.",
-      "stem": "Soft, succulent, creeping and rooting at the nodes."
-    },
-    "traditionalKnowledge": "Classical Ayurvedic tradition describes Brahmi as a herb associated with mental clarity and learning; it remains a subject of ongoing scientific research.",
-    "plantPartsTraditionallyUsed": [
-      "Whole plant",
-      "Leaves"
-    ],
-    "habitat": "Grows in wet, marshy soils, riverbanks and shallow water.",
-    "nativeOrCommonRegion": "Native to South Asia and other wetland regions; found across India, including Kerala's waterlogged areas.",
-    "cultivation": "Propagated from stem cuttings; requires consistently moist soil or shallow water.",
-    "safety": "Generally used in traditional low-dose preparations; professional guidance is recommended, especially for children and pregnant women.",
+    "description": "Brahmi is a small creeping herb commonly found in moist environments.",
+    "traditionalUses": "Traditionally used in Ayurveda in preparations associated with memory and mental wellness.",
+    "traditionalBenefits": "Traditionally associated with memory, concentration and general nervous-system wellness.",
+    "plantPartsTraditionallyUsed": "Whole plant, especially leaves and stems.",
+    "traditionalUsage": "Traditionally prepared as fresh juice, powder or incorporated into herbal formulations.",
+    "habitat": "Wetlands, marshes, ponds and moist soil.",
+    "identification": "Small succulent leaves, creeping stems and small white flowers.",
     "image": "/assets/plants/8.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "moringa",
-    "name": "Moringa",
-    "malayalamName": "മുരിങ്ങ",
-    "scientificName": "Moringa oleifera",
-    "family": "Moringaceae",
-    "alternateNames": [
-      "Drumstick Tree"
-    ],
-    "category": "Tree",
-    "shortDescription": "Nutrient-rich tree whose leaves, pods and other parts have many traditional uses.",
-    "description": "Moringa, known locally as the drumstick tree, is a fast-growing tree cultivated throughout Kerala for its nutrient-dense leaves and long, ridged seed pods, both staples of South Indian cooking.",
-    "identification": {
-      "leaves": "Compound, feathery leaves divided into small oval leaflets.",
-      "flowers": "Small, fragrant, cream-white flowers borne in loose clusters.",
-      "fruit": "Long, slender, ridged pods known as 'drumsticks', containing round seeds.",
-      "stem": "Soft, pale, corky bark; brittle branches."
-    },
-    "traditionalKnowledge": "Various parts of the moringa tree have a long history of traditional and culinary use across South Asia and Africa.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves",
-      "Pods",
-      "Seeds",
-      "Roots"
-    ],
-    "habitat": "Grows in a wide range of tropical and subtropical soils; tolerant of drought.",
-    "nativeOrCommonRegion": "Native to the sub-Himalayan regions of India; widely cultivated across Kerala and South India.",
-    "cultivation": "Easily grown from seed or stem cuttings; fast-growing and low maintenance.",
-    "safety": "Leaves and pods are widely eaten as food; the root and root bark are traditionally used with caution and are not recommended without professional guidance.",
-    "image": "/assets/plants/9.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "curry-leaf",
-    "name": "Curry Leaf",
-    "malayalamName": "കറിവേപ്പില",
-    "scientificName": "Murraya koenigii",
-    "family": "Rutaceae",
-    "alternateNames": [],
-    "category": "Tree",
-    "shortDescription": "Aromatic tree whose leaves are widely used in Indian cooking and traditional practices.",
-    "description": "The curry leaf tree is a small aromatic tree grown in nearly every South Indian kitchen garden. Its fragrant leaves are a defining ingredient of Kerala and South Indian cuisine.",
-    "identification": {
-      "leaves": "Pinnately compound leaves with small, glossy, aromatic leaflets.",
-      "flowers": "Small, white, fragrant flowers borne in clusters.",
-      "fruit": "Small, shiny black berries when ripe, not typically eaten.",
-      "stem": "Slender, greyish-brown, branching stem."
-    },
-    "traditionalKnowledge": "The aromatic leaves are used fresh in daily cooking across South India and have a place in traditional household herbal knowledge.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves"
-    ],
-    "habitat": "Grows well in tropical and subtropical climates with moderate rainfall.",
-    "nativeOrCommonRegion": "Native to India and Sri Lanka; a common kitchen-garden plant throughout South India.",
-    "cultivation": "Propagated from seed or root suckers; prefers well-drained, fertile soil and partial sun.",
-    "safety": "Leaves are widely consumed as a culinary herb and are generally considered safe in normal food quantities.",
-    "image": "/assets/plants/10.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "lemongrass",
-    "name": "Lemongrass",
-    "malayalamName": "വാസനപ്പുല്ല്",
-    "scientificName": "Cymbopogon citratus",
-    "family": "Poaceae",
-    "alternateNames": [],
-    "category": "Grass",
-    "shortDescription": "Fragrant grass commonly used in food, beverages and traditional herbal practices.",
-    "description": "Lemongrass is a tall, tufted aromatic grass with a distinct citrus fragrance, widely grown in Kerala home gardens and used in teas, cooking and traditional preparations.",
-    "identification": {
-      "leaves": "Long, narrow, blade-like leaves with a sharp edge and strong lemon scent when crushed.",
-      "flowers": "Rarely flowers in cultivation; when present, forms tall, loose flower spikes.",
-      "fruit": "Not grown for fruit.",
-      "stem": "Fibrous, clustered stem base forming dense tufts."
-    },
-    "traditionalKnowledge": "Traditionally brewed as a fragrant herbal tea and used in South and Southeast Asian cooking for its citrus aroma.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves",
-      "Stem base"
-    ],
-    "habitat": "Grows well in warm, tropical climates with moderate to high rainfall.",
-    "nativeOrCommonRegion": "Native to South and Southeast Asia; widely cultivated across Kerala.",
-    "cultivation": "Propagated by dividing established clumps; low maintenance and drought-tolerant once established.",
-    "safety": "Commonly consumed as a herbal tea in moderate amounts; the essential oil is concentrated and not intended for direct internal use.",
-    "image": "/assets/plants/11.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "mint",
-    "name": "Mint",
-    "malayalamName": "പുതിന",
-    "scientificName": "Mentha spp.",
-    "family": "Lamiaceae",
-    "alternateNames": [],
-    "category": "Herb",
-    "shortDescription": "Aromatic herb widely used in food and traditional preparations.",
-    "description": "Mint is a fast-spreading, fragrant herb grown widely across India for culinary use, from chutneys to beverages, and is a familiar plant in Kerala home gardens.",
-    "identification": {
-      "leaves": "Simple, opposite, toothed leaves with a strong, refreshing aroma.",
-      "flowers": "Small, pale purple or white flowers borne in whorled clusters.",
-      "fruit": "Tiny nutlets, not commonly used.",
-      "stem": "Square, spreading, often rooting at the nodes."
-    },
-    "traditionalKnowledge": "Widely used fresh in South Asian cooking and traditional herbal drinks for its cooling, refreshing character.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves"
-    ],
-    "habitat": "Prefers moist, well-drained soil and partial shade to full sun.",
-    "nativeOrCommonRegion": "Various Mentha species are native to Europe, Asia and Africa; widely cultivated across India.",
-    "cultivation": "Propagated easily from cuttings or runners; spreads readily and needs regular watering.",
-    "safety": "Widely consumed as a culinary herb; generally well tolerated in normal food amounts.",
-    "image": "/assets/plants/12.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "hibiscus",
-    "name": "Hibiscus",
-    "malayalamName": "ചെമ്പരത്തി",
-    "scientificName": "Hibiscus rosa-sinensis",
-    "family": "Malvaceae",
-    "alternateNames": [
-      "Shoe Flower"
-    ],
-    "category": "Shrub",
-    "shortDescription": "Flowering plant valued ornamentally and in several traditional preparations.",
-    "description": "Hibiscus is a popular flowering shrub grown throughout Kerala for its large, showy blooms, seen in gardens, temple offerings and traditional hair-care preparations.",
-    "identification": {
-      "leaves": "Glossy, dark green, toothed, ovate leaves.",
-      "flowers": "Large, funnel-shaped flowers, most commonly red, with a prominent central staminal column.",
-      "fruit": "Small dry capsule, rarely of interest.",
-      "stem": "Woody, branching shrub stem."
-    },
-    "traditionalKnowledge": "Flowers and leaves have a long-standing place in traditional South Indian hair-care and are commonly offered in temple rituals.",
-    "plantPartsTraditionallyUsed": [
-      "Flowers",
-      "Leaves"
-    ],
-    "habitat": "Grows well in warm, humid, tropical conditions with regular watering.",
-    "nativeOrCommonRegion": "Native to East Asia; naturalised and extremely common throughout India, including Kerala.",
-    "cultivation": "Propagated from stem cuttings; needs full sun and regular watering for best flowering.",
-    "safety": "Generally regarded as safe for topical and traditional external use; not intended for internal medicinal use without guidance.",
-    "image": "/assets/plants/13.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "ashoka",
-    "name": "Ashoka",
-    "malayalamName": "അശോകം",
-    "scientificName": "Saraca asoca",
-    "family": "Fabaceae",
-    "alternateNames": [],
-    "category": "Tree",
-    "shortDescription": "Sacred Indian tree with a long history in Ayurvedic and cultural traditions.",
-    "description": "Ashoka is a small to medium evergreen tree revered in Indian tradition and mentioned frequently in classical literature and Ayurvedic texts, often planted near temples.",
-    "identification": {
-      "leaves": "Long, pinnately compound leaves with lance-shaped leaflets that droop when young.",
-      "flowers": "Bright orange-yellow to red, fragrant flowers borne in dense clusters.",
-      "fruit": "Flat, woody seed pod.",
-      "stem": "Smooth, dark grey-brown bark."
-    },
-    "traditionalKnowledge": "The bark holds a prominent place in classical Ayurvedic tradition and the tree itself carries deep cultural and religious symbolism.",
-    "plantPartsTraditionallyUsed": [
-      "Bark",
-      "Flowers"
-    ],
-    "habitat": "Grows in moist, shaded conditions, often near riverbanks.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; found in Kerala's forests and temple gardens.",
-    "cultivation": "Propagated from seed; prefers partial shade and consistently moist soil when young.",
-    "safety": "Bark preparations are traditionally used under professional guidance; the tree is also of conservation concern in parts of its range.",
-    "image": "/assets/plants/14.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "arjuna",
-    "name": "Arjuna",
-    "malayalamName": "അര്‍ജ്ജുനം",
-    "scientificName": "Terminalia arjuna",
-    "family": "Combretaceae",
-    "alternateNames": [],
-    "category": "Tree",
-    "shortDescription": "Large tree traditionally important in Ayurveda, particularly its bark.",
-    "description": "Arjuna is a large, buttressed deciduous tree commonly found along riverbanks, its smooth, pale bark holding a prominent place in classical Ayurvedic tradition.",
-    "identification": {
-      "leaves": "Oblong leaves, dark green above and pale beneath, arranged sub-oppositely.",
-      "flowers": "Small, pale yellow flowers borne in short spikes.",
-      "fruit": "Woody, five-winged fruit.",
-      "stem": "Smooth, pale grey to pinkish bark that flakes in patches; often buttressed at the base."
-    },
-    "traditionalKnowledge": "The bark is one of the most referenced botanicals in classical Ayurvedic cardiovascular tradition, distinct from established modern medical treatment.",
-    "plantPartsTraditionallyUsed": [
-      "Bark"
-    ],
-    "habitat": "Grows well along riverbanks and in moist deciduous forests.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; found across peninsular India, including Kerala.",
-    "cultivation": "Propagated from seed; prefers moist soil and does well near water bodies.",
-    "safety": "Bark preparations should only be used under qualified professional guidance.",
-    "image": "/assets/plants/15.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "licorice",
-    "name": "Licorice",
-    "malayalamName": "ഇരട്ടിമധുരം",
-    "scientificName": "Glycyrrhiza glabra",
-    "family": "Fabaceae",
-    "alternateNames": [
-      "Mulethi"
-    ],
-    "category": "Herb",
-    "shortDescription": "Root-bearing herb traditionally used in various herbal preparations.",
-    "description": "Licorice is a perennial herb valued for its sweet-tasting roots, traditionally used across Indian herbal systems and often included in throat-soothing preparations.",
-    "identification": {
-      "leaves": "Pinnately compound leaves with several pairs of small leaflets.",
-      "flowers": "Small, pale purple to whitish pea-like flowers in spikes.",
-      "fruit": "Small, flattened, oblong pod.",
-      "stem": "Erect, herbaceous to slightly woody stem."
-    },
-    "traditionalKnowledge": "The root has a long tradition of use in soothing herbal preparations across South Asian and Middle Eastern herbal systems.",
-    "plantPartsTraditionallyUsed": [
-      "Root"
-    ],
-    "habitat": "Prefers deep, well-drained soils in sunny, temperate to subtropical locations.",
-    "nativeOrCommonRegion": "Native to the Mediterranean and parts of Asia; cultivated in parts of India for traditional use.",
-    "cultivation": "Propagated from root divisions or seed; requires deep soil for good root development.",
-    "safety": "Excessive or prolonged use is not advised, particularly for those with high blood pressure; professional guidance is recommended.",
-    "image": "/assets/plants/16.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "shatavari",
-    "name": "Shatavari",
-    "malayalamName": "ശതാവരി",
-    "scientificName": "Asparagus racemosus",
-    "family": "Asparagaceae",
-    "alternateNames": [],
-    "category": "Climber",
-    "shortDescription": "Traditional Ayurvedic plant with tuberous roots and cultural importance.",
-    "description": "Shatavari is a climbing, thorny plant with clusters of tuberous roots, one of the most referenced herbs in classical Ayurvedic tradition relating to women's wellness.",
-    "identification": {
-      "leaves": "Fine, needle-like cladodes (modified leaf-like stems) arranged in clusters.",
-      "flowers": "Small, fragrant white flowers.",
-      "fruit": "Small, round, red berry.",
-      "stem": "Wiry, climbing, thorny stem."
-    },
-    "traditionalKnowledge": "The tuberous root is central to classical Ayurvedic tradition and is described within the category of traditional rejuvenating tonics.",
-    "plantPartsTraditionallyUsed": [
-      "Tuberous root"
-    ],
-    "habitat": "Grows in scrub forests and rocky, well-drained terrain.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; found across India, including Kerala's forest margins.",
-    "cultivation": "Propagated from root divisions or seed; needs support for its climbing habit.",
-    "safety": "Should be used under professional guidance, particularly during pregnancy or alongside medication.",
-    "image": "/assets/plants/17.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "guduchi",
-    "name": "Guduchi",
-    "malayalamName": "ചിറ്റമൃത്",
-    "scientificName": "Tinospora cordifolia",
-    "family": "Menispermaceae",
-    "alternateNames": [
-      "Giloy"
-    ],
-    "category": "Climber",
-    "shortDescription": "Climbing plant widely recognized in traditional Indian herbal knowledge.",
-    "description": "Guduchi is a deciduous climbing shrub with a distinctive heart-shaped leaf, widely recognised across Indian herbal tradition and often referred to by its Sanskrit name meaning 'that which protects the body'.",
-    "identification": {
-      "leaves": "Heart-shaped, glossy green leaves.",
-      "flowers": "Small, greenish-yellow flowers borne in racemes.",
-      "fruit": "Small, red, pea-sized drupe when ripe.",
-      "stem": "Succulent, fleshy, twining stem with warty bark."
-    },
-    "traditionalKnowledge": "The stem holds an important place in classical Ayurvedic tradition and is one of the most widely referenced climbing plants in Indian herbal knowledge.",
-    "plantPartsTraditionallyUsed": [
-      "Stem",
-      "Leaves"
-    ],
-    "habitat": "Grows in deciduous forests and thrives when climbing on host trees.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; found across India, including Kerala.",
-    "cultivation": "Propagated from stem cuttings; needs a support structure or host tree to climb.",
-    "safety": "Should be used under professional guidance; not recommended for self-medication.",
-    "image": "/assets/plants/18.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "gotu-kola",
-    "name": "Gotu Kola",
-    "malayalamName": "കുടങ്ങല്‍",
-    "scientificName": "Centella asiatica",
-    "family": "Apiaceae",
-    "alternateNames": [
-      "Indian Pennywort",
-      "Mandukaparni"
-    ],
-    "category": "Herb",
-    "shortDescription": "Creeping herb traditionally used in South and Southeast Asian herbal practices.",
-    "description": "Gotu Kola is a small, creeping herb found in moist, shaded areas across Kerala, traditionally valued in South and Southeast Asian herbal systems and sometimes confused with the unrelated herb Brahmi (Bacopa monnieri).",
-    "identification": {
-      "leaves": "Small, rounded to kidney-shaped leaves with scalloped edges, borne on long stalks.",
-      "flowers": "Tiny, pinkish-white flowers borne close to the ground.",
-      "fruit": "Small, ribbed, oval fruit.",
-      "stem": "Slender, creeping stem that roots at the nodes."
-    },
-    "traditionalKnowledge": "Traditionally used across South and Southeast Asian herbal systems and, in some regional traditions, associated with mental clarity in a manner similar to Bacopa monnieri.",
-    "plantPartsTraditionallyUsed": [
-      "Whole plant",
-      "Leaves"
-    ],
-    "habitat": "Grows in moist, shaded or marshy ground, often near water.",
-    "nativeOrCommonRegion": "Native to wetland regions of Asia; common across Kerala's moist habitats.",
-    "cultivation": "Propagated from stem cuttings or runners; needs consistent moisture.",
-    "safety": "Generally used in traditional low-dose preparations; professional guidance is recommended for regular use.",
-    "image": "/assets/plants/19.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "vetiver",
-    "name": "Vetiver",
-    "malayalamName": "രാമച്ചം",
-    "scientificName": "Chrysopogon zizanioides",
-    "family": "Poaceae",
-    "alternateNames": [],
-    "category": "Grass",
-    "shortDescription": "Fragrant grass valued for its aromatic roots and traditional applications.",
-    "description": "Vetiver is a tall, tufted perennial grass with a dense network of aromatic roots, traditionally used in Kerala for cooling mats, screens and fragrant preparations, especially during summer.",
-    "identification": {
-      "leaves": "Long, narrow, stiff leaves with a rough texture.",
-      "flowers": "Loose, purplish-brown flower spikelets, rarely prominent.",
-      "fruit": "Not grown for fruit.",
-      "stem": "Dense, fibrous tufted stem base with deep, aromatic roots."
-    },
-    "traditionalKnowledge": "The aromatic roots have a long tradition of use in Kerala for cooling window screens, mats and fragrant water preparations during the hot season.",
-    "plantPartsTraditionallyUsed": [
-      "Roots"
-    ],
-    "habitat": "Grows in a wide range of soils, tolerant of both wet and dry conditions.",
-    "nativeOrCommonRegion": "Native to India; widely cultivated across South India, including Kerala.",
-    "cultivation": "Propagated by root or slip division; deep-rooted and useful for soil stabilisation.",
-    "safety": "Primarily used for its fragrance in traditional applications; not intended for internal medicinal use.",
-    "image": "/assets/plants/20.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "black-pepper",
-    "name": "Black Pepper",
-    "malayalamName": "കുരുമുളക്",
-    "scientificName": "Piper nigrum",
-    "family": "Piperaceae",
-    "alternateNames": [],
-    "category": "Climber",
-    "shortDescription": "Climbing vine producing a major Indian spice with traditional significance.",
-    "description": "Black pepper is a woody, climbing vine native to the Western Ghats of Kerala, historically known as the 'King of Spices' and central to the region's spice trade history.",
-    "identification": {
-      "leaves": "Broad, glossy, heart-shaped leaves arranged alternately.",
-      "flowers": "Small, tightly clustered flowers on a hanging spike.",
-      "fruit": "Small, round drupe that turns from green to red and is dried to produce the familiar peppercorn.",
-      "stem": "Woody, climbing stem that attaches to support trees or poles via small roots."
-    },
-    "traditionalKnowledge": "Peppercorns are a defining South Indian spice with an extensive history of culinary and traditional use across Kerala.",
-    "plantPartsTraditionallyUsed": [
-      "Fruit (peppercorn)"
-    ],
-    "habitat": "Thrives in humid, tropical climates with well-drained soil and partial shade.",
-    "nativeOrCommonRegion": "Native to the Western Ghats of Kerala; a signature crop of the Kerala spice belt.",
-    "cultivation": "Propagated from stem cuttings, trained to climb support trees or poles; harvested when berries begin to redden.",
-    "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/21.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "cardamom",
-    "name": "Cardamom",
-    "malayalamName": "ഏലം",
-    "scientificName": "Elettaria cardamomum",
-    "family": "Zingiberaceae",
-    "alternateNames": [],
-    "category": "Spice",
-    "shortDescription": "Aromatic spice plant native to the Western Ghats and important in Kerala.",
-    "description": "Cardamom, often called the 'Queen of Spices', is a rhizomatous perennial native to the high-altitude forests of Kerala's Western Ghats, prized for its fragrant seed pods.",
-    "identification": {
-      "leaves": "Long, lance-shaped leaves arranged in two rows along leafy shoots.",
-      "flowers": "Small, whitish flowers with purple-veined lips, borne on separate flowering stalks.",
-      "fruit": "Small, ridged, oval capsule containing dark aromatic seeds.",
-      "stem": "Underground rhizome with tall, reed-like leafy shoots."
-    },
-    "traditionalKnowledge": "The aromatic seed pods are central to South Indian cuisine and traditional preparations, and are a historic export crop of Kerala.",
-    "plantPartsTraditionallyUsed": [
-      "Seed pods"
-    ],
-    "habitat": "Requires cool, humid, high-altitude forest conditions with filtered shade.",
-    "nativeOrCommonRegion": "Native to the Western Ghats of Kerala and Karnataka; grown extensively in Kerala's cardamom hills.",
-    "cultivation": "Propagated from rhizome division or seedlings; grown under forest canopy shade at higher elevations.",
-    "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/22.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "cinnamon",
-    "name": "Cinnamon",
-    "malayalamName": "കറുവപ്പട്ട",
-    "scientificName": "Cinnamomum verum",
-    "family": "Lauraceae",
-    "alternateNames": [
-      "True Cinnamon"
-    ],
-    "category": "Tree",
-    "shortDescription": "Aromatic tree whose bark is widely used as a spice and in traditional practices.",
-    "description": "Cinnamon is an evergreen tree cultivated in Kerala for its fragrant inner bark, which is dried and rolled into the familiar cinnamon quills used in cooking and traditional preparations.",
-    "identification": {
-      "leaves": "Glossy, leathery, elliptical leaves with three prominent veins.",
-      "flowers": "Small, pale yellow-green flowers borne in clusters.",
-      "fruit": "Small, dark purple, single-seeded berry.",
-      "stem": "Inner bark is aromatic and is harvested and dried to form cinnamon quills."
-    },
-    "traditionalKnowledge": "The bark has an extensive history as a South Indian spice and in traditional warming preparations.",
-    "plantPartsTraditionallyUsed": [
-      "Bark",
-      "Leaves"
-    ],
-    "habitat": "Grows in warm, humid, tropical lowland conditions.",
-    "nativeOrCommonRegion": "Native to Sri Lanka and South India; cultivated in Kerala's spice-growing regions.",
-    "cultivation": "Propagated from seed or cuttings; bark is harvested periodically from mature stems.",
-    "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/23.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "clove",
-    "name": "Clove",
-    "malayalamName": "ഗ്രാമ്പൂ",
-    "scientificName": "Syzygium aromaticum",
-    "family": "Myrtaceae",
-    "alternateNames": [],
-    "category": "Tree",
-    "shortDescription": "Aromatic flower bud used as a spice and in traditional herbal preparations.",
-    "description": "Clove is an evergreen tree grown in Kerala for its aromatic flower buds, which are hand-picked and dried to produce the familiar dark brown spice used across South Indian cuisine.",
-    "identification": {
-      "leaves": "Glossy, elliptical, aromatic leaves arranged oppositely.",
-      "flowers": "Buds are harvested before opening; if left, they open into small pinkish flowers.",
-      "fruit": "Not grown for fruit; the unopened flower bud is the harvested part.",
-      "stem": "Smooth, greyish bark on a moderately tall evergreen tree."
-    },
-    "traditionalKnowledge": "The dried flower bud has a long tradition of culinary use and is traditionally associated with oral and dental comfort in South Indian households.",
-    "plantPartsTraditionallyUsed": [
-      "Flower buds"
-    ],
-    "habitat": "Requires warm, humid, tropical conditions with well-drained soil.",
-    "nativeOrCommonRegion": "Native to the Maluku Islands of Indonesia; cultivated in Kerala's spice belt.",
-    "cultivation": "Propagated from seed; buds are hand-harvested just before flowering and sun-dried.",
-    "safety": "Widely used as a food spice in small quantities; concentrated clove oil is potent and not intended for undiluted use.",
-    "image": "/assets/plants/24.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "indian-bay-leaf",
-    "name": "Indian Bay Leaf",
-    "malayalamName": "പട്ടില",
-    "scientificName": "Cinnamomum tamala",
-    "family": "Lauraceae",
-    "alternateNames": [
-      "Tejpat"
-    ],
-    "category": "Tree",
-    "shortDescription": "Aromatic tree whose leaves are used as a spice in South Asian cuisine.",
-    "description": "Indian Bay Leaf is an evergreen tree closely related to cinnamon, grown for its aromatic leaves, which are a common flavouring in South Asian rice and curry dishes.",
-    "identification": {
-      "leaves": "Glossy, leathery leaves with three prominent longitudinal veins, aromatic when crushed.",
-      "flowers": "Small, pale yellow-green flowers in clusters.",
-      "fruit": "Small, dark, single-seeded berry.",
-      "stem": "Smooth, aromatic bark similar to that of true cinnamon."
-    },
-    "traditionalKnowledge": "The dried leaves are a common flavouring herb in South Asian cooking, distinct from the Mediterranean bay leaf (Laurus nobilis).",
-    "plantPartsTraditionallyUsed": [
-      "Leaves"
-    ],
-    "habitat": "Grows in warm, humid subtropical to tropical climates.",
-    "nativeOrCommonRegion": "Native to the Himalayan foothills and Northeast India; cultivated in parts of South India.",
-    "cultivation": "Propagated from seed; leaves are harvested and dried for culinary use.",
-    "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/25.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "fenugreek",
-    "name": "Fenugreek",
-    "malayalamName": "ഉലുവ",
-    "scientificName": "Trigonella foenum-graecum",
-    "family": "Fabaceae",
-    "alternateNames": [
-      "Methi"
-    ],
-    "category": "Herb",
-    "shortDescription": "Herb whose seeds and leaves are commonly used as food and in traditional practices.",
-    "description": "Fenugreek is an annual herb grown for its aromatic seeds and edible leaves, both widely used in South Indian cooking and traditional household preparations.",
-    "identification": {
-      "leaves": "Trifoliate leaves with small, oval, slightly toothed leaflets.",
-      "flowers": "Small, pale yellow to white pea-like flowers.",
-      "fruit": "Long, slender, curved pod containing small, hard, angular seeds.",
-      "stem": "Erect, slender, herbaceous stem."
-    },
-    "traditionalKnowledge": "The seeds and leaves have an extensive history of use in South Asian cooking and household herbal traditions.",
-    "plantPartsTraditionallyUsed": [
-      "Seeds",
-      "Leaves"
-    ],
-    "habitat": "Prefers cooler, well-drained conditions, often grown as a cool-season crop.",
-    "nativeOrCommonRegion": "Native to the Mediterranean region and Western Asia; widely cultivated across India.",
-    "cultivation": "Propagated from seed; grows quickly and is often harvested young for leaves.",
-    "safety": "Widely used as a food spice and vegetable; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/26.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "coriander",
-    "name": "Coriander",
-    "malayalamName": "മല്ലി",
-    "scientificName": "Coriandrum sativum",
-    "family": "Apiaceae",
-    "alternateNames": [
-      "Cilantro"
-    ],
-    "category": "Herb",
-    "shortDescription": "Aromatic herb widely used for its leaves and seeds in cooking and traditional preparations.",
-    "description": "Coriander is an annual herb grown throughout Kerala for its fragrant leaves and seeds, both essential ingredients in South Indian cooking.",
-    "identification": {
-      "leaves": "Feathery, finely divided upper leaves and broader lower leaves.",
-      "flowers": "Small white to pale pink flowers borne in flat-topped clusters.",
-      "fruit": "Small, round, ridged seed capsule (used as the spice).",
-      "stem": "Slender, hollow, branching stem."
-    },
-    "traditionalKnowledge": "Leaves and seeds have an extensive history of daily culinary use across South Asian households.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves",
-      "Seeds"
-    ],
-    "habitat": "Grows well in cool weather with well-drained, fertile soil.",
-    "nativeOrCommonRegion": "Native to the Mediterranean and Western Asia; widely cultivated across India.",
-    "cultivation": "Propagated from seed; grows quickly and is harvested young for leaves or left to mature for seed.",
-    "safety": "Widely used as a food herb and spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/27.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "cumin",
-    "name": "Cumin",
-    "malayalamName": "ജീരകം",
-    "scientificName": "Cuminum cyminum",
-    "family": "Apiaceae",
-    "alternateNames": [],
-    "category": "Herb",
-    "shortDescription": "Aromatic seed-producing plant commonly used as a spice and in traditional food practices.",
-    "description": "Cumin is a small annual herb cultivated for its aromatic seeds, a staple spice across Indian cooking, including South Indian tempering and traditional preparations.",
-    "identification": {
-      "leaves": "Finely divided, thread-like leaves.",
-      "flowers": "Small white or pink flowers borne in umbels.",
-      "fruit": "Small, ridged, oblong seed used as the spice.",
-      "stem": "Slender, branching, herbaceous stem."
-    },
-    "traditionalKnowledge": "Cumin seeds are a foundational spice across Indian cuisine, with a long history of daily culinary and traditional household use.",
-    "plantPartsTraditionallyUsed": [
-      "Seeds"
-    ],
-    "habitat": "Prefers hot, dry conditions with well-drained soil.",
-    "nativeOrCommonRegion": "Native to the Eastern Mediterranean and South Asia; cultivated across India.",
-    "cultivation": "Propagated from seed; requires a relatively dry growing season for good seed set.",
-    "safety": "Widely used as a food spice; generally safe in normal culinary quantities.",
-    "image": "/assets/plants/28.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "bael",
-    "name": "Bael",
-    "malayalamName": "കൂവളം",
-    "scientificName": "Aegle marmelos",
-    "family": "Rutaceae",
-    "alternateNames": [
-      "Bengal Quince",
-      "Stone Apple"
-    ],
-    "category": "Tree",
-    "shortDescription": "Sacred tree whose fruits and leaves have important cultural and traditional uses.",
-    "description": "Bael is a medium-sized, spiny deciduous tree revered in Indian tradition and commonly planted near temples, valued for its aromatic, hard-shelled fruit and trifoliate leaves used in religious offerings.",
-    "identification": {
-      "leaves": "Trifoliate leaves with aromatic, slightly toothed leaflets.",
-      "flowers": "Small, fragrant, greenish-white flowers.",
-      "fruit": "Hard-shelled, round fruit with a sweet, aromatic pulp when ripe.",
-      "stem": "Grey, often spiny bark with a somewhat irregular branching pattern."
-    },
-    "traditionalKnowledge": "The fruit and leaves have deep religious significance in Indian tradition and a long history of traditional culinary use.",
-    "plantPartsTraditionallyUsed": [
-      "Fruit",
-      "Leaves"
-    ],
-    "habitat": "Tolerant of a wide range of soils and climates, including dry conditions.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; found across India, including Kerala's temple groves.",
-    "cultivation": "Propagated from seed; hardy and low maintenance once established.",
-    "safety": "The ripe fruit pulp is commonly consumed as food; unripe fruit is generally avoided as food due to its astringency.",
-    "image": "/assets/plants/29.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "malabar-nut",
-    "name": "Malabar Nut",
-    "malayalamName": "ആടലോടകം",
-    "scientificName": "Justicia adhatoda",
-    "family": "Acanthaceae",
-    "alternateNames": [
-      "Vasaka",
-      "Adulsa"
-    ],
-    "category": "Shrub",
-    "shortDescription": "Shrub traditionally recognized in Ayurveda and known for its distinctive leaves and flowers.",
-    "description": "Malabar Nut is an evergreen shrub with large, lance-shaped leaves, widely recognised in Ayurvedic tradition and commonly found growing wild along field edges in Kerala.",
-    "identification": {
-      "leaves": "Large, lance-shaped, opposite leaves with a slightly rough texture.",
-      "flowers": "White flowers with purple-streaked lower lips, borne in dense spikes.",
-      "fruit": "Small, club-shaped capsule.",
-      "stem": "Woody at the base, with many upright, leafy branches."
-    },
-    "traditionalKnowledge": "The leaves hold a well-established place in classical Ayurvedic tradition, particularly in preparations related to respiratory comfort.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves"
-    ],
-    "habitat": "Grows readily in a range of soils, often found wild along roadsides and field margins.",
-    "nativeOrCommonRegion": "Native to the Indian subcontinent; common throughout Kerala.",
-    "cultivation": "Propagated from stem cuttings; hardy and requires minimal care.",
-    "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/30.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "indian-long-pepper",
-    "name": "Indian Long Pepper",
-    "malayalamName": "തിപ്പലി",
-    "scientificName": "Piper longum",
-    "family": "Piperaceae",
-    "alternateNames": [
-      "Pippali"
-    ],
-    "category": "Climber",
-    "shortDescription": "Climbing plant producing a traditional spice important in Ayurvedic herbal knowledge.",
-    "description": "Indian Long Pepper is a slender climbing plant related to black pepper, producing an elongated, pungent fruit spike that has a long history of use in Ayurvedic tradition and regional cooking.",
-    "identification": {
-      "leaves": "Heart-shaped to oval leaves, alternately arranged.",
-      "flowers": "Tiny flowers borne on a dense, elongated spike.",
-      "fruit": "Small fruits fused into a compact, cylindrical spike, harvested and dried whole as the spice.",
-      "stem": "Slender, climbing or trailing stem."
-    },
-    "traditionalKnowledge": "The dried fruit spike is one of the most referenced spices in classical Ayurvedic tradition, distinct from the more common black pepper.",
-    "plantPartsTraditionallyUsed": [
-      "Fruit spike",
-      "Root"
-    ],
-    "habitat": "Grows in warm, humid, tropical conditions with partial shade.",
-    "nativeOrCommonRegion": "Native to South and Southeast Asia; cultivated in parts of South India, including Kerala.",
-    "cultivation": "Propagated from stem cuttings; needs a support structure to climb.",
-    "safety": "Traditional preparations should be used under professional guidance.",
-    "image": "/assets/plants/31.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "guggul",
-    "name": "Guggul",
-    "malayalamName": "ഗുൽഗുലു",
-    "scientificName": "Commiphora wightii",
-    "family": "Burseraceae",
-    "alternateNames": [],
-    "category": "Shrub",
-    "shortDescription": "Resin-producing shrub historically important in traditional Indian herbal practices.",
-    "description": "Guggul is a small, thorny, resin-producing shrub native to dry regions of India, historically important as the source of a fragrant gum resin used in traditional Ayurvedic preparations and incense.",
-    "identification": {
-      "leaves": "Small, sparse, trifoliate leaves with toothed margins.",
-      "flowers": "Small, reddish flowers, inconspicuous.",
-      "fruit": "Small, reddish, oval fruit.",
-      "stem": "Thorny, knotted branches that exude an aromatic gum resin when wounded."
-    },
-    "traditionalKnowledge": "The gum resin holds a prominent place in classical Ayurvedic tradition and is also traditionally used in incense preparations.",
-    "plantPartsTraditionallyUsed": [
-      "Gum resin"
-    ],
-    "habitat": "Adapted to arid and semi-arid conditions with sparse rainfall.",
-    "nativeOrCommonRegion": "Native to the dry regions of northwestern India; the resin is traded across India for traditional use.",
-    "cultivation": "Propagated from cuttings; requires a dry, well-drained environment and minimal watering.",
-    "safety": "Traditional resin preparations should be used only under professional guidance; the species is also of conservation concern in parts of its native range.",
-    "image": "/assets/plants/32.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "kalmegh",
-    "name": "Kalmegh",
-    "malayalamName": "നിലവേപ്പ്",
-    "scientificName": "Andrographis paniculata",
-    "family": "Acanthaceae",
-    "alternateNames": [
-      "King of Bitters"
-    ],
-    "category": "Herb",
-    "shortDescription": "Bitter herb widely known in traditional Indian herbal systems.",
-    "description": "Kalmegh is an erect annual herb with a strongly bitter taste, widely recognised across traditional Indian and Southeast Asian herbal systems and commonly found growing in Kerala's moist habitats.",
-    "identification": {
-      "leaves": "Lance-shaped, opposite leaves with a smooth margin.",
-      "flowers": "Small, white flowers with purple markings, borne in loose spikes.",
-      "fruit": "Small, oblong capsule.",
-      "stem": "Erect, slender, four-angled stem."
-    },
-    "traditionalKnowledge": "Known across South and Southeast Asian traditional herbal systems for its pronounced bitterness and long history of household use.",
-    "plantPartsTraditionallyUsed": [
-      "Whole plant",
-      "Leaves"
-    ],
-    "habitat": "Grows in moist, shaded areas, often as a wild or cultivated herb.",
-    "nativeOrCommonRegion": "Native to South and Southeast Asia; common in Kerala's moist lowlands.",
-    "cultivation": "Propagated from seed; grows readily in moist, partially shaded conditions.",
-    "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/33.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "bhringraj",
-    "name": "Bhringraj",
-    "malayalamName": "കയ്യോന്നി",
-    "scientificName": "Eclipta prostrata",
-    "family": "Asteraceae",
-    "alternateNames": [
-      "False Daisy"
-    ],
-    "category": "Herb",
-    "shortDescription": "Small herb traditionally used in Indian herbal practices and commonly associated with hair care.",
-    "description": "Bhringraj is a small, spreading herb found in moist, disturbed ground across Kerala, long associated in Indian tradition with hair-care preparations and household herbal use.",
-    "identification": {
-      "leaves": "Narrow, lance-shaped, slightly rough leaves arranged oppositely.",
-      "flowers": "Small, white, daisy-like flower heads.",
-      "fruit": "Small, black, angular achene.",
-      "stem": "Slender, often reddish or purplish, spreading and sometimes creeping stem."
-    },
-    "traditionalKnowledge": "The plant has a long tradition of use in South Asian hair-care preparations and household herbal remedies.",
-    "plantPartsTraditionallyUsed": [
-      "Whole plant",
-      "Leaves"
-    ],
-    "habitat": "Grows in moist, disturbed soils, often near water or in damp waste ground.",
-    "nativeOrCommonRegion": "Native to South Asia and other tropical regions; common throughout Kerala.",
-    "cultivation": "Propagated from seed or stem cuttings; grows readily in moist conditions.",
-    "safety": "Topical traditional use is generally well tolerated; internal use should only be under professional guidance.",
-    "image": "/assets/plants/34.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "punarnava",
-    "name": "Punarnava",
-    "malayalamName": "തഴുതാമ",
-    "scientificName": "Boerhavia diffusa",
-    "family": "Nyctaginaceae",
-    "alternateNames": [],
-    "category": "Herb",
-    "shortDescription": "Creeping herb with a long history in traditional Ayurvedic knowledge.",
-    "description": "Punarnava is a spreading, prostrate herb found growing wild across Kerala's fields and waste ground, its name in Sanskrit meaning 'that which renews', reflecting its established place in Ayurvedic tradition.",
-    "identification": {
-      "leaves": "Ovate to rounded, slightly fleshy leaves arranged oppositely.",
-      "flowers": "Small, pink to purplish flowers borne in clusters.",
-      "fruit": "Small, ribbed, sticky fruit.",
-      "stem": "Prostrate, spreading, often reddish stem."
-    },
-    "traditionalKnowledge": "The root and whole plant hold an established place in classical Ayurvedic tradition, particularly relating to traditional detoxifying preparations.",
-    "plantPartsTraditionallyUsed": [
-      "Root",
-      "Whole plant"
-    ],
-    "habitat": "Grows readily in open, disturbed ground, fields and waste areas.",
-    "nativeOrCommonRegion": "Native to the tropics and subtropics worldwide; common throughout Kerala.",
-    "cultivation": "Propagated from seed; grows as a hardy, low-maintenance ground cover.",
-    "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/35.jpg",
-    "arAvailable": false
-  },
-  {
-    "id": "sarpagandha",
-    "name": "Sarpagandha",
-    "malayalamName": "സര്‍പ്പഗന്ധി",
-    "scientificName": "Rauvolfia serpentina",
-    "family": "Apocynaceae",
-    "alternateNames": [
-      "Indian Snakeroot"
-    ],
-    "category": "Shrub",
-    "shortDescription": "Traditional medicinal plant native to South Asia with historical importance in Ayurveda.",
-    "description": "Sarpagandha is a small shrub with a distinctive root, historically prominent in Indian traditional medicine and later studied by modern pharmacology, though it now requires careful, professionally guided use.",
-    "identification": {
-      "leaves": "Whorled, glossy, lance-shaped leaves, usually in groups of three.",
-      "flowers": "Small white to pinkish flowers borne in clusters.",
-      "fruit": "Small, shiny, purple-black drupe.",
-      "stem": "Slender, erect, woody stem."
-    },
-    "traditionalKnowledge": "The root has a prominent place in the history of Indian traditional medicine and was historically significant in early pharmacological research, distinct from any current self-treatment use.",
-    "plantPartsTraditionallyUsed": [
-      "Root"
-    ],
-    "habitat": "Grows in moist, shaded forest understories.",
-    "nativeOrCommonRegion": "Native to South and Southeast Asia; found in parts of Kerala's forests.",
-    "cultivation": "Propagated from seed or root cuttings; requires shaded, moist conditions.",
-    "safety": "This plant contains potent compounds and must never be used without qualified medical supervision; it is also a species of conservation concern.",
-    "image": "/assets/plants/36.jpg",
-    "arAvailable": false
+    "arAvailable": false,
+    "health": {
+      "issues": "Snails and occasional fungal spots.",
+      "symptoms": "Chewed leaves or dark patches in stagnant water.",
+      "prevention": "Ensure clean water sources and remove excessive decaying organic matter."
+    }
   },
   {
     "id": "sandalwood",
@@ -1041,116 +185,416 @@
     "malayalamName": "ചന്ദനം",
     "scientificName": "Santalum album",
     "family": "Santalaceae",
-    "alternateNames": [],
     "category": "Tree",
-    "shortDescription": "Fragrant tree traditionally valued for its wood, aroma and cultural significance.",
-    "description": "Sandalwood is a slow-growing, semi-parasitic evergreen tree renowned for its fragrant heartwood, holding deep cultural, religious and traditional significance across India, including in Kerala's temple traditions.",
-    "identification": {
-      "leaves": "Opposite, smooth-edged, elliptical leaves.",
-      "flowers": "Small, inconspicuous flowers that change from pale to deep red-purple.",
-      "fruit": "Small, round, purple-black drupe.",
-      "stem": "Fragrant heartwood develops within the trunk as the tree matures over decades."
-    },
-    "traditionalKnowledge": "The fragrant heartwood and its oil have an extensive history of use in religious ceremonies, traditional skincare and cultural practices across India.",
-    "plantPartsTraditionallyUsed": [
-      "Heartwood",
-      "Oil"
-    ],
-    "habitat": "Grows in well-drained soils in dry to moderately moist tropical climates; naturally semi-parasitic on host tree roots.",
-    "nativeOrCommonRegion": "Native to South India; historically associated with Karnataka and cultivated in parts of Kerala.",
-    "cultivation": "Propagated from seed alongside a suitable host plant; very slow-growing, taking decades to mature.",
-    "safety": "The heartwood and oil are used in cultural and topical traditional applications; sourcing is subject to conservation regulation due to overharvesting.",
-    "image": "/assets/plants/37.jpg",
-    "arAvailable": false
+    "description": "Sandalwood is a fragrant tree valued for its aromatic heartwood.",
+    "traditionalUses": "Used in Ayurveda, traditional cosmetics, religious ceremonies and cultural practices.",
+    "traditionalBenefits": "Traditionally associated with cooling and skin-care preparations.",
+    "plantPartsTraditionallyUsed": "Heartwood and oil.",
+    "traditionalUsage": "Sandalwood paste and traditionally prepared sandalwood oil are used in cultural and cosmetic practices.",
+    "habitat": "Tropical regions, especially parts of the Indian subcontinent.",
+    "identification": "Small evergreen tree with smooth bark and paired oval leaves.",
+    "image": "/assets/plants/9.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Sandal spike disease (mycoplasma).",
+      "symptoms": "Reduction in leaf size and stiffening of leaves like spikes.",
+      "prevention": "Remove infected trees immediately as there is no known cure."
+    }
   },
   {
-    "id": "nirgundi",
-    "name": "Nirgundi",
-    "malayalamName": "നൊച്ചി",
-    "scientificName": "Vitex negundo",
+    "id": "moringa",
+    "name": "Moringa / Drumstick",
+    "malayalamName": "മുരിങ്ങ",
+    "scientificName": "Moringa oleifera",
+    "family": "Moringaceae",
+    "category": "Tree",
+    "description": "Moringa is a fast-growing tree widely cultivated for its edible leaves, flowers and pods.",
+    "traditionalUses": "Used as food and in traditional wellness practices.",
+    "traditionalBenefits": "Traditionally valued as a nutritious plant and associated with general wellness.",
+    "plantPartsTraditionallyUsed": "Leaves, pods, flowers and seeds.",
+    "traditionalUsage": "Leaves and pods are commonly cooked as food; leaves may also be used in traditional preparations.",
+    "habitat": "Tropical and subtropical regions.",
+    "identification": "Small compound leaves, white flowers and long slender seed pods.",
+    "image": "/assets/plants/10.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Hairy caterpillars and root rot.",
+      "symptoms": "Defoliation of leaves or sudden wilting.",
+      "prevention": "Manual removal of pests and avoiding waterlogged soil."
+    }
+  },
+  {
+    "id": "curry-leaf",
+    "name": "Curry Leaf",
+    "malayalamName": "കറിവേപ്പില",
+    "scientificName": "Murraya koenigii",
+    "family": "Rutaceae",
+    "category": "Tree",
+    "description": "Curry leaf is a small aromatic tree whose leaves are widely used in South Asian cuisine.",
+    "traditionalUses": "Used in food and traditional herbal practices.",
+    "traditionalBenefits": "Traditionally associated with digestion and general wellness.",
+    "plantPartsTraditionallyUsed": "Leaves, bark, roots and fruits.",
+    "traditionalUsage": "Leaves are commonly used fresh in cooking and traditional preparations.",
+    "habitat": "Tropical and subtropical South Asia.",
+    "identification": "Pinnate aromatic leaves with many small leaflets.",
+    "image": "/assets/plants/11.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Citrus psylla and leaf spot.",
+      "symptoms": "Curling of leaves and white powdery residue.",
+      "prevention": "Prune affected areas and maintain good sunlight exposure."
+    }
+  },
+  {
+    "id": "lemongrass",
+    "name": "Lemongrass",
+    "malayalamName": "ഇഞ്ചിപ്പുല്ല്",
+    "scientificName": "Cymbopogon citratus",
+    "family": "Poaceae",
+    "category": "Grass",
+    "description": "Lemongrass is an aromatic grass with a strong lemon-like fragrance.",
+    "traditionalUses": "Used in herbal beverages, cooking and traditional wellness practices.",
+    "traditionalBenefits": "Traditionally associated with digestive comfort and relaxation.",
+    "plantPartsTraditionallyUsed": "Leaves and stems.",
+    "traditionalUsage": "Used fresh or dried in herbal teas and food preparations.",
+    "habitat": "Warm tropical and subtropical regions.",
+    "identification": "Long narrow grass-like leaves with a strong citrus aroma.",
+    "image": "/assets/plants/12.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Rust disease.",
+      "symptoms": "Brown or rust-colored streaks on leaves.",
+      "prevention": "Harvest regularly and remove old debris to improve airflow."
+    }
+  },
+  {
+    "id": "mint",
+    "name": "Mint / Pudina",
+    "malayalamName": "പുതിന",
+    "scientificName": "Mentha spp.",
     "family": "Lamiaceae",
-    "alternateNames": [
-      "Five-leaved Chaste Tree"
-    ],
+    "category": "Herb",
+    "description": "Mint is an aromatic herb widely cultivated for its refreshing leaves.",
+    "traditionalUses": "Used in food, beverages and traditional herbal practices.",
+    "traditionalBenefits": "Traditionally associated with digestion and refreshing herbal preparations.",
+    "plantPartsTraditionallyUsed": "Leaves and stems.",
+    "traditionalUsage": "Fresh leaves are used in chutneys, drinks, food and herbal preparations.",
+    "habitat": "Moist soils and cultivated gardens in temperate and subtropical regions.",
+    "identification": "Opposite aromatic leaves and square stems.",
+    "image": "/assets/plants/13.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Powdery mildew and aphids.",
+      "symptoms": "White powdery coating on leaves or curled tips.",
+      "prevention": "Ensure good spacing for airflow and avoid wetting foliage."
+    }
+  },
+  {
+    "id": "hibiscus",
+    "name": "Hibiscus",
+    "malayalamName": "ചെമ്പരത്തി",
+    "scientificName": "Hibiscus rosa-sinensis",
+    "family": "Malvaceae",
     "category": "Shrub",
-    "shortDescription": "Aromatic shrub long used in South Asian traditional herbal practices.",
-    "description": "Nirgundi is a large, aromatic shrub with distinctive palmate leaves, commonly found growing along field boundaries and waste ground in Kerala, and long recognised in traditional South Asian herbal systems.",
-    "identification": {
-      "leaves": "Palmately compound leaves, usually with five narrow, lance-shaped leaflets, aromatic when crushed.",
-      "flowers": "Small, bluish-purple flowers borne in branched terminal clusters.",
-      "fruit": "Small, rounded, black drupe when ripe.",
-      "stem": "Slender, greyish, quadrangular young branches becoming woody with age."
-    },
-    "traditionalKnowledge": "The leaves have a long-standing place in South Asian traditional herbal practice and are sometimes used in traditional topical applications.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves",
-      "Seeds"
-    ],
-    "habitat": "Grows readily in a wide range of soils, tolerant of both wet and dry conditions.",
-    "nativeOrCommonRegion": "Native to South and Southeast Asia; common throughout Kerala's field margins and open scrub.",
-    "cultivation": "Propagated from stem cuttings or seed; hardy and low maintenance.",
-    "safety": "Traditional external preparations are generally well tolerated; internal use should only be under professional guidance.",
-    "image": "/assets/plants/38.jpg",
-    "arAvailable": false
+    "description": "Hibiscus is a flowering shrub commonly grown in tropical gardens.",
+    "traditionalUses": "Flowers and leaves have traditional uses in hair-care and cultural practices.",
+    "traditionalBenefits": "Traditionally associated with hair and skin-care practices.",
+    "plantPartsTraditionallyUsed": "Flowers and leaves.",
+    "traditionalUsage": "Flowers may be used in traditional hair-care preparations and herbal beverages.",
+    "habitat": "Tropical and subtropical gardens.",
+    "identification": "Large showy flowers, broad leaves and a woody shrub form.",
+    "image": "/assets/plants/14.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Mealybugs and whiteflies.",
+      "symptoms": "White cottony clusters on stems or sticky leaves.",
+      "prevention": "Regular inspection and removal of heavily infested shoots."
+    }
   },
   {
-    "id": "karpooravalli",
-    "name": "Karpooravalli",
-    "malayalamName": "പനിക്കൂര്‍ക്ക",
-    "scientificName": "Plectranthus amboinicus",
-    "family": "Lamiaceae",
-    "alternateNames": [
-      "Indian Borage",
-      "Mexican Mint"
-    ],
+    "id": "ixora",
+    "name": "Ixora / Jungle Geranium",
+    "malayalamName": "തെച്ചി",
+    "scientificName": "Ixora coccinea",
+    "family": "Rubiaceae",
+    "category": "Shrub",
+    "description": "Ixora is an evergreen flowering shrub commonly cultivated as an ornamental plant.",
+    "traditionalUses": "Certain parts have been used in traditional herbal practices.",
+    "traditionalBenefits": "Traditional systems have associated different plant parts with various wellness preparations.",
+    "plantPartsTraditionallyUsed": "Flowers, leaves, roots and bark.",
+    "traditionalUsage": "Used traditionally in selected herbal preparations.",
+    "habitat": "Tropical and subtropical regions.",
+    "identification": "Dense clusters of small four-petaled flowers and glossy leaves.",
+    "image": "/assets/plants/15.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Sooty mold and scale insects.",
+      "symptoms": "Black powdery coating on leaves.",
+      "prevention": "Control scale insects which secrete the honeydew that mold grows on."
+    }
+  },
+  {
+    "id": "arjuna",
+    "name": "Arjuna",
+    "malayalamName": "നീർമരുത്",
+    "scientificName": "Terminalia arjuna",
+    "family": "Combretaceae",
+    "category": "Tree",
+    "description": "Arjuna is a large tree well known in Ayurveda.",
+    "traditionalUses": "The bark is traditionally important in Ayurvedic preparations.",
+    "traditionalBenefits": "Traditionally associated particularly with cardiovascular wellness.",
+    "plantPartsTraditionallyUsed": "Mainly bark.",
+    "traditionalUsage": "Bark is traditionally dried and used in herbal preparations.",
+    "habitat": "Often found near rivers and in moist tropical areas of India.",
+    "identification": "Large tree with smooth grey bark and distinctive buttressed trunk.",
+    "image": "/assets/plants/16.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Wood borers occasionally.",
+      "symptoms": "Holes in the bark with frass.",
+      "prevention": "Maintain tree vigor and avoid mechanical injury to the trunk."
+    }
+  },
+  {
+    "id": "licorice",
+    "name": "Licorice / Mulethi",
+    "malayalamName": "ഇരട്ടിമധുരം",
+    "scientificName": "Glycyrrhiza glabra",
+    "family": "Fabaceae",
     "category": "Herb",
-    "shortDescription": "Fleshy, aromatic herb common in Kerala kitchen gardens and traditional practice.",
-    "description": "Karpooravalli is a fleshy, strongly aromatic herb with thick, fuzzy leaves, a familiar plant in Kerala kitchen gardens and traditionally kept close at hand in many households.",
-    "identification": {
-      "leaves": "Thick, fleshy, rounded leaves with a fuzzy texture and strong camphor-like aroma when crushed.",
-      "flowers": "Small, pale purple flowers borne on an upright spike, though flowering is infrequent in cultivation.",
-      "fruit": "Rarely fruits in cultivation.",
-      "stem": "Thick, fleshy, succulent, semi-woody at the base."
-    },
-    "traditionalKnowledge": "The leaves are a familiar feature of Kerala household herbal knowledge, traditionally kept on hand and occasionally used in cooking for their distinctive flavour.",
-    "plantPartsTraditionallyUsed": [
-      "Leaves"
-    ],
-    "habitat": "Prefers warm, humid conditions with well-drained soil; tolerant of partial shade.",
-    "nativeOrCommonRegion": "Believed to originate in southern and eastern Africa; long naturalised and widely grown across Kerala.",
-    "cultivation": "Easily propagated from stem cuttings; grows quickly in pots or garden beds.",
-    "safety": "Used in small culinary amounts in some households; concentrated preparations should be used with care and professional guidance.",
-    "image": "/assets/plants/39.jpg",
-    "arAvailable": false
+    "description": "Licorice is a perennial herb cultivated for its sweet-tasting root.",
+    "traditionalUses": "Used traditionally in Ayurveda and other herbal traditions.",
+    "traditionalBenefits": "Traditionally associated with throat comfort and digestive wellness.",
+    "plantPartsTraditionallyUsed": "Root and rhizome.",
+    "traditionalUsage": "Dried root is traditionally used in powders, teas and herbal formulations.",
+    "habitat": "Temperate and subtropical regions.",
+    "identification": "Compound leaves, pale flowers and underground spreading roots.",
+    "image": "/assets/plants/17.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Root rot.",
+      "symptoms": "Stunted growth and decaying roots.",
+      "prevention": "Ensure deep, well-draining soil and avoid overwatering."
+    }
   },
   {
-    "id": "kacholam",
-    "name": "Kacholam",
-    "malayalamName": "കച്ചോലം",
-    "scientificName": "Kaempferia galanga",
+    "id": "shatavari",
+    "name": "Shatavari",
+    "malayalamName": "ശതാവരി",
+    "scientificName": "Asparagus racemosus",
+    "family": "Asparagaceae",
+    "category": "Climber",
+    "description": "Shatavari is a climbing plant with delicate foliage and tuberous roots.",
+    "traditionalUses": "An important traditional Ayurvedic herb.",
+    "traditionalBenefits": "Traditionally associated with general vitality and women's wellness traditions.",
+    "plantPartsTraditionallyUsed": "Roots.",
+    "traditionalUsage": "Roots are traditionally dried, powdered and used in herbal preparations.",
+    "habitat": "Tropical and subtropical regions.",
+    "identification": "Climbing stems with fine needle-like foliage and tuberous roots.",
+    "image": "/assets/plants/18.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Rust and root rot.",
+      "symptoms": "Orange-red pustules on leaves or wilting vines.",
+      "prevention": "Provide support for climbing to improve airflow and ensure well-draining soil."
+    }
+  },
+  {
+    "id": "giloy",
+    "name": "Giloy",
+    "malayalamName": "ചിറ്റമൃത്",
+    "scientificName": "Tinospora cordifolia",
+    "family": "Menispermaceae",
+    "category": "Climber",
+    "description": "Giloy is a climbing medicinal plant traditionally important in Ayurveda.",
+    "traditionalUses": "Traditionally used in various Ayurvedic herbal preparations.",
+    "traditionalBenefits": "Traditionally associated with general wellness and immune-support traditions.",
+    "plantPartsTraditionallyUsed": "Stem is the main traditionally used part.",
+    "traditionalUsage": "Stem is traditionally prepared as decoctions, powders or other herbal preparations.",
+    "habitat": "Tropical regions of the Indian subcontinent.",
+    "identification": "Climbing vine with heart-shaped leaves and characteristic aerial roots.",
+    "image": "/assets/plants/19.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Generally very resilient.",
+      "symptoms": "Occasional leaf-eating caterpillars.",
+      "prevention": "Requires minimal care, naturally resists most common diseases."
+    }
+  },
+  {
+    "id": "vetiver",
+    "name": "Vetiver / Khus",
+    "malayalamName": "രാമച്ചം",
+    "scientificName": "Chrysopogon zizanioides",
+    "family": "Poaceae",
+    "category": "Grass",
+    "description": "Vetiver is a perennial grass known for its highly aromatic roots.",
+    "traditionalUses": "Used in traditional cooling preparations, fragrances and herbal practices.",
+    "traditionalBenefits": "Traditionally associated with cooling and refreshing applications.",
+    "plantPartsTraditionallyUsed": "Roots.",
+    "traditionalUsage": "Roots are used in traditional aromatic preparations and cooling drinks.",
+    "habitat": "Tropical regions, especially cultivated in India.",
+    "identification": "Tall grass forming dense clumps with long narrow leaves and fragrant roots.",
+    "image": "/assets/plants/20.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Termites in dry regions.",
+      "symptoms": "Damage to clumps.",
+      "prevention": "Maintain adequate soil moisture."
+    }
+  },
+  {
+    "id": "black-pepper",
+    "name": "Black Pepper",
+    "malayalamName": "കുരുമുളക്",
+    "scientificName": "Piper nigrum",
+    "family": "Piperaceae",
+    "category": "Climber",
+    "description": "Black pepper is a climbing vine cultivated for its peppercorns.",
+    "traditionalUses": "Widely used as a spice and in Ayurveda.",
+    "traditionalBenefits": "Traditionally associated with digestion and respiratory wellness.",
+    "plantPartsTraditionallyUsed": "Dried fruits/peppercorns.",
+    "traditionalUsage": "Used as a spice and in traditional herbal preparations.",
+    "habitat": "Warm humid tropical regions, especially Kerala and other parts of South India.",
+    "identification": "Climbing vine, heart-shaped leaves and hanging spikes of small fruits.",
+    "image": "/assets/plants/21.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Quick wilt (Phytophthora foot rot).",
+      "symptoms": "Sudden yellowing and wilting of the entire vine.",
+      "prevention": "Ensure excellent drainage during monsoons and avoid damaging the base of the vine."
+    }
+  },
+  {
+    "id": "cardamom",
+    "name": "Cardamom / Green Cardamom",
+    "malayalamName": "ഏലം",
+    "scientificName": "Elettaria cardamomum",
     "family": "Zingiberaceae",
-    "alternateNames": [
-      "Aromatic Ginger",
-      "Sand Ginger"
-    ],
     "category": "Herb",
-    "shortDescription": "Low-growing aromatic rhizomatous herb valued in traditional Kerala herbal practice.",
-    "description": "Kacholam is a low-growing, stemless herb with broad, ground-hugging leaves and an aromatic rhizome, traditionally grown in Kerala for use in household herbal preparations and aromatic powders.",
-    "identification": {
-      "leaves": "Broad, rounded leaves that lie almost flat against the ground, aromatic when crushed.",
-      "flowers": "Small, white flowers with a purple-marked lip, borne close to the ground among the leaves.",
-      "fruit": "Rarely fruits in cultivation; propagated vegetatively.",
-      "stem": "Essentially stemless above ground, with an aromatic underground rhizome."
-    },
-    "traditionalKnowledge": "The rhizome has a long-standing place in Kerala's traditional herbal knowledge, historically used in aromatic powders and household preparations.",
-    "plantPartsTraditionallyUsed": [
-      "Rhizome"
-    ],
-    "habitat": "Grows in warm, humid, partially shaded conditions with well-drained soil.",
-    "nativeOrCommonRegion": "Native to South and Southeast Asia; traditionally grown in Kerala home gardens.",
-    "cultivation": "Propagated from rhizome divisions; grows well in pots or shaded garden beds.",
-    "safety": "Traditional preparations should be used under professional guidance rather than self-administered.",
-    "image": "/assets/plants/40.jpg",
-    "arAvailable": false
+    "description": "Green cardamom is a perennial herb valued for its aromatic seed pods.",
+    "traditionalUses": "Used in Ayurveda, cuisine and traditional beverages.",
+    "traditionalBenefits": "Traditionally associated with digestion and freshening the breath.",
+    "plantPartsTraditionallyUsed": "Fruit capsules and seeds.",
+    "traditionalUsage": "Used as a spice, in tea and in traditional preparations.",
+    "habitat": "Humid tropical forests and plantations, especially South India.",
+    "identification": "Tall leafy shoots with small capsules produced near the base.",
+    "image": "/assets/plants/22.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Shoot borer and capsule borer.",
+      "symptoms": "Dead shoots and holes in capsules.",
+      "prevention": "Regular removal of dry leaves and affected shoots."
+    }
+  },
+  {
+    "id": "cinnamon",
+    "name": "Cinnamon",
+    "malayalamName": "കറുവപ്പട്ട",
+    "scientificName": "Cinnamomum verum",
+    "family": "Lauraceae",
+    "category": "Tree",
+    "description": "Cinnamon is an evergreen tree cultivated for its aromatic inner bark.",
+    "traditionalUses": "Used as a spice and in traditional herbal preparations.",
+    "traditionalBenefits": "Traditionally associated with digestion and warming herbal preparations.",
+    "plantPartsTraditionallyUsed": "Inner bark and leaves.",
+    "traditionalUsage": "Bark is dried and used in food, beverages and herbal preparations.",
+    "habitat": "Tropical regions, especially South and Southeast Asia.",
+    "identification": "Evergreen tree with aromatic bark and leathery leaves.",
+    "image": "/assets/plants/23.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Leaf spot and bark borer.",
+      "symptoms": "Brown spots on leaves or damage to the bark.",
+      "prevention": "Ensure good sunlight penetration and airflow."
+    }
+  },
+  {
+    "id": "clove",
+    "name": "Clove",
+    "malayalamName": "ഗ്രാമ്പൂ",
+    "scientificName": "Syzygium aromaticum",
+    "family": "Myrtaceae",
+    "category": "Tree",
+    "description": "Clove is an evergreen tree whose dried flower buds are used as a spice.",
+    "traditionalUses": "Used in Ayurveda, cuisine and traditional oral-care practices.",
+    "traditionalBenefits": "Traditionally associated with oral comfort and digestion.",
+    "plantPartsTraditionallyUsed": "Flower buds.",
+    "traditionalUsage": "Dried buds are used as a spice and in traditional preparations.",
+    "habitat": "Tropical humid regions.",
+    "identification": "Evergreen tree with glossy leaves and clusters of reddish flower buds.",
+    "image": "/assets/plants/24.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Sudden death disease and leaf rot.",
+      "symptoms": "Rapid yellowing and shedding of leaves followed by tree death.",
+      "prevention": "Strictly avoid waterlogging around the root zone."
+    }
+  },
+  {
+    "id": "indian-bay-leaf",
+    "name": "Indian Bay Leaf / Tejpatta",
+    "malayalamName": "തേജപത്രം",
+    "scientificName": "Cinnamomum tamala",
+    "family": "Lauraceae",
+    "category": "Tree",
+    "description": "Indian bay leaf is an aromatic tree whose leaves are commonly used as a spice.",
+    "traditionalUses": "Used in Indian cooking and traditional herbal practices.",
+    "traditionalBenefits": "Traditionally associated with digestion.",
+    "plantPartsTraditionallyUsed": "Leaves and bark.",
+    "traditionalUsage": "Dried leaves are commonly used in cooking and traditional preparations.",
+    "habitat": "Himalayan and subtropical regions of South Asia.",
+    "identification": "Aromatic leathery leaves with prominent parallel veins.",
+    "image": "/assets/plants/25.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Leaf miners and gall mites.",
+      "symptoms": "Silvery trails on leaves or small galls.",
+      "prevention": "Remove and destroy heavily infested leaves."
+    }
+  },
+  {
+    "id": "fenugreek",
+    "name": "Fenugreek / Methi",
+    "malayalamName": "ഉലുവ",
+    "scientificName": "Trigonella foenum-graecum",
+    "family": "Fabaceae",
+    "category": "Herb",
+    "description": "Fenugreek is an annual herb cultivated for its leaves and aromatic seeds.",
+    "traditionalUses": "Used widely in Indian cooking and traditional herbal practices.",
+    "traditionalBenefits": "Traditionally associated with digestion and nutritional wellness.",
+    "plantPartsTraditionallyUsed": "Seeds and leaves.",
+    "traditionalUsage": "Seeds and leaves are used in food and traditional preparations.",
+    "habitat": "Cultivated in dry and semi-arid regions.",
+    "identification": "Three-part leaves, small pale flowers and angular yellow-brown seeds.",
+    "image": "/assets/plants/26.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Root rot and powdery mildew.",
+      "symptoms": "Stunted seedlings or white powder on leaves.",
+      "prevention": "Ensure well-draining soil and avoid dense sowing."
+    }
+  },
+  {
+    "id": "coriander",
+    "name": "Coriander / Cilantro",
+    "malayalamName": "മല്ലി",
+    "scientificName": "Coriandrum sativum",
+    "family": "Apiaceae",
+    "category": "Herb",
+    "description": "Coriander is an aromatic annual herb used widely as a culinary and traditional plant.",
+    "traditionalUses": "Used in cooking and traditional herbal practices.",
+    "traditionalBenefits": "Traditionally associated with digestion and refreshing preparations.",
+    "plantPartsTraditionallyUsed": "Leaves and seeds.",
+    "traditionalUsage": "Fresh leaves and dried seeds are widely used in food and beverages.",
+    "habitat": "Cultivated across tropical, subtropical and temperate regions.",
+    "identification": "Fine divided leaves, small white flowers and round aromatic seeds.",
+    "image": "/assets/plants/27.jpg",
+    "arAvailable": false,
+    "health": {
+      "issues": "Aphids and stem gall.",
+      "symptoms": "Curled leaves and swollen stems.",
+      "prevention": "Ensure good spacing and use clean seeds."
+    }
   }
 ]

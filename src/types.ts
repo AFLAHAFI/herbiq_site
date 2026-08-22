@@ -1,10 +1,9 @@
 export type Page = 'home' | 'plants' | 'ask' | 'ar' | 'about';
 
-export interface IdentificationInfo {
-  leaves?: string;
-  flowers?: string;
-  fruit?: string;
-  stem?: string;
+export interface PlantHealth {
+  issues: string;
+  symptoms: string;
+  prevention: string;
 }
 
 export interface Plant {
@@ -13,20 +12,19 @@ export interface Plant {
   malayalamName: string;
   scientificName: string;
   family: string;
-  alternateNames: string[];
   category: string;
-  shortDescription: string;
   description: string;
-  identification: IdentificationInfo;
-  traditionalKnowledge: string;
-  plantPartsTraditionallyUsed: string[];
+  traditionalUses: string;
+  traditionalBenefits: string;
+  plantPartsTraditionallyUsed: string;
+  traditionalUsage: string;
   habitat: string;
-  nativeOrCommonRegion: string;
-  cultivation: string;
-  safety: string;
+  identification: string;
   image: string;
   arAvailable: boolean;
   model3D?: string;
+  health: PlantHealth;
+  culturalImportance?: string;
 }
 
 export interface ChatMessage {

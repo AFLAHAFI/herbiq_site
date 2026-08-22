@@ -63,26 +63,23 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
 
       // Find matching plant in database
       const matchedPlant = PLANTS.find((p) => {
-        const nameMatch = p.name.toLowerCase();
-        const scimatch = p.scientificName.toLowerCase();
-        const malMatch = p.malayalamName.toLowerCase();
-        const altMatch = p.alternateNames?.some((a) => a.toLowerCase().includes(lowerText)) || false;
+        const nameMatch = p.name.toLowerCase().includes(lowerText);
+        const idMatch = p.id.toLowerCase().includes(lowerText);
+        const scimatch = p.scientificName.toLowerCase().includes(lowerText);
+        const malMatch = p.malayalamName.toLowerCase().includes(lowerText);
+        const altMatch = false; // Alternate names removed from schema
 
-        return (
-          lowerText.includes(nameMatch) ||
-          lowerText.includes(p.id) ||
-          lowerText.includes(scimatch) ||
-          (malMatch && lowerText.includes(malMatch)) ||
-          altMatch
-        );
+        return nameMatch || idMatch || scimatch || malMatch || altMatch;
       });
 
       if (matchedPlant) {
         suggestedPlantId = matchedPlant.id;
-        botResponse = `${matchedPlant.name} (${matchedPlant.scientificName}, ${matchedPlant.malayalamName}) is a traditional ${matchedPlant.category.toLowerCase()} in the ${matchedPlant.family} family.\n\n` +
-          `• Short Overview: ${matchedPlant.shortDescription}\n\n` +
-          `• Traditional Knowledge: ${matchedPlant.traditionalKnowledge}\n\n` +
-          `• Parts Used: ${matchedPlant.plantPartsTraditionallyUsed?.join(', ') || 'Leaves'}`;
+        botResponse = `I can definitely tell you about **${matchedPlant.name}** (${matchedPlant.malayalamName}).\n\n` +
+          `• Scientific Name: *${matchedPlant.scientificName}*\n` +
+          `• Family: ${matchedPlant.family}\n\n` +
+          `• Overview: ${matchedPlant.description}\n\n` +
+          `• Traditional Uses: ${matchedPlant.traditionalUses}\n\n` +
+          `Would you like to know more about its traditional benefits or how to identify it?`;
       } else if (lowerText.includes('identify') || lowerText.includes('recognize') || lowerText.includes('leaf') || lowerText.includes('feature')) {
         botResponse = 'To identify medicinal plants during a garden visit, inspect four primary morphological markers:\n' +
           '1. Leaf shape, venation, and arrangement (pinnate, palmate, simple, compound).\n' +

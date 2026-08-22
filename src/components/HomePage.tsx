@@ -197,7 +197,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                     {plant.scientificName} • {plant.family}
                   </p>
                   <p className="text-xs text-[#94A3B8] line-clamp-2 pt-1 leading-relaxed">
-                    {plant.shortDescription}
+                    {plant.description}
                   </p>
                 </div>
               </div>

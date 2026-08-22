@@ -162,21 +162,25 @@ export const PlantsPage: React.FC<PlantsPageProps> = ({ onSelectPlant, onNavigat
                     </div>
 
                     <p className="text-xs text-[#94A3B8] line-clamp-2 leading-relaxed pt-1">
-                      {plant.shortDescription}
+                      {plant.description}
                     </p>
 
                     {/* Traditionally Used Parts */}
-                    {plant.plantPartsTraditionallyUsed && plant.plantPartsTraditionallyUsed.length > 0 && (
+                    {plant.plantPartsTraditionallyUsed && (
                       <div className="pt-2 flex flex-wrap gap-1">
                         <span className="text-[10px] text-[#94A3B8] font-semibold pr-1">Parts:</span>
-                        {plant.plantPartsTraditionallyUsed.map((part, idx) => (
-                          <span
-                            key={idx}
-                            className="px-2 py-0.5 rounded-md bg-[#060B18] text-[10px] text-[#10B981] border border-[#10B981]/20"
-                          >
-                            {part}
-                          </span>
-                        ))}
+                        {plant.plantPartsTraditionallyUsed.split(/,\s*|\s+and\s+/i).map((part, idx) => {
+                          const cleanPart = part.trim().replace(/\.$/, '');
+                          if (!cleanPart) return null;
+                          return (
+                            <span
+                              key={idx}
+                              className="px-2 py-0.5 rounded-md bg-[#060B18] text-[10px] text-[#10B981] border border-[#10B981]/20"
+                            >
+                              {cleanPart}
+                            </span>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

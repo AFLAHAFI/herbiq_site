@@ -1,7 +1,7 @@
 import React from 'react';
 import { Plant } from '../types';
 import { PlantImage } from './PlantImage';
-import { ArrowLeft, MessageSquareCode, Eye, ShieldAlert, CheckCircle2, MapPin, BookOpen, Sparkles, Flower2, Sprout, Globe, Layers } from 'lucide-react';
+import { ArrowLeft, MessageSquareCode, Eye, ShieldAlert, CheckCircle2, MapPin, BookOpen, Sparkles, Flower2, Sprout, HeartPulse } from 'lucide-react';
 import { AR_CONFIG_PLANT_IDS } from '../data/plants';
 
 interface PlantDetailPageProps {
@@ -83,37 +83,34 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
               <span className="text-[#94A3B8]">
                 Family: <strong className="text-[#F8FAFC]">{plant.family}</strong>
               </span>
-              {plant.alternateNames && plant.alternateNames.length > 0 && (
-                <>
-                  <span className="text-[#94A3B8]">•</span>
-                  <span className="text-[#94A3B8]">
-                    Also known as: <span className="text-[#F8FAFC]">{plant.alternateNames.join(', ')}</span>
-                  </span>
-                </>
-              )}
             </div>
 
             <p className="text-sm text-[#94A3B8] leading-relaxed">
-              {plant.description || plant.shortDescription}
+              <strong className="text-[#F8FAFC] block mb-1">About the Plant:</strong>
+              {plant.description}
             </p>
           </div>
 
           {/* Plant Parts Used */}
-          {plant.plantPartsTraditionallyUsed && plant.plantPartsTraditionallyUsed.length > 0 && (
+          {plant.plantPartsTraditionallyUsed && (
             <div className="space-y-2">
               <div className="text-xs font-bold text-[#F8FAFC] flex items-center gap-1.5">
                 <Flower2 className="w-4 h-4 text-[#10B981]" />
                 <span>Traditionally Utilized Plant Parts</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {plant.plantPartsTraditionallyUsed.map((part, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-lg bg-[#060B18] text-xs font-medium text-[#10B981] border border-[#10B981]/30"
-                  >
-                    ✓ {part}
-                  </span>
-                ))}
+                {plant.plantPartsTraditionallyUsed.split(/,\s*|\s+and\s+/i).map((part, i) => {
+                  const cleanPart = part.trim().replace(/\.$/, '');
+                  if (!cleanPart) return null;
+                  return (
+                    <span
+                      key={i}
+                      className="px-3 py-1 rounded-lg bg-[#060B18] text-xs font-medium text-[#10B981] border border-[#10B981]/30"
+                    >
+                      ✓ {cleanPart}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -145,104 +142,100 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
       {/* Grid of Detailed Specifications */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        {/* Identification Markers */}
-        <div className="glass-panel p-6 rounded-2xl space-y-4 border border-[#00E5FF]/20 bg-[#0B142B]">
-          <div className="flex items-center gap-2.5 text-[#00E5FF]">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
-            <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">Botanical Identification</h3>
+        {/* Traditional Knowledge & Usage */}
+        <div className="glass-panel p-6 rounded-2xl space-y-4 border border-[#00E5FF]/20 bg-[#0B142B] flex flex-col">
+          <div className="flex items-center gap-2.5 text-[#10B981]">
+            <BookOpen className="w-5 h-5 shrink-0" />
+            <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">Traditional Ayurvedic Knowledge</h3>
           </div>
-          <p className="text-xs text-[#94A3B8]">
-            Morphological identification features to observe during your garden visit:
-          </p>
-          <div className="space-y-3 pt-1 text-xs">
-            {plant.identification.leaves && (
-              <div className="p-3 rounded-xl bg-[#060B18] border border-[#00E5FF]/20">
-                <span className="font-bold text-[#00E5FF] block mb-0.5">Leaves:</span>
-                <p className="text-[#F8FAFC] leading-relaxed">{plant.identification.leaves}</p>
-              </div>
-            )}
-            {plant.identification.flowers && (
-              <div className="p-3 rounded-xl bg-[#060B18] border border-[#00E5FF]/20">
-                <span className="font-bold text-[#10B981] block mb-0.5">Flowers:</span>
-                <p className="text-[#F8FAFC] leading-relaxed">{plant.identification.flowers}</p>
-              </div>
-            )}
-            {plant.identification.fruit && (
-              <div className="p-3 rounded-xl bg-[#060B18] border border-[#00E5FF]/20">
-                <span className="font-bold text-[#F59E0B] block mb-0.5">Fruit / Seeds:</span>
-                <p className="text-[#F8FAFC] leading-relaxed">{plant.identification.fruit}</p>
-              </div>
-            )}
-            {plant.identification.stem && (
-              <div className="p-3 rounded-xl bg-[#060B18] border border-[#00E5FF]/20">
-                <span className="font-bold text-[#94A3B8] block mb-0.5">Stem / Bark:</span>
-                <p className="text-[#F8FAFC] leading-relaxed">{plant.identification.stem}</p>
-              </div>
-            )}
+          
+          <div className="space-y-4 pt-1">
+            <div className="p-4 rounded-xl bg-[#060B18] border border-[#10B981]/20">
+              <span className="font-bold text-[#10B981] block mb-1">Traditional Uses:</span>
+              <p className="text-[#94A3B8] text-sm leading-relaxed">{plant.traditionalUses}</p>
+            </div>
+            
+            <div className="p-4 rounded-xl bg-[#060B18] border border-[#00E5FF]/20">
+              <span className="font-bold text-[#00E5FF] block mb-1">Traditional Benefits:</span>
+              <p className="text-[#94A3B8] text-sm leading-relaxed">{plant.traditionalBenefits}</p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-[#060B18] border border-[#F59E0B]/20">
+              <span className="font-bold text-[#F59E0B] block mb-1">How It Is Traditionally Used:</span>
+              <p className="text-[#94A3B8] text-sm leading-relaxed">{plant.traditionalUsage}</p>
+            </div>
+          </div>
+
+          {plant.culturalImportance && (
+            <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-[#060B18] to-[#0B142B] border border-[#94A3B8]/30">
+              <span className="font-bold text-[#F8FAFC] block mb-1">Cultural / Heritage Importance:</span>
+              <p className="text-[#94A3B8] text-sm leading-relaxed">{plant.culturalImportance}</p>
+            </div>
+          )}
+          
+          <div className="mt-auto pt-4 border-t border-[#060B18] flex items-center gap-2 text-xs text-[#10B981]">
+            <Sparkles className="w-4 h-4 shrink-0" />
+            <span>Rooted in traditional Ayurvedic practices and heritage.</span>
           </div>
         </div>
 
-        {/* Traditional Knowledge */}
-        <div className="glass-panel p-6 rounded-2xl space-y-4 border border-[#00E5FF]/20 bg-[#0B142B] flex flex-col justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2.5 text-[#10B981]">
-              <BookOpen className="w-5 h-5 shrink-0" />
-              <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">Traditional Knowledge</h3>
+        <div className="space-y-6 flex flex-col">
+          {/* Identification Markers */}
+          <div className="glass-panel p-6 rounded-2xl space-y-4 border border-[#00E5FF]/20 bg-[#0B142B]">
+            <div className="flex items-center gap-2.5 text-[#00E5FF]">
+              <CheckCircle2 className="w-5 h-5 shrink-0" />
+              <h3 className="font-serif text-xl font-bold text-[#F8FAFC]">Botanical Identification</h3>
             </div>
-            <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              {plant.traditionalKnowledge}
+            <p className="text-sm text-[#94A3B8] leading-relaxed">
+              {plant.identification}
             </p>
           </div>
 
-          <div className="pt-3 border-t border-[#060B18] flex items-center gap-2 text-xs text-[#F59E0B]">
-            <Sparkles className="w-4 h-4 shrink-0" />
-            <span>Documented in Classical Ayurvedic Literature (Dravyaguna Shastra).</span>
-          </div>
-        </div>
-
-        {/* Habitat & Distribution */}
-        <div className="glass-panel p-6 rounded-2xl space-y-3 border border-[#00E5FF]/20 bg-[#0B142B]">
-          <div className="flex items-center gap-2.5 text-[#F59E0B]">
-            <MapPin className="w-5 h-5 shrink-0" />
-            <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">Habitat & Geography</h3>
-          </div>
-          <div className="space-y-2 text-xs">
-            <div>
-              <span className="text-[#94A3B8] block">Native / Common Region:</span>
-              <p className="text-[#F8FAFC] font-medium">{plant.nativeOrCommonRegion}</p>
+          {/* Plant Health & Disease Information */}
+          <div className="glass-panel p-6 rounded-2xl space-y-4 border border-[#F59E0B]/30 bg-[#0B142B] flex-1">
+            <div className="flex items-center gap-2.5 text-[#F59E0B]">
+              <HeartPulse className="w-5 h-5 shrink-0" />
+              <h3 className="font-serif text-xl font-bold text-[#F8FAFC]">Plant Health & Care</h3>
             </div>
-            <div>
-              <span className="text-[#94A3B8] block">Environmental Habitat:</span>
-              <p className="text-[#94A3B8] leading-relaxed">{plant.habitat}</p>
+            <div className="space-y-3 text-sm text-[#94A3B8]">
+              <div>
+                <strong className="text-[#F8FAFC] block mb-0.5">Common Issues & Pests:</strong>
+                <p>{plant.health.issues}</p>
+              </div>
+              <div>
+                <strong className="text-[#F8FAFC] block mb-0.5">Visible Symptoms:</strong>
+                <p>{plant.health.symptoms}</p>
+              </div>
+              <div>
+                <strong className="text-[#10B981] block mb-0.5">Prevention & General Care:</strong>
+                <p>{plant.health.prevention}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Cultivation Notes */}
-        <div className="glass-panel p-6 rounded-2xl space-y-3 border border-[#00E5FF]/20 bg-[#0B142B]">
-          <div className="flex items-center gap-2.5 text-[#10B981]">
-            <Sprout className="w-5 h-5 shrink-0" />
-            <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">Garden Cultivation</h3>
+          {/* Habitat & Distribution */}
+          <div className="glass-panel p-6 rounded-2xl space-y-3 border border-[#00E5FF]/20 bg-[#0B142B]">
+            <div className="flex items-center gap-2.5 text-[#00E5FF]">
+              <MapPin className="w-5 h-5 shrink-0" />
+              <h3 className="font-serif text-xl font-bold text-[#F8FAFC]">Habitat & Geography</h3>
+            </div>
+            <p className="text-sm text-[#94A3B8] leading-relaxed">
+              {plant.habitat}
+            </p>
           </div>
-          <p className="text-xs text-[#94A3B8] leading-relaxed">
-            {plant.cultivation}
-          </p>
         </div>
 
       </div>
 
-      {/* Safety & Precautions Disclaimer */}
-      <div className="p-6 rounded-2xl bg-[#0B142B] border border-[#F59E0B]/30 space-y-3">
-        <div className="flex items-center gap-2.5 text-[#F59E0B]">
-          <ShieldAlert className="w-5 h-5 shrink-0" />
-          <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">Safety & Educational Disclaimer</h3>
+      {/* Educational & Safety Disclaimer */}
+      <div className="p-6 rounded-2xl bg-[#0B142B] border border-[#F59E0B]/30 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+        <ShieldAlert className="w-8 h-8 text-[#F59E0B] shrink-0 mt-1" />
+        <div>
+          <h3 className="font-bold text-[#F8FAFC] text-sm mb-1">Educational Disclaimer</h3>
+          <p className="text-xs text-[#94A3B8] leading-relaxed">
+            This information is provided for educational and cultural purposes and is not medical advice. HERBIQ provides botanical and traditional information for educational learning only. Content must not be used for self-medication, diagnosis, or clinical treatment. Always consult a qualified healthcare provider.
+          </p>
         </div>
-        <p className="text-xs text-[#94A3B8] leading-relaxed">
-          {plant.safety}
-        </p>
-        <p className="text-[11px] text-[#94A3B8]/70 italic pt-1 border-t border-[#060B18]">
-          Educational Note: HerbiQ provides botanical and traditional information for educational learning only. Content is strictly for educational exploration and must not be used for self-medication, diagnosis, or clinical treatment.
-        </p>
       </div>
 
     </div>

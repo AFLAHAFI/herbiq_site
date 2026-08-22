@@ -218,7 +218,7 @@ export const ARExperiencePage: React.FC<ARExperiencePageProps> = ({
               Botanical Overview & Uses
             </h4>
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              {activePlant.description || activePlant.shortDescription}
+              {activePlant.description}
             </p>
           </div>
 
