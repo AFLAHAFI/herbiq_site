@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Page } from '../types';
-import { Leaf, Sparkles, Menu, X, Compass, MessageSquareCode, Eye, Info } from 'lucide-react';
+import { Leaf, Sparkles, Menu, X, Compass, MessageSquareCode, Eye, Info, QrCode } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: Page;
@@ -14,6 +14,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     { id: 'home', label: 'Home', icon: Leaf },
     { id: 'plants', label: 'Plants', icon: Compass },
     { id: 'ask', label: 'Ask HerbiQ', icon: MessageSquareCode },
+    { id: 'scan', label: 'Scan QR', icon: QrCode },
     { id: 'ar', label: 'AR Experience', icon: Eye },
     { id: 'about', label: 'About', icon: Info },
   ];

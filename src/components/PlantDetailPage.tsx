@@ -1,14 +1,15 @@
 import React from 'react';
 import { Plant } from '../types';
 import { PlantImage } from './PlantImage';
-import { ArrowLeft, MessageSquareCode, Eye, ShieldAlert, CheckCircle2, MapPin, BookOpen, Sparkles, Flower2, Sprout, HeartPulse } from 'lucide-react';
-import { AR_CONFIG_PLANT_IDS } from '../data/plants';
+import { ArrowLeft, MessageSquareCode, Eye, ShieldAlert, CheckCircle2, MapPin, BookOpen, Sparkles, Flower2, Sprout, HeartPulse, QrCode } from 'lucide-react';
+import { getARAvailablePlants } from '../data/plants';
 
 interface PlantDetailPageProps {
   plant: Plant;
   onBack: () => void;
   onNavigateToAskWithQuestion: (question: string) => void;
   onNavigateToARWithPlant: (plantId: string) => void;
+  onNavigateToScan: () => void;
 }
 
 export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
@@ -16,6 +17,7 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
   onBack,
   onNavigateToAskWithQuestion,
   onNavigateToARWithPlant,
+  onNavigateToScan,
 }) => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-in fade-in duration-300">
@@ -47,7 +49,7 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
             <span className="px-3 py-1 rounded-full bg-[#060B18]/85 backdrop-blur-md text-xs font-bold text-[#00E5FF] border border-[#00E5FF]/30">
               Category: {plant.category}
             </span>
-            {AR_CONFIG_PLANT_IDS.includes(plant.id) && (
+            {plant.arAvailable && (
               <span className="px-3 py-1 rounded-full bg-[#10B981]/20 backdrop-blur-md text-xs font-bold text-[#10B981] border border-[#10B981]/40 flex items-center gap-1.5">
                 <Eye className="w-3.5 h-3.5" />
                 <span>AR Projection Ready</span>
@@ -129,10 +131,19 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
             <button
               onClick={() => onNavigateToARWithPlant(plant.id)}
               id="detail-view-ar-btn"
-              className="py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/40 text-xs font-bold transition-all flex items-center justify-center gap-2"
+              className="py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/40 text-xs font-bold transition-all flex items-center justify-center gap-2 flex-1 sm:flex-none"
             >
               <Eye className="w-4 h-4" />
               <span>{plant.arAvailable ? 'View in AR Projections' : 'Select for AR Experience'}</span>
+            </button>
+
+            <button
+              onClick={onNavigateToScan}
+              id="detail-scan-qr-btn"
+              className="py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/40 text-xs font-bold transition-all flex items-center justify-center gap-2 flex-1 sm:flex-none"
+            >
+              <QrCode className="w-4 h-4" />
+              <span>Scan QR</span>
             </button>
           </div>
 
@@ -156,8 +167,8 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
             </div>
             
             <div className="p-4 rounded-xl bg-[#060B18] border border-[#00E5FF]/20">
-              <span className="font-bold text-[#00E5FF] block mb-1">Traditional Benefits:</span>
-              <p className="text-[#94A3B8] text-sm leading-relaxed">{plant.traditionalBenefits}</p>
+              <span className="font-bold text-[#00E5FF] block mb-1">Medicinal Benefits:</span>
+              <p className="text-[#94A3B8] text-sm leading-relaxed">{plant.medicinalBenefits}</p>
             </div>
 
             <div className="p-4 rounded-xl bg-[#060B18] border border-[#F59E0B]/20">

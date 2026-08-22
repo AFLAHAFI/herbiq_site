@@ -1,4 +1,4 @@
-export type Page = 'home' | 'plants' | 'ask' | 'ar' | 'about';
+export type Page = 'home' | 'plants' | 'ask' | 'ar' | 'about' | 'scan';
 
 export interface PlantHealth {
   issues: string;
@@ -8,6 +8,7 @@ export interface PlantHealth {
 
 export interface Plant {
   id: string;
+  herbiqId: string;
   name: string;
   malayalamName: string;
   scientificName: string;
@@ -15,7 +16,7 @@ export interface Plant {
   category: string;
   description: string;
   traditionalUses: string;
-  traditionalBenefits: string;
+  medicinalBenefits: string;
   plantPartsTraditionallyUsed: string;
   traditionalUsage: string;
   habitat: string;

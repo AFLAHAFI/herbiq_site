@@ -9,6 +9,7 @@ import { PlantDetailPage } from './components/PlantDetailPage';
 import { AskHerbiQPage } from './components/AskHerbiQPage';
 import { ARExperiencePage } from './components/ARExperiencePage';
 import { AboutPage } from './components/AboutPage';
+import { QRScannerPage } from './components/QRScannerPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -56,6 +57,7 @@ export default function App() {
             onBack={() => setSelectedPlantId(null)}
             onNavigateToAskWithQuestion={handleNavigateToAskWithQuestion}
             onNavigateToARWithPlant={handleNavigateToARWithPlant}
+            onNavigateToScan={() => handleNavigate('scan')}
           />
         ) : (
           <>
@@ -77,6 +79,13 @@ export default function App() {
               <AskHerbiQPage
                 initialQuestion={askQuestion}
                 onSelectPlant={handleSelectPlant}
+              />
+            )}
+
+            {currentPage === 'scan' && (
+              <QRScannerPage
+                onBack={() => handleNavigate('home')}
+                onScanSuccess={handleSelectPlant}
               />
             )}
 

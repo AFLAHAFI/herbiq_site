@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plant } from '../types';
-import { PLANTS, getPlantById, AR_CONFIG_PLANT_IDS } from '../data/plants';
+import { PLANTS, getPlantById, getARAvailablePlants } from '../data/plants';
 import { Plant3DViewer } from './Plant3DViewer';
 import { PlantImage } from './PlantImage';
 import {
@@ -23,10 +23,12 @@ export const ARExperiencePage: React.FC<ARExperiencePageProps> = ({
   initialSelectedPlantId,
   onSelectPlant,
 }) => {
+  const selectedPlants = getARAvailablePlants();
+  
   const [activePlantId, setActivePlantId] = useState<string>(() => {
-    return initialSelectedPlantId && AR_CONFIG_PLANT_IDS.includes(initialSelectedPlantId)
+    return initialSelectedPlantId && selectedPlants.some(p => p.id === initialSelectedPlantId)
       ? initialSelectedPlantId
-      : AR_CONFIG_PLANT_IDS[0];
+      : (selectedPlants[0]?.id || '');
   });
 
   const [isARActive, setIsARActive] = useState<boolean>(false); // Default to 3D museum
@@ -44,10 +46,6 @@ export const ARExperiencePage: React.FC<ARExperiencePageProps> = ({
       setWebXRSupported(false);
     }
   }, []);
-
-  const selectedPlants = AR_CONFIG_PLANT_IDS
-    .map((id) => getPlantById(id))
-    .filter((p): p is Plant => p !== undefined);
 
   const activePlant = getPlantById(activePlantId) || selectedPlants[0];
 
@@ -78,7 +76,7 @@ export const ARExperiencePage: React.FC<ARExperiencePageProps> = ({
         <div className="flex items-center gap-3 shrink-0">
           <div className="px-4 py-2.5 rounded-2xl bg-[#0B142B] border border-[#00E5FF]/30 text-xs font-bold text-[#00E5FF] flex items-center gap-2">
             <Layers className="w-4 h-4 text-[#10B981]" />
-            <span id="ar-selection-counter">Available AR Specimens: {AR_CONFIG_PLANT_IDS.length}</span>
+            <span id="ar-selection-counter">Available AR Specimens: {selectedPlants.length}</span>
           </div>
         </div>
       </div>

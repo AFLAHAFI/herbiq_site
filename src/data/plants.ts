@@ -1,5 +1,5 @@
 import { Plant } from '../types';
-import rawPlantsData from './herbiq-plants.json'; // Force Vite to reload this module and the JSON
+import rawPlantsData from './herbiq-plants-v3.json';
 
 export const PLANTS: Plant[] = rawPlantsData as Plant[];
 
@@ -7,10 +7,12 @@ export function getPlantById(id: string): Plant | undefined {
   return PLANTS.find((plant) => plant.id === id);
 }
 
-export const AR_CONFIG_PLANT_IDS = ['tulsi', 'neem', 'aloe-vera', 'turmeric'];
+export function getPlantByHerbiqId(herbiqId: string): Plant | undefined {
+  return PLANTS.find((plant) => plant.herbiqId === herbiqId);
+}
 
 export function getARAvailablePlants(): Plant[] {
-  return PLANTS.filter((plant) => AR_CONFIG_PLANT_IDS.includes(plant.id));
+  return PLANTS.filter((plant) => plant.arAvailable);
 }
 
 export function searchPlants(query: string, category: string = 'All'): Plant[] {
