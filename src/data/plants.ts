@@ -1,5 +1,5 @@
 import { Plant } from '../types';
-import rawPlantsData from './herbiq-plants-v3.json';
+import rawPlantsData from './herbiq-plants-v4.json';
 
 export const PLANTS: Plant[] = rawPlantsData as Plant[];
 
