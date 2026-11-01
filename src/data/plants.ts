@@ -139,9 +139,12 @@ export function findPlantInQuestion(question: string): Plant | undefined {
     const arNames = plant.translations?.ar?.name ? plant.translations.ar.name.split(/[/،,()]/) : [];
     const arAliases = arNames.flatMap((part) => {
       const trimmed = part.trim();
-      // Also allow matching without the Arabic definite article "ال"
-      const withoutAl = trimmed.startsWith('ال') ? trimmed.slice(2).trim() : '';
-      return withoutAl ? [trimmed, withoutAl] : [trimmed];
+      if (!trimmed) return [];
+      // Allow matching both with and without the Arabic definite article "ال"
+      if (trimmed.startsWith('ال')) {
+        return [trimmed, trimmed.slice(2).trim()];
+      }
+      return [trimmed, `ال${trimmed}`];
     });
 
     return [
