@@ -52,17 +52,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        {/* Feature 2: AI Learning */}
+        {/* Feature 2: Plant Learning */}
         <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[#10B981]/20 bg-[#0B142B] space-y-4 flex flex-col justify-between group hover:border-[#10B981]/50 transition-all">
           <div className="space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-[#060B18] border border-[#10B981]/40 flex items-center justify-center text-[#10B981] group-hover:scale-110 transition-transform">
               <MessageSquareCode className="w-6 h-6" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">
-              AI Learning
+              Plant Learning
             </h3>
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              Ask HerbiQ instant questions regarding plant recognition, classical herbal literature, preparation methods, and ecological safety.
+              Find introductory answers from the local plant catalog. Live AI and voice recognition are not connected.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             id="about-card-ask-btn"
             className="pt-2 text-xs font-bold text-[#10B981] hover:underline inline-flex items-center gap-1"
           >
-            <span>Ask HerbiQ AI →</span>
+            <span>Ask HerbiQ →</span>
           </button>
         </div>
 
@@ -85,7 +85,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               AR Experience
             </h3>
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              Visualize up to 4 medicinal plant specimens simultaneously in your physical room using your mobile camera for hands-on spatial observation.
+              Explore one of five detailed 3D plant models at a time. Camera placement is available where supported.
             </p>
           </div>
 
@@ -115,7 +115,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         </div>
 
         <p className="text-sm text-[#94A3B8] leading-relaxed">
-          Botanical and Ayurvedic gardens play a crucial role in conserving plant biodiversity and preserving traditional healing heritage. HerbiQ enhances visitor engagement by providing accessible, verified, and engaging digital experiences accessible from any desktop or smartphone.
+          Botanical and Ayurvedic gardens play a crucial role in conserving plant biodiversity and preserving traditional healing heritage. HerbiQ enhances visitor engagement by providing accessible and engaging digital experiences accessible from any desktop or smartphone.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">

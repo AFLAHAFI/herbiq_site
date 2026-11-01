@@ -14,6 +14,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
   const explorePlants = PLANTS.slice(0, 4);
   const featuredPlant = PLANTS.find((p) => p.id === 'tulsi') || PLANTS[0];
 
+  if (!featuredPlant) return <p className="p-12 text-center">No plants are currently published. Please visit again soon.</p>;
   return (
     <div className="space-y-20 pb-16">
       {/* HERO SECTION */}
@@ -187,7 +188,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
 
                 {/* Card Info */}
                 <div className="p-5 space-y-2">
-                  <div className="flex items-baseline justify-between gap-2">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="font-serif text-2xl font-bold text-[#F8FAFC] group-hover:text-[#00E5FF] transition-colors">
                       {plant.name}
                     </h3>
@@ -259,7 +260,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00E5FF]/10 text-[#00E5FF] text-xs font-semibold border border-[#00E5FF]/30">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Conversational AI Assistant</span>
+                <span>Plant Database Guide</span>
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#F8FAFC]">
@@ -298,7 +299,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                     <Sparkles className="w-3.5 h-3.5 text-[#00E5FF]" />
                   </div>
                   <div className="bg-[#0B142B]/80 text-[#94A3B8] text-xs p-3 rounded-2xl rounded-tl-none border border-[#00E5FF]/20 space-y-1">
-                    <p className="text-[#F8FAFC] font-medium">HerbiQ AI:</p>
+                    <p className="text-[#F8FAFC] font-medium">HerbiQ Guide:</p>
                     <p className="leading-relaxed">
                       Neem (Azadirachta indica) is identified by its pinnately compound leaves with serrated leaflets. Its bark is rough and greyish-brown, and its crushed leaves have a distinct bitter aroma.
                     </p>
@@ -327,7 +328,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
               </h2>
 
               <p className="text-base text-[#94A3B8] leading-relaxed">
-                Experience selected medicinal plants in 3D directly in your space. Select up to 4 plants at one time to compare and inspect their features.
+                Explore five detailed plant models, one at a time. Camera placement requires a compatible device.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -341,7 +342,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                 </button>
 
                 <span className="text-xs text-[#F59E0B] font-medium bg-[#060B18] px-3 py-2 rounded-xl border border-[#F59E0B]/20">
-                  ✦ Select up to 4 plants at a time
+                  ✦ One plant at a time
                 </span>
               </div>
             </div>
@@ -363,7 +364,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                 </div>
 
                 <div className="p-2 rounded-xl bg-[#0B142B] border border-[#00E5FF]/20 text-[10px] text-center text-[#00E5FF]">
-                  Counter: Selected 4 / 4
+                  Five available models
                 </div>
               </div>
             </div>

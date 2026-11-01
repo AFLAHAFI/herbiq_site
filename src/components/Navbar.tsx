@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#0B142B]/90 p-1.5 rounded-full border border-[#00E5FF]/20">
+        <nav className="hidden xl:flex items-center gap-1 bg-[#0B142B]/90 p-1.5 rounded-full border border-[#00E5FF]/20">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPage === item.id;
@@ -74,22 +74,23 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         </nav>
 
         {/* Action Badge */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden 2xl:flex items-center gap-3">
           <button
             onClick={() => handleNav('ask')}
             className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] hover:brightness-110 transition-all shadow-md hover:shadow-[#00E5FF]/30"
             id="quick-ask-btn"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Ask AI Companion</span>
+            <span>Ask Plant Guide</span>
           </button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2.5 rounded-xl bg-[#0B142B] text-[#F8FAFC] border border-[#00E5FF]/30 focus:outline-none"
+          className="xl:hidden p-2.5 rounded-xl bg-[#0B142B] text-[#F8FAFC] border border-[#00E5FF]/30 focus:outline-none"
           aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
           id="mobile-menu-toggle"
         >
           {mobileMenuOpen ? <X className="w-6 h-6 text-[#00E5FF]" /> : <Menu className="w-6 h-6" />}
@@ -98,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#060B18] border-b border-[#00E5FF]/25 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
+        <div className="xl:hidden bg-[#060B18] border-b border-[#00E5FF]/25 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPage === item.id;

@@ -1,43 +1,38 @@
-# HerbiQ Visitor Website
+# HerbiQ — Admin, QR and 3D upgrade
 
-HerbiQ is a public educational medicinal-plant exploration platform. This website allows visitors to browse a comprehensive botanical database, view detailed information on traditional Ayurvedic uses and morphology, experience a preview of the upcoming Ask HerbiQ AI assistant, and interact with specific medicinal plant species in a 3D/AR spatial viewport.
+Start with **SETUP.md**. The complete source, database scripts, 27 plant photos and five GLB assets are included.
 
-## Features
-- **Plant Explorer:** Browse the database of medicinal plants with search and category filtering.
-- **Detailed Specifications:** Comprehensive morphological features, habitat, and traditional uses.
-- **Ask HerbiQ (Preview):** A simulated educational AI conversational interface.
-- **Augmented Reality Spatial Viewport:** 3D and WebXR AR visualization of featured botanical specimens (Tulsi, Neem, Aloe Vera, Turmeric) with interactive scaling and rotation.
+## Included
 
-## Official Data
-The official source of truth for the plant database is located at `data/herbiq-plants.json`. This database is dynamically integrated into the application and should not be removed.
+- Supabase email/password admin login with server-enforced allowlist and row-level security.
+- Add/edit/delete, publish/hide, unique QR IDs, photo uploads and edit-conflict checks.
+- Shared public catalog from Supabase; local sample catalog when no backend is configured.
+- Individual/bulk QR labels, PNG downloads, A4 print / Save as PDF, ID and website-link formats.
+- Five textured GLB illustrations: Tulsi, Neem, Aloe Vera, Turmeric and Ginger.
+- Interactive model-viewer with compatible-device AR and normal 3D fallback.
+- Existing search, profiles, QR scanner, shareable navigation and database-based guide retained.
 
-## Local Setup
+## Commands
 
-**Prerequisites:**
-- Node.js installed on your machine.
+```sh
+npm ci
+npm run dev
+npm test
+npm run lint
+npm run build
+npm run preview
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repository-url>
-   cd <repository-directory>
-   ```
+Use Node.js 22 or newer. Production output is `dist`. See SETUP.md for Vercel environment variables and Supabase setup. No account credentials or live backend connection are included; nothing has been deployed.
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+## Important files
 
-3. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+- `supabase/001_schema.sql`: admin access rules, plant table, validation and photo storage policies.
+- `supabase/002_seed.sql`: original 27-plant catalog.
+- `src/data/herbiq-plants.json`: offline/sample seed, not the authoritative catalog after Supabase connection.
+- `public/assets/plants/`: existing photos.
+- `public/assets/models/`: self-contained GLBs and model disclosure.
+- `scripts/build_models.py`: deterministic original geometry/texture generator (requires Python, numpy and Pillow only if rebuilding models).
+- `tests/`: catalog, validation, QR decode, GLB validation and database authorization tests.
 
-4. **Access the application:**
-   Open your browser and navigate to `http://localhost:3000`.
-
-## Scripts
-
-- `npm run dev`: Starts the local development server.
-- `npm run build`: Compiles the application for production deployment.
-- `npm run preview`: Locally preview the production build.
-- `npm run lint`: Run TypeScript type-checking and linting.
+Models are detailed computer-made illustrations, not verified scans. Real AI/voice is not connected. Printing and editing require admin setup. Photos use public storage. Physical QR-camera/AR tests and real hosted authentication remain deployment acceptance steps.

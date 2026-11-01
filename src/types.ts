@@ -1,4 +1,4 @@
-export type Page = 'home' | 'plants' | 'ask' | 'ar' | 'about' | 'scan';
+export type Page = 'home' | 'plants' | 'ask' | 'ar' | 'about' | 'scan' | 'admin';
 
 export interface PlantHealth {
   issues: string;

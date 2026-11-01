@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '../types';
-import { PLANTS, getPlantById } from '../data/plants';
-import { Sparkles, Send, Mic, MicOff, Bot, User, BookOpen, Search } from 'lucide-react';
+import { PLANTS, getPlantById, findPlantInQuestion } from '../data/plants';
+import { Sparkles, Send, Bot, User, BookOpen, Search } from 'lucide-react';
 
 interface AskHerbiQPageProps {
   initialQuestion?: string;
@@ -10,12 +10,12 @@ interface AskHerbiQPageProps {
 
 export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, onSelectPlant }) => {
   const [inputQuery, setInputQuery] = useState('');
-  const [isListening, setIsListening] = useState(false);
+  const lastInitialQuestion = useRef<string | undefined>(undefined);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
       sender: 'herbiq',
-      text: 'Namaste! Welcome to the Ask HerbiQ preview interface. The live AI botanical guide is **Coming Soon**. For now, you can explore simulated answers below based on our local database to see how the experience will look and feel!',
+      text: 'Namaste! Ask about a plant by name, in English or Malayalam. This guide uses the local plant catalog. Live AI and voice input are not connected.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -36,7 +36,8 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
   }, [messages]);
 
   useEffect(() => {
-    if (initialQuestion) {
+    if (initialQuestion && lastInitialQuestion.current !== initialQuestion) {
+      lastInitialQuestion.current = initialQuestion;
       handleSendMessage(initialQuestion);
     }
   }, [initialQuestion]);
@@ -56,26 +57,18 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
     if (!textToSend) setInputQuery('');
 
     // Generate educational botanical response from herbiq-plants.json
-    setTimeout(() => {
+    {
       const lowerText = text.toLowerCase();
       let botResponse = '';
       let suggestedPlantId: string | undefined = undefined;
 
       // Find matching plant in database
-      const matchedPlant = PLANTS.find((p) => {
-        const nameMatch = p.name.toLowerCase().includes(lowerText);
-        const idMatch = p.id.toLowerCase().includes(lowerText);
-        const scimatch = p.scientificName.toLowerCase().includes(lowerText);
-        const malMatch = p.malayalamName.toLowerCase().includes(lowerText);
-        const altMatch = false; // Alternate names removed from schema
-
-        return nameMatch || idMatch || scimatch || malMatch || altMatch;
-      });
+      const matchedPlant = findPlantInQuestion(text);
 
       if (matchedPlant) {
         suggestedPlantId = matchedPlant.id;
-        botResponse = `I can definitely tell you about **${matchedPlant.name}** (${matchedPlant.malayalamName}).\n\n` +
-          `• Scientific Name: *${matchedPlant.scientificName}*\n` +
+        botResponse = `I can definitely tell you about ${matchedPlant.name} (${matchedPlant.malayalamName}).\n\n` +
+          `• Scientific Name: ${matchedPlant.scientificName}\n` +
           `• Family: ${matchedPlant.family}\n\n` +
           `• Overview: ${matchedPlant.description}\n\n` +
           `• Traditional Uses: ${matchedPlant.traditionalUses}\n\n` +
@@ -90,7 +83,7 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
       } else if (lowerText.includes('ayurveda') || lowerText.includes('traditional') || lowerText.includes('history')) {
         botResponse = 'In traditional Ayurveda, plants are classified according to their Rasa (taste), Guna (qualities), Veerya (potency), and Vipaka (post-digestive effect) as documented in classical texts like Dravyaguna Shastra. HerbiQ preserves this traditional wisdom alongside botanical taxonomy for educational learning.';
       } else {
-        botResponse = `HerbiQ AI: Thank you for your question about "${text}". Medicinal plants play a vital role in biodiversity and traditional wellness. You can explore our catalog of ${PLANTS.length} garden species in the Plants directory or ask specifically about plants like Tulsi, Neem, Aloe Vera, Turmeric, or Shatavari.`;
+        botResponse = `Thank you for your question about "${text}". Medicinal plants play a vital role in biodiversity and traditional wellness. You can explore our catalog of ${PLANTS.length} garden species in the Plants directory or ask specifically about plants like Tulsi, Neem, Aloe Vera, Turmeric, or Shatavari.`;
       }
 
       const herbiqMsg: ChatMessage = {
@@ -102,19 +95,9 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
       };
 
       setMessages((prev) => [...prev, herbiqMsg]);
-    }, 500);
-  };
-
-  const toggleMic = () => {
-    setIsListening(!isListening);
-    if (!isListening) {
-      // Simulate voice speech recognition
-      setTimeout(() => {
-        setInputQuery('What is the scientific name of Turmeric?');
-        setIsListening(false);
-      }, 2500);
     }
   };
+
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
@@ -123,7 +106,7 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
       <div className="text-center space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00E5FF]/10 text-[#00E5FF] text-xs font-semibold border border-[#00E5FF]/20">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Interactive Botanical AI</span>
+          <span>Plant Database Guide</span>
         </div>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#F8FAFC]">
           Ask HerbiQ
@@ -217,14 +200,6 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Listening Indicator */}
-        {isListening && (
-          <div className="px-6 py-2 bg-[#060B18] border-t border-[#00E5FF]/30 text-[#00E5FF] text-xs font-semibold flex items-center justify-center gap-2 animate-pulse">
-            <Mic className="w-4 h-4" />
-            <span>Listening... Speak your botanical question now</span>
-          </div>
-        )}
-
         {/* Input Bar */}
         <div className="p-4 bg-[#060B18]/90 border-t border-[#00E5FF]/20">
           <form
@@ -234,28 +209,13 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({ initialQuestion, o
             }}
             className="flex items-center gap-2"
           >
-            {/* Mic Toggle Button UI */}
-            <button
-              type="button"
-              onClick={toggleMic}
-              id="mic-toggle-btn"
-              title={isListening ? 'Stop listening' : 'Speak question'}
-              className={`p-3 rounded-xl border transition-all ${
-                isListening
-                  ? 'bg-red-500/20 border-red-500 text-red-400 animate-bounce'
-                  : 'bg-[#0B142B] border-[#00E5FF]/30 text-[#94A3B8] hover:text-[#00E5FF]'
-              }`}
-            >
-              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-            </button>
-
             {/* Input Field */}
             <input
               type="text"
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               placeholder="Ask HerbiQ about any medicinal plant..."
-              className="flex-1 px-4 py-3 rounded-xl bg-[#0B142B] border border-[#00E5FF]/30 text-[#F8FAFC] placeholder-[#94A3B8]/60 text-xs sm:text-sm focus:outline-none focus:border-[#00E5FF]"
+              aria-label="Your plant question" className="min-w-0 flex-1 px-4 py-3 rounded-xl bg-[#0B142B] border border-[#00E5FF]/30 text-[#F8FAFC] placeholder-[#94A3B8]/60 text-xs sm:text-sm focus:outline-none focus:border-[#00E5FF]"
               id="chat-input-field"
             />
 

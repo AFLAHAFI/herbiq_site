@@ -17,11 +17,11 @@ export const PlantsPage: React.FC<PlantsPageProps> = ({ onSelectPlant, onNavigat
   const categories = useMemo(() => {
     const cats = Array.from(new Set(PLANTS.map((p) => p.category))).sort();
     return ['All', ...cats];
-  }, []);
+  }, [PLANTS]);
 
   const filteredPlants = useMemo(() => {
     return searchPlants(searchQuery, selectedCategory);
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, PLANTS]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -49,7 +49,7 @@ export const PlantsPage: React.FC<PlantsPageProps> = ({ onSelectPlant, onNavigat
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, Malayalam name, scientific name, or family (e.g., Tulsi, തുളസി, Ocimum, Lamiaceae)..."
             className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-[#0B142B] border border-[#00E5FF]/30 text-[#F8FAFC] placeholder-[#94A3B8]/60 focus:outline-none focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF] text-sm transition-all"
-            id="plant-search-input"
+            id="plant-search-input" aria-label="Search plants"
           />
           {searchQuery && (
             <button
@@ -147,7 +147,7 @@ export const PlantsPage: React.FC<PlantsPageProps> = ({ onSelectPlant, onNavigat
                   {/* Card Information */}
                   <div className="p-5 space-y-2">
                     <div>
-                      <div className="flex items-baseline justify-between gap-2">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
                         <h3 className="font-serif text-2xl font-bold text-[#F8FAFC] group-hover:text-[#00E5FF] transition-colors">
                           {plant.name}
                         </h3>

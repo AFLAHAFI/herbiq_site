@@ -52,7 +52,7 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
             {plant.arAvailable && (
               <span className="px-3 py-1 rounded-full bg-[#10B981]/20 backdrop-blur-md text-xs font-bold text-[#10B981] border border-[#10B981]/40 flex items-center gap-1.5">
                 <Eye className="w-3.5 h-3.5" />
-                <span>AR Projection Ready</span>
+                <span>3D Model Available</span>
               </span>
             )}
           </div>
@@ -118,7 +118,7 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
           )}
 
           {/* Interactive CTA Buttons */}
-          <div className="pt-2 flex flex-col sm:flex-row gap-3">
+          <div className="pt-2 flex flex-col xl:flex-row flex-wrap gap-3">
             <button
               onClick={() => onNavigateToAskWithQuestion(`Tell me about ${plant.name} and its traditional uses.`)}
               id="detail-ask-herbiq-btn"
@@ -129,12 +129,13 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
             </button>
 
             <button
+              disabled={!plant.arAvailable}
               onClick={() => onNavigateToARWithPlant(plant.id)}
               id="detail-view-ar-btn"
               className="py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/40 text-xs font-bold transition-all flex items-center justify-center gap-2 flex-1 sm:flex-none"
             >
               <Eye className="w-4 h-4" />
-              <span>{plant.arAvailable ? 'View in AR Projections' : 'Select for AR Experience'}</span>
+              <span>{plant.arAvailable ? 'Open 3D / AR Viewer' : '3D model unavailable'}</span>
             </button>
 
             <button

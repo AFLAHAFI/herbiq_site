@@ -1,5 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const sourceDir = __dirname;
 const targetDir = path.join(__dirname, 'github_ready');
@@ -25,7 +27,7 @@ function copyFolderSync(from, to) {
     const elements = fs.readdirSync(from);
     for (const element of elements) {
         // Skip ignored files/folders
-        if (excludeList.includes(element) || element.endsWith('.log')) {
+        if (excludeList.includes(element) || (element.startsWith('.env') && element !== '.env.example') || element.endsWith('.log')) {
             continue;
         }
 

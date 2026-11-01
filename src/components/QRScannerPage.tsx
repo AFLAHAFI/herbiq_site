@@ -1,89 +1,71 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Html5Qrcode } from 'html5-qrcode';
 import { getPlantByHerbiqId } from '../data/plants';
-import { QrCode, AlertTriangle, ArrowLeft } from 'lucide-react';
-
-interface QRScannerPageProps {
-  onBack: () => void;
-  onScanSuccess: (plantId: string) => void;
-}
-
-declare global {
-  interface Window {
-    Html5QrcodeScanner: any;
-  }
-}
-
-export const QRScannerPage: React.FC<QRScannerPageProps> = ({ onBack, onScanSuccess }) => {
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let scanner: any = null;
-
-    if (window.Html5QrcodeScanner) {
-      scanner = new window.Html5QrcodeScanner(
-        "qr-reader",
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        /* verbose= */ false
-      );
-
-      scanner.render(
-        (decodedText: string) => {
-          // Prevent multiple fires if we've already found it
-          const plant = getPlantByHerbiqId(decodedText);
-          if (plant) {
-            scanner.clear();
-            onScanSuccess(plant.id);
-          } else {
-            setError(`Plant not found in HERBIQ database. (Scanned: ${decodedText})`);
-          }
-        },
-        (errorMessage: string) => {
-          // This fires constantly when no QR code is found, so we don't display it as a blocking error
-          // Only log for debugging if needed
-        }
-      );
-    } else {
-      setError("QR Scanner library failed to load. Please check your connection.");
-    }
-
-    return () => {
-      if (scanner) {
-        scanner.clear().catch(console.error);
+interface Props { onBack: () => void; onScanSuccess: (id: string) => void; }
+export const QRScannerPage: React.FC<Props> = ({onBack, onScanSuccess}) => {
+  const [error, setError] = useState('');
+  const [code, setCode] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [running, setRunning] = useState(false);
+  const scanner = useRef<Html5Qrcode | null>(null);
+  const pending = useRef<Promise<void> | null>(null);
+  const stopping = useRef<Promise<void> | null>(null);
+  const accepted = useRef(false);
+  const alive = useRef(true);
+  const stop = () => {
+    if (stopping.current) return stopping.current;
+    const task = (async () => {
+      try { await pending.current; } catch { /* Start errors are displayed by start(). */ }
+      const instance = scanner.current;
+      if (instance) {
+        try { if (instance.isScanning) await instance.stop(); } finally { instance.clear(); scanner.current = null; }
       }
-    };
-  }, [onScanSuccess]);
-
-  return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-in fade-in duration-300 min-h-[70vh]">
-      <button
-        onClick={onBack}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0B142B] text-[#94A3B8] hover:text-[#F8FAFC] border border-[#00E5FF]/30 text-xs font-semibold transition-all"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        <span>Back</span>
-      </button>
-
-      <div className="text-center space-y-4">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#00E5FF]/10 border border-[#00E5FF]/30 mb-2">
-          <QrCode className="w-8 h-8 text-[#00E5FF]" />
-        </div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#F8FAFC]">Scan HERBIQ Code</h1>
-        <p className="text-[#94A3B8] text-sm max-w-lg mx-auto">
-          Hold your device up to any HERBIQ botanical sign to instantly learn about its traditional uses, habitat, and medicinal benefits.
-        </p>
-      </div>
-
-      <div className="glass-panel p-6 rounded-3xl border border-[#00E5FF]/30 bg-[#0B142B] max-w-lg mx-auto overflow-hidden">
-        {error && (
-          <div className="mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-start gap-3 text-red-400 text-sm">
-            <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
-            <p>{error}</p>
-          </div>
-        )}
-        
-        {/* The target div for Html5QrcodeScanner */}
-        <div id="qr-reader" className="w-full rounded-xl overflow-hidden [&_video]:rounded-xl [&_video]:w-full [&_#qr-reader__scan_region]:bg-[#060B18]"></div>
-      </div>
-    </div>
-  );
+      if (alive.current) setRunning(false);
+    })();
+    stopping.current = task;
+    void task.finally(() => { stopping.current = null; }).catch(() => {});
+    return task;
+  };
+  useEffect(() => { alive.current = true; return () => { alive.current = false; void stop().catch(console.error); }; }, []);
+  const accept = async (text: string) => {
+    if (accepted.current || !alive.current) return;
+    const plant = getPlantByHerbiqId(text);
+    if (!plant) { setError('Unknown HerbiQ code. Try a label such as HERBIQ:tulsi.'); return; }
+    accepted.current = true;
+    setBusy(true);
+    try { await stop(); if (alive.current) onScanSuccess(plant.id); }
+    catch { if (alive.current) setError('Unable to stop the camera. Please retry or reload this page.'); accepted.current = false; }
+    finally { if (alive.current) setBusy(false); }
+  };
+  const start = async () => {
+    if (busy || scanner.current || stopping.current) return;
+    setError(''); setBusy(true);
+    if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
+      setError('Camera access requires HTTPS and a supported browser. You can enter the plant code below.'); setBusy(false); return;
+    }
+    try {
+      scanner.current = new Html5Qrcode('qr-reader');
+      const task = scanner.current.start({facingMode: 'environment'}, {fps: 8, qrbox: (w, h) => { const size = Math.min(240, Math.floor(Math.min(w, h) * .8)); return {width: size, height: size}; }}, text => { void accept(text); }, () => {});
+      pending.current = task;
+      await task;
+      if (alive.current) setRunning(true);
+    } catch {
+      if (alive.current) setError('Camera could not start. Allow camera permission, close other camera apps, then retry. You can also enter the code below.');
+      try { scanner.current?.clear(); } catch { /* Empty scanner. */ }
+      scanner.current = null;
+    } finally { pending.current = null; if (alive.current) setBusy(false); }
+  };
+  return <div className="max-w-xl mx-auto p-4 sm:p-8 space-y-6 min-h-[65vh]">
+    <button className="underline" onClick={async () => { try { await stop(); onBack(); } catch { setError('Camera could not stop. Please reload.'); } }}>Back</button>
+    <h1 className="text-3xl font-bold">Scan HerbiQ Code</h1>
+    <p>Scan a plant label or enter its code to open the matching profile.</p>
+    {error && <p role="alert" className="p-4 rounded-xl bg-red-950 text-red-200">{error}</p>}
+    <div id="qr-reader" className="w-full overflow-hidden rounded-xl" />
+    <button disabled={busy} onClick={() => { if (running) { setBusy(true); void stop().catch(() => setError('Camera could not stop. Please reload.')).finally(() => { if (alive.current) setBusy(false); }); } else void start(); }} className="w-full rounded-xl bg-cyan-400 text-slate-950 p-3 font-bold">{busy ? 'Please wait…' : running ? 'Stop camera' : 'Start camera'}</button>
+    <form className="space-y-3" onSubmit={e => { e.preventDefault(); void accept(code); }}>
+      <label htmlFor="manual-code" className="block">Plant code</label>
+      <input id="manual-code" value={code} onChange={e => setCode(e.target.value)} placeholder="HERBIQ:tulsi" autoCapitalize="none" spellCheck={false} className="w-full p-3 rounded-xl bg-slate-900 border border-slate-600" />
+      <button disabled={busy || !code.trim()} className="w-full p-3 rounded-xl border border-cyan-400">Open plant</button>
+    </form>
+  </div>;
 };

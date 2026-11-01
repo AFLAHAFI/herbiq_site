@@ -1,5 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const projectRoot = __dirname;
 const assetsDir = path.join(projectRoot, 'assets');
