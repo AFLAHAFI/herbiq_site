@@ -1,5 +1,6 @@
 import React from 'react';
 import { Page } from '../types';
+import { useI18n } from '../i18n';
 import { Leaf, ShieldAlert } from 'lucide-react';
 
 interface FooterProps {
@@ -7,21 +8,21 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { t } = useI18n();
   return (
     <footer className="border-t border-[#00E5FF]/20 bg-[#060B18] pt-12 pb-8 text-[#94A3B8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#0B142B]">
-          
           {/* Brand & Motto */}
-          <div className="text-center md:text-left space-y-2">
+          <div className="text-center md:text-start space-y-2">
             <div className="flex items-center justify-center md:justify-start gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-[#0B142B] border border-[#00E5FF]/30 flex items-center justify-center">
                 <Leaf className="w-4 h-4 text-[#00E5FF]" />
               </div>
-              <span className="font-serif text-2xl font-bold text-[#F8FAFC]">HerbiQ</span>
+              <span className="font-serif text-2xl font-bold text-[#F8FAFC]" dir="ltr">HerbiQ</span>
             </div>
             <p className="text-sm text-[#10B981] font-medium tracking-wide">
-              Learn • Explore • Experience
+              {t('footer.motto')}
             </p>
           </div>
 
@@ -32,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               className="hover:text-[#00E5FF] transition-colors"
               id="footer-nav-plants"
             >
-              Plants
+              {t('footer.plants')}
             </button>
             <span className="text-[#0B142B]">•</span>
             <button
@@ -40,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               className="hover:text-[#00E5FF] transition-colors"
               id="footer-nav-ask"
             >
-              Ask HerbiQ
+              {t('footer.ask')}
             </button>
             <span className="text-[#0B142B]">•</span>
             <button
@@ -48,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               className="hover:text-[#00E5FF] transition-colors"
               id="footer-nav-ar"
             >
-              AR Experience
+              {t('footer.ar')}
             </button>
             <span className="text-[#0B142B]">•</span>
             <button
@@ -56,22 +57,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               className="hover:text-[#00E5FF] transition-colors"
               id="footer-nav-about"
             >
-              About
+              {t('footer.about')}
             </button>
-            <button onClick={() => onNavigate('admin')} className="hover:text-cyan-300">Admin</button>
+            <button onClick={() => onNavigate('admin')} className="hover:text-cyan-300">
+              {t('footer.admin')}
+            </button>
           </nav>
         </div>
 
         {/* Disclaimer & Copyright */}
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#94A3B8]/80">
-          <div className="flex items-start md:items-center gap-2 max-w-2xl">
+          <div className="flex items-start md:items-center gap-2 max-w-2xl text-start">
             <ShieldAlert className="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5 md:mt-0" />
             <p>
-              <strong className="text-[#F59E0B]">Educational Disclaimer:</strong> HerbiQ is an educational resource for botanical garden visitors. Content provided is not intended for medical diagnosis, treatment, or clinical advice.
+              <strong className="text-[#F59E0B]">{t('footer.disclaimerTitle')}</strong>{' '}
+              {t('footer.disclaimerText')}
             </p>
           </div>
-          <p className="shrink-0 text-center md:text-right">
-            © {new Date().getFullYear()} HerbiQ. All rights reserved.
+          <p className="shrink-0 text-center md:text-end">
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

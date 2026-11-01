@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Page } from '../types';
-import { Leaf, Sparkles, Menu, X, Compass, MessageSquareCode, Eye, Info, QrCode } from 'lucide-react';
+import { SUPPORTED_LANGS, LANGUAGE_LABELS, useI18n } from '../i18n';
+import { Leaf, Sparkles, Menu, X, Compass, MessageSquareCode, Eye, Info, QrCode, Globe } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: Page;
@@ -9,14 +10,15 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, setLang, t } = useI18n();
 
   const navItems: { id: Page; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
-    { id: 'home', label: 'Home', icon: Leaf },
-    { id: 'plants', label: 'Plants', icon: Compass },
-    { id: 'ask', label: 'Ask HerbiQ', icon: MessageSquareCode },
-    { id: 'scan', label: 'Scan QR', icon: QrCode },
-    { id: 'ar', label: 'AR Experience', icon: Eye },
-    { id: 'about', label: 'About', icon: Info },
+    { id: 'home', label: t('nav.home'), icon: Leaf },
+    { id: 'plants', label: t('nav.plants'), icon: Compass },
+    { id: 'ask', label: t('nav.ask'), icon: MessageSquareCode },
+    { id: 'scan', label: t('nav.scan'), icon: QrCode },
+    { id: 'ar', label: t('nav.ar'), icon: Eye },
+    { id: 'about', label: t('nav.about'), icon: Info },
   ];
 
   const handleNav = (page: Page) => {
@@ -27,11 +29,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#00E5FF]/20 bg-[#060B18]/90 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
         {/* Brand Logo */}
-        <button 
+        <button
           onClick={() => handleNav('home')}
-          className="flex items-center gap-3 group text-left focus:outline-none"
+          className="flex items-center gap-3 group text-start focus:outline-none shrink-0"
           id="brand-logo-btn"
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00E5FF]/20 to-[#10B981]/20 border border-[#00E5FF]/40 flex items-center justify-center shadow-sm group-hover:border-[#00E5FF]/80 transition-all duration-300 glow-cyan">
@@ -39,14 +41,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#F8FAFC] group-hover:text-[#00E5FF] transition-colors">
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#F8FAFC] group-hover:text-[#00E5FF] transition-colors" dir="ltr">
                 HerbiQ
               </span>
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold bg-[#00E5FF]/10 text-[#00E5FF] border border-[#00E5FF]/30">
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold bg-[#00E5FF]/10 text-[#00E5FF] border border-[#00E5FF]/30" dir="ltr">
                 AI
               </span>
             </div>
-            <p className="text-[11px] text-[#94A3B8] tracking-wide -mt-0.5">Botanical Education</p>
+            <p className="text-[11px] text-[#94A3B8] tracking-wide -mt-0.5">{t('nav.subtitle')}</p>
           </div>
         </button>
 
@@ -73,28 +75,57 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           })}
         </nav>
 
-        {/* Action Badge */}
-        <div className="hidden 2xl:flex items-center gap-3">
+        {/* Language Switcher + Action Badge */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div
+            role="group"
+            aria-label={t('nav.language')}
+            className="flex items-center gap-1 bg-[#0B142B] p-1 rounded-xl border border-[#00E5FF]/25"
+            id="lang-switcher"
+          >
+            <Globe className="w-3.5 h-3.5 text-[#00E5FF] ms-1.5 hidden sm:inline" aria-hidden="true" />
+            {SUPPORTED_LANGS.map((code) => {
+              const active = lang === code;
+              return (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => setLang(code)}
+                  id={`lang-btn-${code}`}
+                  aria-pressed={active}
+                  lang={code}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    active
+                      ? 'bg-[#00E5FF] text-[#060B18] shadow-sm'
+                      : 'text-[#94A3B8] hover:text-[#F8FAFC]'
+                  }`}
+                >
+                  {LANGUAGE_LABELS[code]}
+                </button>
+              );
+            })}
+          </div>
+
           <button
             onClick={() => handleNav('ask')}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] hover:brightness-110 transition-all shadow-md hover:shadow-[#00E5FF]/30"
+            className="hidden 2xl:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] hover:brightness-110 transition-all shadow-md hover:shadow-[#00E5FF]/30"
             id="quick-ask-btn"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Ask Plant Guide</span>
+            <span>{t('nav.askGuide')}</span>
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="xl:hidden p-2.5 rounded-xl bg-[#0B142B] text-[#F8FAFC] border border-[#00E5FF]/30 focus:outline-none"
+            aria-label={t('nav.toggleMenu')}
+            aria-expanded={mobileMenuOpen}
+            id="mobile-menu-toggle"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6 text-[#00E5FF]" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="xl:hidden p-2.5 rounded-xl bg-[#0B142B] text-[#F8FAFC] border border-[#00E5FF]/30 focus:outline-none"
-          aria-label="Toggle navigation menu"
-          aria-expanded={mobileMenuOpen}
-          id="mobile-menu-toggle"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6 text-[#00E5FF]" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -108,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 key={item.id}
                 onClick={() => handleNav(item.id)}
                 id={`mobile-nav-link-${item.id}`}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-medium transition-all ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-start text-sm font-medium transition-all ${
                   isActive
                     ? 'bg-[#0B142B] text-[#00E5FF] border border-[#00E5FF]/50'
                     : 'text-[#94A3B8] hover:bg-[#0B142B]/50 hover:text-[#F8FAFC]'

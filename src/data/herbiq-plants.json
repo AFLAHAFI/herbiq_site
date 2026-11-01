@@ -21,7 +21,33 @@
       "symptoms": "Leaf spots, yellowing, wilting or damaged leaves.",
       "prevention": "Good airflow, suitable watering, healthy soil and removal of severely affected plant material."
     },
-    "model3D": "/assets/models/tulsi.glb"
+    "model3D": "/assets/models/tulsi.glb",
+    "translations": {
+      "ar": {
+        "name": "الريحان المقدس / تولسي",
+        "category": "عشبة",
+        "description": "التولسي (الريحان المقدس) عشبة عطرية تُزرع على نطاق واسع حول المنازل والمعابد في الهند، وتحظى بمكانة عالية في الأيورفيدا والتقاليد الثقافية الهندية.",
+        "traditionalUses": "يُستخدم تقليدياً في محضرات الأيورفيدا والممارسات العشبية المنزلية، ويرتبط شائعاً بتقاليد العافية التنفسية والعامة.",
+        "medicinalBenefits": "يرتبط تقليدياً بدعم راحة الجهاز التنفسي والهضم والعافية العامة.",
+        "plantPartsTraditionallyUsed": "الأوراق والسيقان والبذور.",
+        "traditionalUsage": "تُستخدم الأوراق طازجة أو مجففة في المحضرات العشبية والمشروبات التقليدية.",
+        "habitat": "المناطق الاستوائية وشبه الاستوائية؛ يُزرع بكثرة في الهند.",
+        "identification": "أوراق عطرية وسيقان مربعة وأوراق متقابلة وأزهار صغيرة مرتبة في سنابل.",
+        "uses": [
+          "دعم راحة الجهاز التنفسي تقليدياً",
+          "المشروبات والمحضرات العشبية المنزلية",
+          "دعم الهضم والعافية العامة"
+        ],
+        "health": {
+          "issues": "قد تشمل المشاكل الشائعة الأمراض الفطرية أو الآفات الحشرية أو الإجهاد البيئي.",
+          "symptoms": "تبقع الأوراق أو اصفرارها أو ذبولها أو تلفها.",
+          "prevention": "تهوية جيدة، وري مناسب، وتربة صحية، وإزالة الأجزاء المصابة بشدة."
+        }
+      },
+      "ml": {
+        "name": "തുളസി"
+      }
+    }
   },
   {
     "id": "neem",
@@ -45,7 +71,33 @@
       "symptoms": "Sticky residue on leaves or stunted growth.",
       "prevention": "Ensure good drainage and prune dead branches."
     },
-    "model3D": "/assets/models/neem.glb"
+    "model3D": "/assets/models/neem.glb",
+    "translations": {
+      "ar": {
+        "name": "النيم / الأزدرخت الهندي",
+        "category": "شجرة",
+        "description": "النيم شجرة دائمة الخضرة معروفة في شبه القارة الهندية ولها تاريخ طويل في الممارسات الهندية التقليدية.",
+        "traditionalUses": "يُستخدم تقليدياً في المحضرات المرتبطة بالعناية بالبشرة والنظافة والعافية العامة.",
+        "medicinalBenefits": "يرتبط تقليدياً بممارسات العناية بالبشرة ونظافة الفم.",
+        "plantPartsTraditionallyUsed": "الأوراق واللحاء والبذور والأزهار والزيت.",
+        "traditionalUsage": "أُدخلت الأوراق والأجزاء الأخرى تقليدياً في المحضرات العشبية والممارسات المنزلية.",
+        "habitat": "المناطق الاستوائية وشبه الجافة، وخاصة في جميع أنحاء الهند.",
+        "identification": "شجرة كبيرة دائمة الخضرة ذات أوراق ريشية مركبة وأزهار بيضاء صغيرة عطرة.",
+        "uses": [
+          "ممارسات العناية التقليدية بالبشرة",
+          "نظافة الفم والأسنان التقليدية",
+          "المحضرات العشبية المنزلية"
+        ],
+        "health": {
+          "issues": "الحشرات القشرية والبق الدقيقي أحياناً.",
+          "symptoms": "بقايا لزجة على الأوراق أو تقزم النمو.",
+          "prevention": "ضمان تصريف جيد للمياه وتقليم الفروع الميتة."
+        }
+      },
+      "ml": {
+        "name": "ആര്യവേപ്പ് / വേപ്പ്"
+      }
+    }
   },
   {
     "id": "aloe-vera",
@@ -69,7 +121,32 @@
       "symptoms": "Mushy, yellowing leaves at the base.",
       "prevention": "Plant in well-draining soil and water only when completely dry."
     },
-    "model3D": "/assets/models/aloe-vera.glb"
+    "model3D": "/assets/models/aloe-vera.glb",
+    "translations": {
+      "ar": {
+        "name": "الصبار / الألوفيرا",
+        "category": "نبات عصاري",
+        "description": "الألوفيرا نبات عصاري يُعرف بأوراقه السميكة اللحمية التي تحتوي على هلام شفاف.",
+        "traditionalUses": "يُستخدم تقليدياً في محضرات العناية بالبشرة ومختلف ممارسات الأيورفيدا والاستخدامات المنزلية.",
+        "medicinalBenefits": "يرتبط تقليدياً بتهدئة البشرة والمحضرات الهضمية.",
+        "plantPartsTraditionallyUsed": "هلام الورقة والعصارة.",
+        "traditionalUsage": "يُوضع الهلام الداخلي الشفاف تقليدياً في بعض محضرات العناية بالبشرة.",
+        "habitat": "المناطق الدافئة والجافة والاستوائية.",
+        "identification": "أوراق عصارية سميكة مدببة مرتبة على شكل وردة، وغالباً ما تحمل أسناناً صغيرة على الحواف.",
+        "uses": [
+          "تهدئة البشرة والعناية بها تقليدياً",
+          "المحضرات التقليدية في الأيورفيدا"
+        ],
+        "health": {
+          "issues": "تعفن الجذور بسبب الإفراط في الري.",
+          "symptoms": "أوراق طرية مصفرة عند القاعدة.",
+          "prevention": "الزراعة في تربة جيدة التصريف والري فقط عندما تجف التربة تماماً."
+        }
+      },
+      "ml": {
+        "name": "കറ്റാർവാഴ"
+      }
+    }
   },
   {
     "id": "turmeric",
@@ -93,7 +170,32 @@
       "symptoms": "Yellowing of outer leaves and decaying roots.",
       "prevention": "Avoid waterlogging and use disease-free seed rhizomes."
     },
-    "model3D": "/assets/models/turmeric.glb"
+    "model3D": "/assets/models/turmeric.glb",
+    "translations": {
+      "ar": {
+        "name": "الكركم",
+        "category": "توابل",
+        "description": "الكركم نبات جذموري يُزرع على نطاق واسع في جنوب وجنوب شرق آسيا.",
+        "traditionalUses": "مكون رئيسي في الأيورفيدا والمطبخ التقليدي والممارسات الثقافية.",
+        "medicinalBenefits": "يرتبط تقليدياً بممارسات الهضم والعافية العامة.",
+        "plantPartsTraditionallyUsed": "الجذمور (الساق الأرضية).",
+        "traditionalUsage": "تُستخدم الجذامير الطازجة أو المجففة كتوابل وفي المحضرات التقليدية.",
+        "habitat": "المناطق الاستوائية الدافئة والرطبة.",
+        "identification": "أوراق خضراء عريضة وجذامير أرضية صفراء برتقالية.",
+        "uses": [
+          "توابل تقليدية ومحضرات غذائية",
+          "دعم الهضم والعافية العامة تقليدياً"
+        ],
+        "health": {
+          "issues": "تعفن الجذامير وتبقع الأوراق.",
+          "symptoms": "اصفرار الأوراق الخارجية وتحلل الجذور.",
+          "prevention": "تجنب تشبع التربة بالماء واستخدام جذامير بذور خالية من الأمراض."
+        }
+      },
+      "ml": {
+        "name": "മഞ്ഞൾ"
+      }
+    }
   },
   {
     "id": "ginger",
@@ -117,7 +219,32 @@
       "symptoms": "Yellowing leaf tips extending downwards; soft foul-smelling rhizomes.",
       "prevention": "Ensure excellent drainage and crop rotation."
     },
-    "model3D": "/assets/models/ginger.glb"
+    "model3D": "/assets/models/ginger.glb",
+    "translations": {
+      "ar": {
+        "name": "الزنجبيل",
+        "category": "توابل",
+        "description": "الزنجبيل نبات مزهر يُزرع بشكل أساسي من أجل جذموره الأرضي العطري.",
+        "traditionalUses": "يُستخدم على نطاق واسع في الأيورفيدا والأطعمة التقليدية والمحضرات العشبية.",
+        "medicinalBenefits": "يرتبط تقليدياً بالهضم وتخفيف الانزعاج الهضمي العرضي.",
+        "plantPartsTraditionallyUsed": "الجذمور.",
+        "traditionalUsage": "يُستخدم الزنجبيل الطازج أو المجفف في الطعام والمشروبات والمحضرات التقليدية.",
+        "habitat": "المناخات الاستوائية وشبه الاستوائية الدافئة.",
+        "identification": "أوراق ضيقة رمحية الشكل، وسيقان قائمة، وجذامير عطرية متفرعة.",
+        "uses": [
+          "المشروبات والأطعمة التقليدية",
+          "دعم راحة الجهاز الهضمي تقليدياً"
+        ],
+        "health": {
+          "issues": "العفن الطري والذبول البكتيري.",
+          "symptoms": "اصفرار أطراف الأوراق وامتداده للأسفل؛ وجذامير طرية كريهة الرائحة.",
+          "prevention": "ضمان تصريف ممتاز للمياه وتطبيق الدورة الزراعية."
+        }
+      },
+      "ml": {
+        "name": "ഇഞ്ചി"
+      }
+    }
   },
   {
     "id": "ashwagandha",
@@ -140,6 +267,31 @@
       "issues": "Spider mites and leaf blight.",
       "symptoms": "Webbing on leaves or brown spotting.",
       "prevention": "Keep plants well-spaced for airflow and avoid overhead watering."
+    },
+    "translations": {
+      "ar": {
+        "name": "الأشواغاندا / العبعب المنوم",
+        "category": "شجيرة",
+        "description": "الأشواغاندا شجيرة صغيرة ذات أهمية تقليدية كبيرة في الأيورفيدا.",
+        "traditionalUses": "تُصنف تقليدياً كعشبة راسايانا (مجددة للنشاط) وتُستخدم في محضرات الأيورفيدا المتنوعة.",
+        "medicinalBenefits": "ترتبط تقليدياً بالحيوية والقوة والعافية العامة.",
+        "plantPartsTraditionallyUsed": "الجذر بشكل أساسي؛ كما تُستخدم الأوراق والثمار في بعض الممارسات التقليدية.",
+        "traditionalUsage": "تُجفف الجذور تقليدياً وتُطحن أو تُدمج في المحضرات.",
+        "habitat": "المناطق الجافة وشبه الجافة.",
+        "identification": "شجيرة صغيرة ذات أوراق بيضاوية وأزهار باهتة وثمار صغيرة برتقالية حمراء.",
+        "uses": [
+          "محضرات راسايانا التقليدية في الأيورفيدا",
+          "دعم الحيوية والعافية العامة تقليدياً"
+        ],
+        "health": {
+          "issues": "العنكبوت الأحمر ولفحة الأوراق.",
+          "symptoms": "خيوط عنكبوتية على الأوراق أو بقع بنية.",
+          "prevention": "إبقاء النباتات متباعدة لمرور الهواء وتجنب الري العلوي."
+        }
+      },
+      "ml": {
+        "name": "അമുക്കുരം"
+      }
     }
   },
   {
@@ -163,6 +315,31 @@
       "issues": "Bark eating caterpillars and rust.",
       "symptoms": "Webbed frass on branches or rusty spots on leaves.",
       "prevention": "Prune affected branches and maintain overall tree vigor."
+    },
+    "translations": {
+      "ar": {
+        "name": "الأملا / عنب الثعلب الهندي",
+        "category": "شجرة",
+        "description": "الأملا شجرة صغيرة إلى متوسطة الحجم تنتج ثماراً صفراء مخضرة.",
+        "traditionalUses": "مهمة في الأيورفيدا وتدخل شائعاً في التركيبات التقليدية.",
+        "medicinalBenefits": "ترتبط تقليدياً بممارسات الهضم والعافية العامة.",
+        "plantPartsTraditionallyUsed": "الثمار والبذور واللحاء والأوراق.",
+        "traditionalUsage": "تؤكل الثمار طازجة أو مجففة أو تُستخدم في المحضرات التقليدية.",
+        "habitat": "الأجزاء الاستوائية وشبه الاستوائية من الهند.",
+        "identification": "أوراق صغيرة ريشية المظهر وثمار مستديرة ذات لون أخضر باهت.",
+        "uses": [
+          "التركيبات الغذائية والعشبية التقليدية",
+          "دعم الهضم والعافية العامة"
+        ],
+        "health": {
+          "issues": "يرقات قضم اللحاء ومرض الصدأ.",
+          "symptoms": "بقايا متشابكة على الأغصان أو بقع صدئة على الأوراق.",
+          "prevention": "تقليم الفروع المصابة والحفاظ على حيوية الشجرة."
+        }
+      },
+      "ml": {
+        "name": "നെല്ലിക്ക"
+      }
     }
   },
   {
@@ -186,6 +363,31 @@
       "issues": "Snails and occasional fungal spots.",
       "symptoms": "Chewed leaves or dark patches in stagnant water.",
       "prevention": "Ensure clean water sources and remove excessive decaying organic matter."
+    },
+    "translations": {
+      "ar": {
+        "name": "البراهمي / باكوبا منيري",
+        "category": "عشبة",
+        "description": "البراهمي عشبة زاحفة صغيرة توجد عادة في البيئات الرطبة.",
+        "traditionalUses": "تُستخدم تقليدياً في الأيورفيدا في المحضرات المرتبطة بالذاكرة والعافية الذهنية.",
+        "medicinalBenefits": "ترتبط تقليدياً بالذاكرة والتركيز وعافية الجهاز العصبي العامة.",
+        "plantPartsTraditionallyUsed": "النبات الكامل، وخاصة الأوراق والسيقان.",
+        "traditionalUsage": "يُحضر تقليدياً كعصير طازج أو مسحوق أو يُدمج في التركيبات العشبية.",
+        "habitat": "الأراضي الرطبة والمستنقعات والبرك والتربة الرطبة.",
+        "identification": "أوراق عصارية صغيرة، وسيقان زاحفة، وأزهار بيضاء صغيرة.",
+        "uses": [
+          "دعم الذاكرة والتركيز تقليدياً في الأيورفيدا",
+          "التركيبات العشبية التقليدية"
+        ],
+        "health": {
+          "issues": "القواقع وبقع فطرية عرضية.",
+          "symptoms": "أوراق مقضومة أو بقع داكنة في المياه الراكدة.",
+          "prevention": "ضمان مصادر مياه نظيفة وإزالة المواد العضوية المتحللة الزائدة."
+        }
+      },
+      "ml": {
+        "name": "ബ്രഹ്മി"
+      }
     }
   },
   {
@@ -209,6 +411,31 @@
       "issues": "Sandal spike disease (mycoplasma).",
       "symptoms": "Reduction in leaf size and stiffening of leaves like spikes.",
       "prevention": "Remove infected trees immediately as there is no known cure."
+    },
+    "translations": {
+      "ar": {
+        "name": "خشب الصندل",
+        "category": "شجرة",
+        "description": "خشب الصندل شجرة عطرة تُقدر لخشب قلبها العطري.",
+        "traditionalUses": "يُستخدم في الأيورفيدا ومستحضرات التجميل التقليدية والمراسم الدينية والممارسات الثقافية.",
+        "medicinalBenefits": "يرتبط تقليدياً بمحضرات التبريد والعناية بالبشرة.",
+        "plantPartsTraditionallyUsed": "خشب القلب والزيت.",
+        "traditionalUsage": "تُستخدم عجينة خشب الصندل وزيته المحضر تقليدياً في الممارسات الثقافية والتجميلية.",
+        "habitat": "المناطق الاستوائية، وخاصة أجزاء من شبه القارة الهندية.",
+        "identification": "شجرة صغيرة دائمة الخضرة ذات لحاء أملس وأوراق بيضاوية متقابلة.",
+        "uses": [
+          "العناية التقليدية بالبشرة والتبريد",
+          "الممارسات الثقافية والعطرية التقليدية"
+        ],
+        "health": {
+          "issues": "مرض تورد الصندل (الميكوبلازما).",
+          "symptoms": "صغر حجم الأوراق وتصلبها مثل الأشواك.",
+          "prevention": "إزالة الأشجار المصابة فوراً لعدم وجود علاج معروف."
+        }
+      },
+      "ml": {
+        "name": "ചന്ദനം"
+      }
     }
   },
   {
@@ -232,6 +459,31 @@
       "issues": "Hairy caterpillars and root rot.",
       "symptoms": "Defoliation of leaves or sudden wilting.",
       "prevention": "Manual removal of pests and avoiding waterlogged soil."
+    },
+    "translations": {
+      "ar": {
+        "name": "المورينجا / البان الزيتي",
+        "category": "شجرة",
+        "description": "المورينجا شجرة سريعة النمو تُزرع على نطاق واسع من أجل أوراقها وأزهارها وقرونها الصالحة للأكل.",
+        "traditionalUses": "تُستخدم كغذاء وفي ممارسات العافية التقليدية.",
+        "medicinalBenefits": "تُقدر تقليدياً كنبات مغذٍ وترتبط بالعافية العامة.",
+        "plantPartsTraditionallyUsed": "الأوراق والقرون والأزهار والبذور.",
+        "traditionalUsage": "تُطهى الأوراق والقرون شائعاً كطعام؛ كما قد تُستخدم الأوراق في المحضرات التقليدية.",
+        "habitat": "المناطق الاستوائية وشبه الاستوائية.",
+        "identification": "أوراق مركبة صغيرة، وأزهار بيضاء، وقرون بذور طويلة رفيعة.",
+        "uses": [
+          "غذاء تقليدي غني بالعناصر الغذائية",
+          "ممارسات العافية العامة التقليدية"
+        ],
+        "health": {
+          "issues": "اليرقات المشعرة وتعفن الجذور.",
+          "symptoms": "تساقط الأوراق أو الذبول المفاجئ.",
+          "prevention": "الإزالة اليدوية للآفات وتجنب التربة المشبعة بالماء."
+        }
+      },
+      "ml": {
+        "name": "മുരിങ്ങ"
+      }
     }
   },
   {
@@ -255,6 +507,31 @@
       "issues": "Citrus psylla and leaf spot.",
       "symptoms": "Curling of leaves and white powdery residue.",
       "prevention": "Prune affected areas and maintain good sunlight exposure."
+    },
+    "translations": {
+      "ar": {
+        "name": "ورق الكاري",
+        "category": "شجرة",
+        "description": "ورق الكاري شجرة عطرية صغيرة تُستخدم أوراقها على نطاق واسع في مطبخ جنوب آسيا.",
+        "traditionalUses": "يُستخدم في الطعام والممارسات العشبية التقليدية.",
+        "medicinalBenefits": "يرتبط تقليدياً بالهضم والعافية العامة.",
+        "plantPartsTraditionallyUsed": "الأوراق واللحاء والجذور والثمار.",
+        "traditionalUsage": "تُستخدم الأوراق طازجة شائعاً في الطهي والمحضرات التقليدية.",
+        "habitat": "المناطق الاستوائية وشبه الاستوائية في جنوب آسيا.",
+        "identification": "أوراق عطرية ريشية تضم العديد من الوريقات الصغيرة.",
+        "uses": [
+          "الطهي التقليدي في جنوب آسيا",
+          "دعم الهضم والعافية التقليدية"
+        ],
+        "health": {
+          "issues": "سيلا الحمضيات وتبقع الأوراق.",
+          "symptoms": "التفاف الأوراق وبقايا مسحوقية بيضاء.",
+          "prevention": "تقليم المناطق المصابة والحفاظ على تعرض جيد لأشعة الشمس."
+        }
+      },
+      "ml": {
+        "name": "കറിവേപ്പില"
+      }
     }
   },
   {
@@ -278,6 +555,31 @@
       "issues": "Rust disease.",
       "symptoms": "Brown or rust-colored streaks on leaves.",
       "prevention": "Harvest regularly and remove old debris to improve airflow."
+    },
+    "translations": {
+      "ar": {
+        "name": "حشيشة الليمون / عشبة الليمون",
+        "category": "نجيليات",
+        "description": "حشيشة الليمون عشبة عطرية ذات رائحة قوية تشبه الليمون.",
+        "traditionalUses": "تُستخدم في المشروبات العشبية والطهي وممارسات العافية التقليدية.",
+        "medicinalBenefits": "ترتبط تقليدياً براحة الجهاز الهضمي والاسترخاء.",
+        "plantPartsTraditionallyUsed": "الأوراق والسيقان.",
+        "traditionalUsage": "تُستخدم طازجة أو مجففة في شاي الأعشاب ومحضرات الطعام.",
+        "habitat": "المناطق الاستوائية وشبه الاستوائية الدافئة.",
+        "identification": "أوراق طويلة ضيقة شبيهة بالعشب ذات رائحة حمضية قوية.",
+        "uses": [
+          "شاي الأعشاب والمشروبات المنعشة",
+          "دعم راحة الهضم والاسترخاء تقليدياً"
+        ],
+        "health": {
+          "issues": "مرض الصدأ.",
+          "symptoms": "خطوط بنية أو بلون الصدأ على الأوراق.",
+          "prevention": "الحصاد المنتظم وإزالة البقايا القديمة لتحسين تدفق الهواء."
+        }
+      },
+      "ml": {
+        "name": "ഇഞ്ചിപ്പുല്ല്"
+      }
     }
   },
   {
@@ -301,6 +603,31 @@
       "issues": "Powdery mildew and aphids.",
       "symptoms": "White powdery coating on leaves or curled tips.",
       "prevention": "Ensure good spacing for airflow and avoid wetting foliage."
+    },
+    "translations": {
+      "ar": {
+        "name": "النعناع / بودينا",
+        "category": "عشبة",
+        "description": "النعناع عشبة عطرية تُزرع على نطاق واسع لأوراقها المنعشة.",
+        "traditionalUses": "يُستخدم في الطعام والمشروبات والممارسات العشبية التقليدية.",
+        "medicinalBenefits": "يرتبط تقليدياً بالهضم والمحضرات العشبية المنعشة.",
+        "plantPartsTraditionallyUsed": "الأوراق والسيقان.",
+        "traditionalUsage": "تُستخدم الأوراق الطازجة في الصلصات والمشروبات والطعام والمحضرات العشبية.",
+        "habitat": "التربة الرطبة والحدائق المزروعة في المناطق المعتدلة وشبه الاستوائية.",
+        "identification": "أوراق عطرية متقابلة وسيقان مربعة.",
+        "uses": [
+          "المشروبات والأطعمة المنعشة",
+          "دعم راحة الهضم تقليدياً"
+        ],
+        "health": {
+          "issues": "البياض الدقيقي وحشرات المن.",
+          "symptoms": "طبقة مسحوقية بيضاء على الأوراق أو التفاف الأطراف.",
+          "prevention": "ضمان تباعد جيد لمرور الهواء وتجنب تبليل الأوراق."
+        }
+      },
+      "ml": {
+        "name": "പുതിന"
+      }
     }
   },
   {
@@ -324,6 +651,31 @@
       "issues": "Mealybugs and whiteflies.",
       "symptoms": "White cottony clusters on stems or sticky leaves.",
       "prevention": "Regular inspection and removal of heavily infested shoots."
+    },
+    "translations": {
+      "ar": {
+        "name": "الكركديه / الخطمي الوردي الصيني",
+        "category": "شجيرة",
+        "description": "الكركديه شجيرة مزهرة تُزرع شائعاً في الحدائق الاستوائية.",
+        "traditionalUses": "للأزهار والأوراق استخدامات تقليدية في العناية بالشعر والممارسات الثقافية.",
+        "medicinalBenefits": "يرتبط تقليدياً بممارسات العناية بالشعر والبشرة.",
+        "plantPartsTraditionallyUsed": "الأزهار والأوراق.",
+        "traditionalUsage": "قد تُستخدم الأزهار في محضرات العناية التقليدية بالشعر والمشروبات العشبية.",
+        "habitat": "الحدائق الاستوائية وشبه الاستوائية.",
+        "identification": "أزهار كبيرة زاهية، وأوراق عريضة، وشكل شجيري خشبي.",
+        "uses": [
+          "محضرات العناية التقليدية بالشعر",
+          "المشروبات العشبية التقليدية"
+        ],
+        "health": {
+          "issues": "البق الدقيقي والذبابة البيضاء.",
+          "symptoms": "تجمعات قطنية بيضاء على السيقان أو أوراق لزجة.",
+          "prevention": "الفحص المنتظم وإزالة الفروع المصابة بشدة."
+        }
+      },
+      "ml": {
+        "name": "ചെമ്പരത്തി"
+      }
     }
   },
   {
@@ -347,6 +699,31 @@
       "issues": "Sooty mold and scale insects.",
       "symptoms": "Black powdery coating on leaves.",
       "prevention": "Control scale insects which secrete the honeydew that mold grows on."
+    },
+    "translations": {
+      "ar": {
+        "name": "الإكسورا / إبرة الراعي البرية",
+        "category": "شجيرة",
+        "description": "الإكسورا شجيرة مزهرة دائمة الخضرة تُزرع شائعاً كنبات زينة.",
+        "traditionalUses": "استُخدمت بعض أجزائها في الممارسات العشبية التقليدية.",
+        "medicinalBenefits": "ربطت الأنظمة التقليدية أجزاء النبات المختلفة بمحضرات العافية المتنوعة.",
+        "plantPartsTraditionallyUsed": "الأزهار والأوراق والجذور واللحاء.",
+        "traditionalUsage": "تُستخدم تقليدياً في محضرات عشبية مختارة.",
+        "habitat": "المناطق الاستوائية وشبه الاستوائية.",
+        "identification": "عناقيد كثيفة من الأزهار الصغيرة رباعية البتلات وأوراق لامعة.",
+        "uses": [
+          "الممارسات العشبية التقليدية",
+          "زراعة الحدائق النباتية والاستوائية"
+        ],
+        "health": {
+          "issues": "العفن الهبابي والحشرات القشرية.",
+          "symptoms": "طبقة مسحوقية سوداء على الأوراق.",
+          "prevention": "مكافحة الحشرات القشرية التي تفرز الندوة العسلية المسببة للعفن."
+        }
+      },
+      "ml": {
+        "name": "തെച്ചി"
+      }
     }
   },
   {
@@ -370,6 +747,31 @@
       "issues": "Wood borers occasionally.",
       "symptoms": "Holes in the bark with frass.",
       "prevention": "Maintain tree vigor and avoid mechanical injury to the trunk."
+    },
+    "translations": {
+      "ar": {
+        "name": "الأرجونا / هليلج أرجونا",
+        "category": "شجرة",
+        "description": "الأرجونا شجرة كبيرة معروفة جيداً في الأيورفيدا.",
+        "traditionalUses": "يحظى اللحاء بأهمية تقليدية في محضرات الأيورفيدا.",
+        "medicinalBenefits": "يرتبط تقليدياً بشكل خاص بعافية القلب والأوعية الدموية.",
+        "plantPartsTraditionallyUsed": "اللحاء بشكل رئيسي.",
+        "traditionalUsage": "يُجفف اللحاء تقليدياً ويُستخدم في المحضرات العشبية.",
+        "habitat": "يوجد غالباً بالقرب من الأنهار وفي المناطق الاستوائية الرطبة في الهند.",
+        "identification": "شجرة كبيرة ذات لحاء رمادي أملس وجذع مدعم مميز.",
+        "uses": [
+          "محضرات اللحاء التقليدية في الأيورفيدا",
+          "دعم العافية العامة تقليدياً"
+        ],
+        "health": {
+          "issues": "حفارات الأخشاب أحياناً.",
+          "symptoms": "ثقوب في اللحاء مع نشارة خشبية.",
+          "prevention": "الحفاظ على حيوية الشجرة وتجنب الإصابات الميكانيكية للجذع."
+        }
+      },
+      "ml": {
+        "name": "നീർമരുത്"
+      }
     }
   },
   {
@@ -393,6 +795,31 @@
       "issues": "Root rot.",
       "symptoms": "Stunted growth and decaying roots.",
       "prevention": "Ensure deep, well-draining soil and avoid overwatering."
+    },
+    "translations": {
+      "ar": {
+        "name": "عرق السوس / موليثي",
+        "category": "عشبة",
+        "description": "عرق السوس عشبة معمرة تُزرع من أجل جذورها حلوة المذاق.",
+        "traditionalUses": "يُستخدم تقليدياً في الأيورفيدا وتقاليد الأعشاب الأخرى.",
+        "medicinalBenefits": "يرتبط تقليدياً براحة الحلق وعافية الجهاز الهضمي.",
+        "plantPartsTraditionallyUsed": "الجذر والجذمور.",
+        "traditionalUsage": "يُستخدم الجذر المجفف تقليدياً في المساحيق والشاي والتركيبات العشبية.",
+        "habitat": "المناطق المعتدلة وشبه الاستوائية.",
+        "identification": "أوراق مركبة، وأزهار باهتة، وجذور أرضية ممتدة.",
+        "uses": [
+          "تهدئة الحلق تقليدياً",
+          "دعم الهضم والمشروبات العشبية التقليدية"
+        ],
+        "health": {
+          "issues": "تعفن الجذور.",
+          "symptoms": "تقزم النمو وتحلل الجذور.",
+          "prevention": "ضمان تربة عميقة جيدة التصريف وتجنب الإفراط في الري."
+        }
+      },
+      "ml": {
+        "name": "ഇരട്ടിമധുരം"
+      }
     }
   },
   {
@@ -416,6 +843,31 @@
       "issues": "Rust and root rot.",
       "symptoms": "Orange-red pustules on leaves or wilting vines.",
       "prevention": "Provide support for climbing to improve airflow and ensure well-draining soil."
+    },
+    "translations": {
+      "ar": {
+        "name": "شاتافاري / الهليون الهندي",
+        "category": "نبات متسلق",
+        "description": "شاتافاري نبات متسلق ذو أوراق ناعمة وجذور درنية.",
+        "traditionalUses": "عشبة تقليدية مهمة في الأيورفيدا.",
+        "medicinalBenefits": "يرتبط تقليدياً بالحيوية العامة وتقاليد عافية المرأة.",
+        "plantPartsTraditionallyUsed": "الجذور.",
+        "traditionalUsage": "تُجفف الجذور تقليدياً وتُطحن وتُستخدم في المحضرات العشبية.",
+        "habitat": "المناطق الاستوائية وشبه الاستوائية.",
+        "identification": "سيقان متسلقة ذات أوراق دقيقة شبيهة بالإبر وجذور درنية.",
+        "uses": [
+          "دعم الحيوية العامة تقليدياً",
+          "محضرات الجذور التقليدية في الأيورفيدا"
+        ],
+        "health": {
+          "issues": "الصدأ وتعفن الجذور.",
+          "symptoms": "بثور برتقالية حمراء على الأوراق أو ذبول السيقان المتسلقة.",
+          "prevention": "توفير دعامات للتسلق لتحسين تدفق الهواء وضمان تربة جيدة التصريف."
+        }
+      },
+      "ml": {
+        "name": "ശതാവരി"
+      }
     }
   },
   {
@@ -439,6 +891,31 @@
       "issues": "Generally very resilient.",
       "symptoms": "Occasional leaf-eating caterpillars.",
       "prevention": "Requires minimal care, naturally resists most common diseases."
+    },
+    "translations": {
+      "ar": {
+        "name": "جيلوي / تينوسبورا قلبية الأوراق",
+        "category": "نبات متسلق",
+        "description": "جيلوي نبات طبي متسلق ذو أهمية تقليدية في الأيورفيدا.",
+        "traditionalUses": "يُستخدم تقليدياً في محضرات الأيورفيدا العشبية المتنوعة.",
+        "medicinalBenefits": "يرتبط تقليدياً بالعافية العامة وتقاليد دعم المناعة.",
+        "plantPartsTraditionallyUsed": "الساق هو الجزء الرئيسي المستخدم تقليدياً.",
+        "traditionalUsage": "يُحضر الساق تقليدياً كمغلي أو مسحوق أو محضرات عشبية أخرى.",
+        "habitat": "المناطق الاستوائية في شبه القارة الهندية.",
+        "identification": "نبات متسلق ذو أوراق على شكل قلب وجذور هوائية مميزة.",
+        "uses": [
+          "محضرات السيقان التقليدية في الأيورفيدا",
+          "دعم العافية العامة تقليدياً"
+        ],
+        "health": {
+          "issues": "مقاوم جداً للأمراض بشكل عام.",
+          "symptoms": "يرقات قاضمة للأوراق أحياناً.",
+          "prevention": "يتطلب عناية بسيطة ويقاوم معظم الأمراض الشائعة طبيعياً."
+        }
+      },
+      "ml": {
+        "name": "ചിറ്റമൃത്"
+      }
     }
   },
   {
@@ -462,6 +939,31 @@
       "issues": "Termites in dry regions.",
       "symptoms": "Damage to clumps.",
       "prevention": "Maintain adequate soil moisture."
+    },
+    "translations": {
+      "ar": {
+        "name": "نجيل الهند / الفيتيفر (خس)",
+        "category": "نجيليات",
+        "description": "نجيل الهند عشب معمر يُعرف بجذوره العطرية للغاية.",
+        "traditionalUses": "يُستخدم في محضرات التبريد التقليدية والعطور والممارسات العشبية.",
+        "medicinalBenefits": "يرتبط تقليدياً بتطبيقات التبريد والانتعاش.",
+        "plantPartsTraditionallyUsed": "الجذور.",
+        "traditionalUsage": "تُستخدم الجذور في المحضرات العطرية التقليدية والمشروبات المبردة.",
+        "habitat": "المناطق الاستوائية، ويُزرع بشكل خاص في الهند.",
+        "identification": "عشب طويل يشكل تجمعات كثيفة ذات أوراق طويلة ضيقة وجذور عطرة.",
+        "uses": [
+          "المشروبات المبردة التقليدية",
+          "العطور والممارسات العشبية التقليدية"
+        ],
+        "health": {
+          "issues": "النمل الأبيض في المناطق الجافة.",
+          "symptoms": "تلف في التجمعات النباتية.",
+          "prevention": "الحفاظ على رطوبة كافية للتربة."
+        }
+      },
+      "ml": {
+        "name": "രാമച്ചം"
+      }
     }
   },
   {
@@ -485,6 +987,31 @@
       "issues": "Quick wilt (Phytophthora foot rot).",
       "symptoms": "Sudden yellowing and wilting of the entire vine.",
       "prevention": "Ensure excellent drainage during monsoons and avoid damaging the base of the vine."
+    },
+    "translations": {
+      "ar": {
+        "name": "الفلفل الأسود",
+        "category": "نبات متسلق",
+        "description": "الفلفل الأسود نبات متسلق يُزرع من أجل حبوب الفلفل.",
+        "traditionalUses": "يُستخدم على نطاق واسع كتوابل وفي الأيورفيدا.",
+        "medicinalBenefits": "يرتبط تقليدياً بالهضم وعافية الجهاز التنفسي.",
+        "plantPartsTraditionallyUsed": "الثمار المجففة (حبوب الفلفل).",
+        "traditionalUsage": "يُستخدم كتوابل وفي المحضرات العشبية التقليدية.",
+        "habitat": "المناطق الاستوائية الدافئة والرطبة، وخاصة كيرالا وأجزاء أخرى من جنوب الهند.",
+        "identification": "نبات متسلق ذو أوراق على شكل قلب وسنابل متدلية من الثمار الصغيرة.",
+        "uses": [
+          "توابل تقليدية عالمية",
+          "دعم الهضم وراحة التنفس تقليدياً"
+        ],
+        "health": {
+          "issues": "الذبول السريع (تعفن القاعدة الفيتوفثورا).",
+          "symptoms": "اصفرار وذبول مفاجئ للنبات المتسلق بالكامل.",
+          "prevention": "ضمان تصريف ممتاز للمياه خلال موسم الأمطار وتجنب إتلاف قاعدة النبات."
+        }
+      },
+      "ml": {
+        "name": "കുരുമുളക്"
+      }
     }
   },
   {
@@ -508,6 +1035,31 @@
       "issues": "Shoot borer and capsule borer.",
       "symptoms": "Dead shoots and holes in capsules.",
       "prevention": "Regular removal of dry leaves and affected shoots."
+    },
+    "translations": {
+      "ar": {
+        "name": "الهيل / الحبهان الأخضر",
+        "category": "عشبة",
+        "description": "الهيل الأخضر عشب معمر يُقدر لقرون بذوره العطرية.",
+        "traditionalUses": "يُستخدم في الأيورفيدا والمطبخ والمشروبات التقليدية.",
+        "medicinalBenefits": "يرتبط تقليدياً بالهضم وإنعاش النفس.",
+        "plantPartsTraditionallyUsed": "كبسولات الثمار والبذور.",
+        "traditionalUsage": "يُستخدم كتوابل وفي الشاي والمحضرات التقليدية.",
+        "habitat": "الغابات والمزارع الاستوائية الرطبة، وخاصة في جنوب الهند.",
+        "identification": "سيقان ورقية طويلة مع كبسولات ثمار صغيرة تنمو بالقرب من القاعدة.",
+        "uses": [
+          "توابل ومشروبات تقليدية",
+          "إنعاش الفم ودعم الهضم تقليدياً"
+        ],
+        "health": {
+          "issues": "حفار السيقان وحفار الكبسولات.",
+          "symptoms": "موت الفروع وثقوب في كبسولات الثمار.",
+          "prevention": "الإزالة المنتظمة للأوراق الجافة والفروع المصابة."
+        }
+      },
+      "ml": {
+        "name": "ഏലം"
+      }
     }
   },
   {
@@ -531,6 +1083,31 @@
       "issues": "Leaf spot and bark borer.",
       "symptoms": "Brown spots on leaves or damage to the bark.",
       "prevention": "Ensure good sunlight penetration and airflow."
+    },
+    "translations": {
+      "ar": {
+        "name": "القرفة",
+        "category": "شجرة",
+        "description": "القرفة شجرة دائمة الخضرة تُزرع من أجل لحائها الداخلي العطري.",
+        "traditionalUses": "تُستخدم كتوابل وفي المحضرات العشبية التقليدية.",
+        "medicinalBenefits": "ترتبط تقليدياً بالهضم والمحضرات العشبية الدافئة.",
+        "plantPartsTraditionallyUsed": "اللحاء الداخلي والأوراق.",
+        "traditionalUsage": "يُجفف اللحاء ويُستخدم في الطعام والمشروبات والمحضرات العشبية.",
+        "habitat": "المناطق الاستوائية، وخاصة جنوب وجنوب شرق آسيا.",
+        "identification": "شجرة دائمة الخضرة ذات لحاء عطري وأوراق جلدية الملمس.",
+        "uses": [
+          "توابل ومشروبات دافئة تقليدية",
+          "دعم الهضم تقليدياً"
+        ],
+        "health": {
+          "issues": "تبقع الأوراق وحفار اللحاء.",
+          "symptoms": "بقع بنية على الأوراق أو تلف في اللحاء.",
+          "prevention": "ضمان وصول جيد لأشعة الشمس وتدفق الهواء."
+        }
+      },
+      "ml": {
+        "name": "കറുവപ്പട്ട"
+      }
     }
   },
   {
@@ -554,6 +1131,31 @@
       "issues": "Sudden death disease and leaf rot.",
       "symptoms": "Rapid yellowing and shedding of leaves followed by tree death.",
       "prevention": "Strictly avoid waterlogging around the root zone."
+    },
+    "translations": {
+      "ar": {
+        "name": "القرنفل",
+        "category": "شجرة",
+        "description": "القرنفل شجرة دائمة الخضرة تُستخدم براعم أزهارها المجففة كتوابل.",
+        "traditionalUses": "يُستخدم في الأيورفيدا والمطبخ وممارسات العناية التقليدية بالفم.",
+        "medicinalBenefits": "يرتبط تقليدياً براحة الفم والهضم.",
+        "plantPartsTraditionallyUsed": "براعم الأزهار.",
+        "traditionalUsage": "تُستخدم البراعم المجففة كتوابل وفي المحضرات التقليدية.",
+        "habitat": "المناطق الاستوائية الرطبة.",
+        "identification": "شجرة دائمة الخضرة ذات أوراق لامعة وعناقيد من براعم الأزهار المحمرة.",
+        "uses": [
+          "العناية التقليدية براحة الفم والأسنان",
+          "توابل ومحضرات هضمية تقليدية"
+        ],
+        "health": {
+          "issues": "مرض الموت المفاجئ وتعفن الأوراق.",
+          "symptoms": "اصفرار سريع وتساقط للأوراق يتبعه موت الشجرة.",
+          "prevention": "تجنب تشبع التربة بالماء حول منطقة الجذور بشكل صارم."
+        }
+      },
+      "ml": {
+        "name": "ഗ്രാമ്പൂ"
+      }
     }
   },
   {
@@ -577,6 +1179,31 @@
       "issues": "Leaf miners and gall mites.",
       "symptoms": "Silvery trails on leaves or small galls.",
       "prevention": "Remove and destroy heavily infested leaves."
+    },
+    "translations": {
+      "ar": {
+        "name": "ورق الغار الهندي / تيجباتا",
+        "category": "شجرة",
+        "description": "ورق الغار الهندي شجرة عطرية تُستخدم أوراقها شائعاً كتوابل.",
+        "traditionalUses": "يُستخدم في الطهي الهندي والممارسات العشبية التقليدية.",
+        "medicinalBenefits": "يرتبط تقليدياً بالهضم.",
+        "plantPartsTraditionallyUsed": "الأوراق واللحاء.",
+        "traditionalUsage": "تُستخدم الأوراق المجففة شائعاً في الطهي والمحضرات التقليدية.",
+        "habitat": "مناطق الهيمالايا والمناطق شبه الاستوائية في جنوب آسيا.",
+        "identification": "أوراق جلدية عطرية ذات عروق متوازية بارزة.",
+        "uses": [
+          "توابل الطهي التقليدي",
+          "دعم الهضم تقليدياً"
+        ],
+        "health": {
+          "issues": "صانعات أنفاق الأوراق وعث التدرن.",
+          "symptoms": "مسارات فضية على الأوراق أو تدرنات صغيرة.",
+          "prevention": "إزالة الأوراق المصابة بشدة وإتلافها."
+        }
+      },
+      "ml": {
+        "name": "തേജപത്രം"
+      }
     }
   },
   {
@@ -600,6 +1227,31 @@
       "issues": "Root rot and powdery mildew.",
       "symptoms": "Stunted seedlings or white powder on leaves.",
       "prevention": "Ensure well-draining soil and avoid dense sowing."
+    },
+    "translations": {
+      "ar": {
+        "name": "الحلبة / ميثي",
+        "category": "عشبة",
+        "description": "الحلبة عشبة حولية تُزرع من أجل أوراقها وبذورها العطرية.",
+        "traditionalUses": "تُستخدم على نطاق واسع في الطهي الهندي والممارسات العشبية التقليدية.",
+        "medicinalBenefits": "ترتبط تقليدياً بالهضم والعافية الغذائية.",
+        "plantPartsTraditionallyUsed": "البذور والأوراق.",
+        "traditionalUsage": "تُستخدم البذور والأوراق في الطعام والمحضرات التقليدية.",
+        "habitat": "تُزرع في المناطق الجافة وشبه الجافة.",
+        "identification": "أوراق ثلاثية الوريقات، وأزهار صغيرة باهتة، وبذور زاوية صفراء بنية.",
+        "uses": [
+          "الطهي والمحضرات الغذائية التقليدية",
+          "دعم الهضم والعافية الغذائية"
+        ],
+        "health": {
+          "issues": "تعفن الجذور والبياض الدقيقي.",
+          "symptoms": "تقزم الشتلات أو مسحوق أبيض على الأوراق.",
+          "prevention": "ضمان تربة جيدة التصريف وتجنب الزراعة الكثيفة."
+        }
+      },
+      "ml": {
+        "name": "ഉലുവ"
+      }
     }
   },
   {
@@ -623,6 +1275,31 @@
       "issues": "Aphids and stem gall.",
       "symptoms": "Curled leaves and swollen stems.",
       "prevention": "Ensure good spacing and use clean seeds."
+    },
+    "translations": {
+      "ar": {
+        "name": "الكزبرة",
+        "category": "عشبة",
+        "description": "الكزبرة عشبة حولية عطرية تُستخدم على نطاق واسع كنبات طهي وتقليدي.",
+        "traditionalUses": "تُستخدم في الطهي والممارسات العشبية التقليدية.",
+        "medicinalBenefits": "ترتبط تقليدياً بالهضم والمحضرات المنعشة.",
+        "plantPartsTraditionallyUsed": "الأوراق والبذور.",
+        "traditionalUsage": "تُستخدم الأوراق الطازجة والبذور المجففة على نطاق واسع في الطعام والمشروبات.",
+        "habitat": "تُزرع في المناطق الاستوائية وشبه الاستوائية والمعتدلة.",
+        "identification": "أوراق مقسمة دقيقة، وأزهار بيضاء صغيرة، وبذور مستديرة عطرية.",
+        "uses": [
+          "الأطعمة والمشروبات التقليدية",
+          "دعم الهضم تقليدياً"
+        ],
+        "health": {
+          "issues": "حشرات المن وتدرن الساق.",
+          "symptoms": "التفاف الأوراق وانتفاخ السيقان.",
+          "prevention": "ضمان مسافات زراعة جيدة واستخدام بذور نظيفة."
+        }
+      },
+      "ml": {
+        "name": "മല്ലി"
+      }
     }
   }
 ]
