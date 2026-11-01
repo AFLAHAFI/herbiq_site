@@ -39,11 +39,11 @@ export function ARExperiencePage({
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-8 space-y-6 text-start">
       <div>
-        <p className="text-cyan-300 text-sm">{t('ar.badge')}</p>
-        <h1 className="text-4xl font-bold mt-2">{t('ar.heading')}</h1>
-        <p className="text-slate-300 mt-3">{t('ar.subtitle', { count: plants.length })}</p>
+        <p className="text-cyan-300 text-xs sm:text-sm">{t('ar.badge')}</p>
+        <h1 className="text-2xl sm:text-4xl font-bold mt-2">{t('ar.heading')}</h1>
+        <p className="text-slate-300 text-sm sm:text-base mt-2 sm:mt-3">{t('ar.subtitle', { count: plants.length })}</p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
         {plants.map((rawP) => {
           const p = localizePlant(rawP);
           return (
@@ -52,14 +52,14 @@ export function ARExperiencePage({
               key={p.id}
               onClick={() => setId(p.id)}
               aria-pressed={p.id === id}
-              className={`text-start p-3 rounded-2xl flex items-center gap-3 border ${
+              className={`text-start p-2.5 sm:p-3 rounded-2xl flex items-center gap-2.5 sm:gap-3 border ${
                 p.id === id ? 'border-cyan-300 bg-cyan-950' : 'border-slate-700 bg-slate-900'
               }`}
             >
-              <div className="w-12 h-12 shrink-0 rounded-lg overflow-hidden">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-lg overflow-hidden">
                 <PlantImage src={p.image} alt={p.name} />
               </div>
-              <span className="min-w-0 text-sm break-words">{p.name}</span>
+              <span className="min-w-0 text-xs sm:text-sm break-words">{p.name}</span>
             </button>
           );
         })}

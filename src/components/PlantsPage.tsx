@@ -95,7 +95,7 @@ export const PlantsPage: React.FC<PlantsPageProps> = ({ onSelectPlant }) => {
 
       {/* Results Count & Grid */}
       <div className="space-y-4">
-        <div className="text-xs text-[#94A3B8] flex items-center justify-between">
+        <div className="text-xs text-[#94A3B8] flex flex-wrap items-center justify-between gap-2">
           <span>
             {t('plants.showingCount', { shown: filteredPlants.length, total: PLANTS.length })}
           </span>

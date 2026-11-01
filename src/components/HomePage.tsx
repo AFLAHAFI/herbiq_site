@@ -35,25 +35,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                 <span>{t('home.badge')}</span>
               </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F8FAFC] leading-[1.12]">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F8FAFC] leading-snug sm:leading-[1.15] break-words">
                 {t('home.heroTitlePrefix')}{' '}
                 <span className="bg-gradient-to-r from-[#00E5FF] via-[#10B981] to-[#F59E0B] bg-clip-text text-transparent">
                   {t('home.heroTitleHighlight')}
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-[#94A3B8] font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-xl text-[#94A3B8] font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 {t('home.heroSubtitle')}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 sm:gap-4 pt-2">
                 <button
                   onClick={() => onNavigate('plants')}
                   id="hero-explore-btn"
                   className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] font-bold text-base hover:brightness-110 transition-all shadow-lg hover:shadow-[#00E5FF]/25 flex items-center justify-center gap-2.5 group glow-cyan"
                 >
-                  <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+                  <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform shrink-0" />
                   <span>{t('home.exploreBtn')}</span>
                 </button>
 
@@ -62,20 +62,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                   id="hero-ask-btn"
                   className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#0B142B] text-[#F8FAFC] border border-[#00E5FF]/30 hover:border-[#00E5FF]/60 font-semibold text-base transition-all hover:bg-[#0B142B]/80 flex items-center justify-center gap-2.5 group"
                 >
-                  <MessageSquareCode className="w-5 h-5 text-[#00E5FF] group-hover:scale-110 transition-transform" />
+                  <MessageSquareCode className="w-5 h-5 text-[#00E5FF] group-hover:scale-110 transition-transform shrink-0" />
                   <span>{t('home.askBtn')}</span>
                 </button>
               </div>
 
               {/* Subtle Trust Indicators */}
-              <div className="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-[#94A3B8]">
+              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 text-xs text-[#94A3B8]">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+                  <ShieldCheck className="w-4 h-4 text-[#10B981] shrink-0" />
                   <span>{t('home.trustAyurveda')}</span>
                 </div>
-                <div className="w-1 h-1 rounded-full bg-[#94A3B8]/30" />
+                <div className="hidden sm:block w-1 h-1 rounded-full bg-[#94A3B8]/30" />
                 <div className="flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-[#00E5FF]" />
+                  <BookOpen className="w-4 h-4 text-[#00E5FF] shrink-0" />
                   <span>{t('home.trustBotanical')}</span>
                 </div>
               </div>
@@ -230,20 +230,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
 
       {/* VISITED A MEDICINAL PLANT GARDEN SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-[#0B142B] via-[#060B18] to-[#0B142B] border border-[#00E5FF]/25 p-8 sm:p-12 overflow-hidden shadow-xl text-start">
+        <div className="relative rounded-3xl bg-gradient-to-r from-[#0B142B] via-[#060B18] to-[#0B142B] border border-[#00E5FF]/25 p-6 sm:p-12 overflow-hidden shadow-xl text-start">
           <div className="absolute -end-10 -bottom-10 w-72 h-72 bg-[#00E5FF]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="max-w-3xl space-y-4 relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00E5FF]/10 text-[#00E5FF] text-xs font-semibold border border-[#00E5FF]/30">
-              <Compass className="w-3.5 h-3.5" />
+              <Compass className="w-3.5 h-3.5 shrink-0" />
               <span>{t('home.gardenBadge')}</span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#F8FAFC]">
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#F8FAFC]">
               {t('home.gardenHeading')}
             </h2>
 
-            <p className="text-base text-[#94A3B8] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
               {t('home.gardenBody')}
             </p>
 
@@ -251,10 +251,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
               <button
                 onClick={() => onNavigate('plants')}
                 id="explore-knowledge-btn"
-                className="px-6 py-3 rounded-xl bg-[#00E5FF] text-[#060B18] font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-md glow-cyan"
+                className="w-full sm:w-auto justify-center px-6 py-3 rounded-xl bg-[#00E5FF] text-[#060B18] font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-md glow-cyan"
               >
                 <span>{t('home.gardenBtn')}</span>
-                <ChevronRight className="w-4 h-4 rtl:rotate-180" />
+                <ChevronRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
               </button>
             </div>
           </div>
@@ -263,19 +263,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
 
       {/* COMPACT ASK HERBIQ PREVIEW SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="glass-panel rounded-3xl p-8 sm:p-10 border border-[#00E5FF]/25 relative overflow-hidden bg-[#0B142B] text-start">
+        <div className="glass-panel rounded-3xl p-6 sm:p-10 border border-[#00E5FF]/25 relative overflow-hidden bg-[#0B142B] text-start">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00E5FF]/10 text-[#00E5FF] text-xs font-semibold border border-[#00E5FF]/30">
-                <Sparkles className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5 shrink-0" />
                 <span>{t('home.askSectionBadge')}</span>
               </div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#F8FAFC]">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#F8FAFC]">
                 {t('home.askSectionHeading')}
               </h2>
 
-              <p className="text-base text-[#94A3B8]">
+              <p className="text-sm sm:text-base text-[#94A3B8]">
                 {t('home.askSectionBody')}
               </p>
 
@@ -283,9 +283,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
                 <button
                   onClick={() => onNavigate('ask')}
                   id="start-chat-btn"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-md glow-cyan"
+                  className="w-full sm:w-auto justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-md glow-cyan"
                 >
-                  <MessageSquareCode className="w-4 h-4" />
+                  <MessageSquareCode className="w-4 h-4 shrink-0" />
                   <span>{t('home.askSectionBtn')}</span>
                 </button>
               </div>
@@ -321,33 +321,33 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSelectPlant })
 
       {/* AR EXPERIENCE SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-[#0B142B] border border-[#00E5FF]/30 p-8 sm:p-12 relative overflow-hidden text-start">
+        <div className="rounded-3xl bg-[#0B142B] border border-[#00E5FF]/30 p-6 sm:p-12 relative overflow-hidden text-start">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-xs font-semibold border border-[#F59E0B]/30">
-                <Camera className="w-3.5 h-3.5" />
+                <Camera className="w-3.5 h-3.5 shrink-0" />
                 <span>{t('home.arSectionBadge')}</span>
               </div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#F8FAFC]">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#F8FAFC]">
                 {t('home.arSectionHeading')}
               </h2>
 
-              <p className="text-base text-[#94A3B8] leading-relaxed">
+              <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
                 {t('home.arSectionBody')}
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
                 <button
                   onClick={() => onNavigate('ar')}
                   id="try-ar-btn"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] via-[#00B4D8] to-[#10B981] text-[#060B18] font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-lg glow-cyan"
+                  className="justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] via-[#00B4D8] to-[#10B981] text-[#060B18] font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-lg glow-cyan"
                 >
-                  <Eye className="w-4 h-4" />
+                  <Eye className="w-4 h-4 shrink-0" />
                   <span>{t('home.tryArBtn')}</span>
                 </button>
 
-                <span className="text-xs text-[#F59E0B] font-medium bg-[#060B18] px-3 py-2 rounded-xl border border-[#F59E0B]/20">
+                <span className="text-xs text-center sm:text-start text-[#F59E0B] font-medium bg-[#060B18] px-3 py-2 rounded-xl border border-[#F59E0B]/20">
                   {t('home.onePlantNote')}
                 </span>
               </div>

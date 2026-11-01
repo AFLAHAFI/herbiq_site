@@ -16,15 +16,18 @@
     --gold-accent: #f59e0b;
   }
 
+  html,
   body {
     font-family: 'Plus Jakarta Sans', 'Noto Sans Malayalam', 'Noto Sans Arabic', sans-serif;
-    background-color: var(--bg-botanical);
+    background-color: #060B18;
     color: var(--text-main);
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   h1, h2, h3, .font-serif {
     font-family: 'Cormorant Garamond', 'Noto Sans Malayalam', 'Noto Sans Arabic', Georgia, serif;
+    overflow-wrap: break-word;
   }
 }
 
@@ -124,4 +127,6 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 @media(max-width:640px){.model-stage{height:420px}}
 
 [lang="ml"] {font-family:"Noto Sans Malayalam","Plus Jakarta Sans",sans-serif;}
+[lang="ml"] h1, [lang="ml"] h2, [lang="ml"] h3 {line-height:1.35;overflow-wrap:anywhere;}
 [lang="ar"], [dir="rtl"] {font-family:"Noto Sans Arabic","Plus Jakarta Sans",sans-serif;}
+[lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 {line-height:1.35;}

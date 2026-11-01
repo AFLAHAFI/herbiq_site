@@ -97,7 +97,7 @@ export default function App() {
   return (
     <div
       dir={dir}
-      className="min-h-screen bg-[#060B18] text-[#F8FAFC] flex flex-col font-sans selection:bg-[#00E5FF]/20 selection:text-[#00E5FF]"
+      className="min-h-screen w-full max-w-full overflow-x-clip bg-[#060B18] text-[#F8FAFC] flex flex-col font-sans selection:bg-[#00E5FF]/20 selection:text-[#00E5FF]"
     >
       {/* Top Main Navigation */}
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />

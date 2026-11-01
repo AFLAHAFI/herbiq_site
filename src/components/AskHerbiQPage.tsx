@@ -814,14 +814,14 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
         <p className="text-[11px] font-semibold text-[#00E5FF] uppercase tracking-wider text-center sm:text-start">
           {t('ask.suggestedTitle')}
         </p>
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+        <div className="flex sm:flex-wrap items-center justify-start gap-2 overflow-x-auto pb-1.5 sm:pb-0">
           {suggestedQuestions.map((q, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => void handleSendMessage(q)}
               id={`suggested-question-btn-${idx}`}
-              className="px-3 py-1.5 rounded-xl bg-[#0B142B] hover:bg-[#00E5FF]/10 text-[#94A3B8] hover:text-[#00E5FF] border border-[#00E5FF]/20 text-xs font-medium transition-all"
+              className="px-3 py-1.5 rounded-xl bg-[#0B142B] hover:bg-[#00E5FF]/10 text-[#94A3B8] hover:text-[#00E5FF] border border-[#00E5FF]/20 text-xs font-medium transition-all shrink-0 whitespace-nowrap sm:whitespace-normal"
             >
               {q}
             </button>
@@ -830,7 +830,7 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
       </div>
 
       {/* Main Conversation Container */}
-      <div className="glass-panel rounded-3xl border border-[#00E5FF]/30 h-[540px] flex flex-col justify-between overflow-hidden shadow-2xl bg-[#0B142B]">
+      <div className="glass-panel rounded-3xl border border-[#00E5FF]/30 h-[65vh] min-h-[420px] max-h-[600px] sm:h-[540px] flex flex-col justify-between overflow-hidden shadow-2xl bg-[#0B142B]">
         {/* Messages List */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
           {messages.map((msg) => {
@@ -1060,10 +1060,11 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
               type="submit"
               disabled={!inputQuery.trim() || isGenerating}
               id="chat-send-btn"
-              className="px-4 sm:px-5 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] font-bold text-xs disabled:opacity-40 transition-all flex items-center gap-1.5 shrink-0 glow-cyan"
+              aria-label={t('ask.send')}
+              className="px-3.5 sm:px-5 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#10B981] text-[#060B18] font-bold text-xs disabled:opacity-40 transition-all flex items-center gap-1.5 shrink-0 glow-cyan"
             >
-              <span>{t('ask.send')}</span>
-              <Send className="w-3.5 h-3.5 rtl:-scale-x-100" />
+              <span className="hidden sm:inline">{t('ask.send')}</span>
+              <Send className="w-4 h-4 sm:w-3.5 sm:h-3.5 rtl:-scale-x-100" />
             </button>
           </form>
         </div>
