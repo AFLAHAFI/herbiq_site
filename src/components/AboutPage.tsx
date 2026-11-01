@@ -1,34 +1,34 @@
 import React from 'react';
 import { Page } from '../types';
-import { Compass, MessageSquareCode, Eye, BookOpen, Sparkles, ShieldCheck, Heart, Users } from 'lucide-react';
+import { useI18n } from '../i18n';
+import { Compass, MessageSquareCode, Eye, BookOpen, Sparkles, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
 
 interface AboutPageProps {
   onNavigate: (page: Page) => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
+  const { t } = useI18n();
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12 text-start">
       {/* Header Banner */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B142B] border border-[#00E5FF]/30 text-xs font-semibold text-[#00E5FF]">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>Our Educational Purpose</span>
+          <span>{t('about.badge')}</span>
         </div>
 
         <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F8FAFC] leading-tight">
-          Connecting Garden Visitors to Botanical Wisdom
+          {t('about.heading')}
         </h1>
 
         <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-          HerbiQ is an educational platform designed to help people discover, understand, and explore medicinal plants. Built specifically for botanical and Ayurvedic garden visitors, HerbiQ bridges the gap between field observation and lifelong learning.
+          {t('about.subtitle')}
         </p>
       </div>
 
       {/* Three Feature Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
         {/* Feature 1: Plant Knowledge */}
         <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[#00E5FF]/20 bg-[#0B142B] space-y-4 flex flex-col justify-between group hover:border-[#00E5FF]/50 transition-all">
           <div className="space-y-4">
@@ -36,19 +36,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <Compass className="w-6 h-6" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">
-              Plant Knowledge
+              {t('about.card1Title')}
             </h3>
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              Explore detailed botanical specifications, scientific classifications, regional vernacular names, morphological markers, and traditional Ayurvedic uses.
+              {t('about.card1Body')}
             </p>
           </div>
-          
+
           <button
             onClick={() => onNavigate('plants')}
             id="about-card-plants-btn"
             className="pt-2 text-xs font-bold text-[#00E5FF] hover:underline inline-flex items-center gap-1"
           >
-            <span>Browse Plant Directory →</span>
+            <span>{t('about.card1Btn')}</span>
+            <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
           </button>
         </div>
 
@@ -59,10 +60,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <MessageSquareCode className="w-6 h-6" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">
-              Plant Learning
+              {t('about.card2Title')}
             </h3>
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              Find introductory answers from the local plant catalog. Live AI and voice recognition are not connected.
+              {t('about.card2Body')}
             </p>
           </div>
 
@@ -71,7 +72,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             id="about-card-ask-btn"
             className="pt-2 text-xs font-bold text-[#10B981] hover:underline inline-flex items-center gap-1"
           >
-            <span>Ask HerbiQ →</span>
+            <span>{t('about.card2Btn')}</span>
+            <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
           </button>
         </div>
 
@@ -82,10 +84,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <Eye className="w-6 h-6" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#F8FAFC]">
-              AR Experience
+              {t('about.card3Title')}
             </h3>
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-              Explore one of five detailed 3D plant models at a time. Camera placement is available where supported.
+              {t('about.card3Body')}
             </p>
           </div>
 
@@ -94,10 +96,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             id="about-card-ar-btn"
             className="pt-2 text-xs font-bold text-[#F59E0B] hover:underline inline-flex items-center gap-1"
           >
-            <span>Try AR Projection →</span>
+            <span>{t('about.card3Btn')}</span>
+            <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
           </button>
         </div>
-
       </div>
 
       {/* Mission & Educational Philosophy */}
@@ -108,35 +110,34 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
           <div>
             <h2 className="font-serif text-2xl font-bold text-[#F8FAFC]">
-              Educational Mission
+              {t('about.missionTitle')}
             </h2>
-            <p className="text-xs text-[#94A3B8]">Independent Public Botanical Resource</p>
+            <p className="text-xs text-[#94A3B8]">{t('about.missionSubtitle')}</p>
           </div>
         </div>
 
         <p className="text-sm text-[#94A3B8] leading-relaxed">
-          Botanical and Ayurvedic gardens play a crucial role in conserving plant biodiversity and preserving traditional healing heritage. HerbiQ enhances visitor engagement by providing accessible and engaging digital experiences accessible from any desktop or smartphone.
+          {t('about.missionBody')}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
           <div className="p-4 rounded-xl bg-[#060B18] border border-[#00E5FF]/10 space-y-1">
             <div className="font-bold text-[#F8FAFC] flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#00E5FF]" />
-              <span>Public Accessibility</span>
+              <span>{t('about.accessTitle')}</span>
             </div>
-            <p className="text-[#94A3B8]">Designed for students, garden visitors, researchers, and herbal enthusiasts worldwide.</p>
+            <p className="text-[#94A3B8]">{t('about.accessBody')}</p>
           </div>
 
           <div className="p-4 rounded-xl bg-[#060B18] border border-[#10B981]/10 space-y-1">
             <div className="font-bold text-[#F8FAFC] flex items-center gap-2">
               <Heart className="w-4 h-4 text-[#10B981]" />
-              <span>Cultural Preservation</span>
+              <span>{t('about.cultureTitle')}</span>
             </div>
-            <p className="text-[#94A3B8]">Honoring traditional knowledge systems alongside scientific taxonomy.</p>
+            <p className="text-[#94A3B8]">{t('about.cultureBody')}</p>
           </div>
         </div>
       </div>
-
     </div>
   );
 };

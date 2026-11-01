@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@fontsource/noto-sans-malayalam/400.css";
-@theme { --font-sans: "Plus Jakarta Sans", "Noto Sans Malayalam", sans-serif; }
+@import "@fontsource/noto-sans-arabic/400.css";
+@theme { --font-sans: "Plus Jakarta Sans", "Noto Sans Malayalam", "Noto Sans Arabic", sans-serif; }
 
 @layer base {
   :root {
@@ -16,14 +17,14 @@
   }
 
   body {
-    font-family: 'Plus Jakarta Sans', 'Noto Sans Malayalam', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Malayalam', 'Noto Sans Arabic', sans-serif;
     background-color: var(--bg-botanical);
     color: var(--text-main);
     overflow-x: hidden;
   }
 
   h1, h2, h3, .font-serif {
-    font-family: 'Cormorant Garamond', 'Noto Sans Malayalam', Georgia, serif;
+    font-family: 'Cormorant Garamond', 'Noto Sans Malayalam', 'Noto Sans Arabic', Georgia, serif;
   }
 }
 
@@ -80,13 +81,13 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #00e5ff; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 
-.admin-page { max-width: 1100px; margin: auto; padding: 28px 20px; }
+.admin-page { max-width: 1100px; margin-inline: auto; padding: 28px 20px; text-align: start; }
 .admin-page h1 { font-size: 2rem; } .admin-page h2 {font-size:1.5rem;}
 .admin-page p {color:#cbd5e1;margin:8px 0;}
 .admin-heading,.admin-actions {display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0;}
 .admin-actions {justify-content:flex-start;}
 .admin-page button,.qr-toolbar button {padding:10px 18px;border:1px solid #22d3ee;border-radius:10px;background:#102333;color:#f8fafc;min-height:44px;}
-.admin-page label {display:flex;flex-direction:column;gap:6px;margin:12px 0;}
+.admin-page label {display:flex;flex-direction:column;gap:6px;margin:12px 0;text-align:start;}
 .admin-page input:not([type=checkbox]),.admin-page textarea,.qr-toolbar input,.qr-toolbar select {width:100%;padding:12px;background:#0b142b;border:1px solid #475569;border-radius:8px;color:white;}
 .admin-page small {color:#94a3b8;}
 .admin-fields {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
@@ -97,10 +98,10 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .admin-photo {max-width:280px;max-height:240px;object-fit:contain;border-radius:12px;}
 .admin-error {padding:16px;background:#450a0a;color:#fecaca!important;border-radius:12px;}
 .admin-notice {padding:16px;background:#052e16;color:#bbf7d0!important;border-radius:12px;}
-.qr-print-sheet {position:fixed;inset:0;z-index:100;background:white;color:#111;overflow:auto;padding:24px;}
-.qr-toolbar {max-width:850px;margin:0 auto 24px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.qr-print-sheet {position:fixed;inset:0;z-index:100;background:white;color:#111;overflow:auto;padding:24px;text-align:start;}
+.qr-toolbar {max-width:850px;margin-inline:auto;margin-bottom:24px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .qr-toolbar h2 {font-size:26px;flex:1;}.qr-toolbar label {display:block;width:100%;}.qr-toolbar input,.qr-toolbar select {background:white;color:#111;}
-.qr-label-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin:auto;}
+.qr-label-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin-inline:auto;}
 .qr-label {display:flex;align-items:center;flex-direction:column;border:1px solid #bbb;border-radius:8px;padding:14px;text-align:center;break-inside:avoid;page-break-inside:avoid;gap:4px;}
 .qr-label img {width:44mm;height:44mm;max-width:100%;object-fit:contain;}.qr-label strong {font-size:16px;}.qr-label em {font-size:12px;}.qr-label code {font-size:11px;}.qr-download {font-size:13px;color:#075985;text-decoration:underline;}
 @media(max-width:640px){.admin-fields{grid-template-columns:1fr}.qr-label-grid{grid-template-columns:1fr}.admin-row{align-items:flex-start}}
@@ -118,7 +119,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .model-stage {position:relative;height:520px;background:radial-gradient(ellipse at center,#f1f5ef,#ccd6c9);}
 .model-loading {position:absolute;inset:0;display:grid;place-items:center;background:#e8eee5;color:#25422b;pointer-events:none;}
 .model-actions {display:flex;gap:8px;flex-wrap:wrap;padding:16px;}.model-actions button,.model-native-ar {border:1px solid #22d3ee;padding:10px 14px;border-radius:10px;min-height:44px;}
-.model-native-ar {position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:white;white-space:nowrap;}
+.model-native-ar {position:absolute;bottom:16px;inset-inline-start:50%;transform:translateX(-50%);background:#0f172a;color:white;white-space:nowrap;}
+[dir="rtl"] .model-native-ar {transform:translateX(50%);}
 @media(max-width:640px){.model-stage{height:420px}}
 
-[lang="ml"] {font-family:"Noto Sans Malayalam",sans-serif;}
+[lang="ml"] {font-family:"Noto Sans Malayalam","Plus Jakarta Sans",sans-serif;}
+[lang="ar"], [dir="rtl"] {font-family:"Noto Sans Arabic","Plus Jakarta Sans",sans-serif;}
