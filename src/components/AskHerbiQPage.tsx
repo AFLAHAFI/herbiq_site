@@ -315,7 +315,11 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
 
       if (!textToSend) setInputQuery('');
 
-      const activeKey = getStoredApiKey() || apiKey;
+      const activeKey = getStoredApiKey() || apiKey || keyDraft.trim();
+      if (activeKey && !apiKey) {
+        saveApiKey(activeKey, rememberDevice);
+        setApiKey(activeKey);
+      }
       if (!activeKey) {
         const { botResponse, suggestedPlantId } = generateLocalReply(text);
         const herbiqMsg: ChatMessage = {
@@ -507,6 +511,11 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
     try {
       const provider = new GeminiProvider({ apiKey: candidate, model: modelName });
       const ok = await provider.testKey();
+      if (ok) {
+        saveApiKey(candidate, rememberDevice);
+        saveStoredModel(modelName);
+        setApiKey(candidate);
+      }
       setSettingsStatus({
         type: ok ? 'ok' : 'err',
         text: ok ? t('ask.testSuccess') : t('ask.testFailed'),
@@ -573,7 +582,11 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
   };
 
   const runPlantIdentification = async (imageDataUrl: string) => {
-    const activeKey = getStoredApiKey() || apiKey;
+    const activeKey = getStoredApiKey() || apiKey || keyDraft.trim();
+    if (activeKey && !apiKey) {
+      saveApiKey(activeKey, rememberDevice);
+      setApiKey(activeKey);
+    }
     if (!activeKey) {
       setScannerError(t('ask.scannerNeedKey'));
       return;
@@ -1263,18 +1276,28 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
             </p>
 
             {!apiKey && (
-              <div className="p-3.5 rounded-2xl bg-amber-950/60 border border-amber-500/40 text-xs text-amber-200 space-y-2">
+              <div className="p-3.5 rounded-2xl bg-amber-950/60 border border-amber-500/40 text-xs text-amber-200 space-y-2.5">
                 <p>{t('ask.scannerNeedKey')}</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    closeScannerModal();
-                    openSettingsModal();
-                  }}
-                  className="px-3 py-1.5 rounded-xl bg-[#00E5FF] text-[#060B18] font-bold text-xs"
-                >
-                  {t('ask.keyBannerBtn')}
-                </button>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <input
+                    type="password"
+                    dir="ltr"
+                    autoComplete="off"
+                    spellCheck={false}
+                    value={keyDraft}
+                    onChange={(e) => setKeyDraft(e.target.value)}
+                    placeholder={t('ask.settingsKeyPlaceholder')}
+                    className="flex-1 px-3 py-2 rounded-xl bg-[#060B18] border border-[#00E5FF]/30 text-[#F8FAFC] text-xs focus:outline-none focus:border-[#00E5FF]"
+                  />
+                  <button
+                    type="button"
+                    disabled={!keyDraft.trim()}
+                    onClick={handleSaveKey}
+                    className="px-3.5 py-2 rounded-xl bg-[#00E5FF] text-[#060B18] font-bold text-xs disabled:opacity-40"
+                  >
+                    {t('ask.saveKeyBtn')}
+                  </button>
+                </div>
               </div>
             )}
 
@@ -1305,9 +1328,14 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
                 <button
                   type="button"
                   id="scanner-start-camera-btn"
-                  disabled={!apiKey || scannerBusy}
-                  onClick={() => void startScannerCamera()}
-                  className="flex-1 py-3 px-4 rounded-xl bg-[#00E5FF] text-[#060B18] font-bold text-xs hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                  disabled={(!apiKey && !keyDraft.trim()) || scannerBusy}
+                  onClick={() => {
+                    if (!apiKey && keyDraft.trim()) {
+                      handleSaveKey();
+                    }
+                    void startScannerCamera();
+                  }}
+                  className="flex-1 py-3 px-4 rounded-xl bg-[#00E5FF] text-[#060B18] font-bold text-xs hover:brightness-110 transition-all flex items-center justify-center gap-2 disabled:opacity-40"
                 >
                   <Camera className="w-4 h-4" />
                   <span>{t('ask.startCamera')}</span>
@@ -1347,9 +1375,14 @@ export const AskHerbiQPage: React.FC<AskHerbiQPageProps> = ({
               <button
                 type="button"
                 id="scanner-upload-btn"
-                disabled={!apiKey || scannerBusy}
-                onClick={() => fileInputRef.current?.click()}
-                className="flex-1 py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#00E5FF]/15 text-[#00E5FF] border border-[#00E5FF]/40 font-bold text-xs transition-all flex items-center justify-center gap-2"
+                disabled={(!apiKey && !keyDraft.trim()) || scannerBusy}
+                onClick={() => {
+                  if (!apiKey && keyDraft.trim()) {
+                    handleSaveKey();
+                  }
+                  fileInputRef.current?.click();
+                }}
+                className="flex-1 py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#00E5FF]/15 text-[#00E5FF] border border-[#00E5FF]/40 font-bold text-xs transition-all flex items-center justify-center gap-2 disabled:opacity-40"
               >
                 <Upload className="w-4 h-4" />
                 <span>{t('ask.uploadPhoto')}</span>
