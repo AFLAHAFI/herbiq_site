@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { backend, errorText } from '../lib/backend';
 import { listAdminPlants, savePlant, deletePlant, uploadPhoto, requireAdmin, type PlantRow } from '../lib/admin-api';
-import { emptyPlant, PROFILE_FIELDS } from '../lib/plant-validation';
+import { emptyPlant, PROFILE_FIELDS, TRANSLATABLE_STRING_FIELDS } from '../lib/plant-validation';
+import { getStoredApiKey, getStoredModel } from '../lib/ai/key-storage';
+import { GeminiProvider } from '../lib/ai/gemini';
 import { useI18n } from '../i18n';
-import type { Plant } from '../types';
+import type { Lang, Plant, PlantTranslation } from '../types';
 import { QRLabels } from './QRLabels';
 
 export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
@@ -22,6 +24,8 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
   const [published, setPublished] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [labels, setLabels] = useState<Plant[] | null>(null);
+  const [editLang, setEditLang] = useState<Lang>('en');
+  const [translating, setTranslating] = useState(false);
 
   const load = async () => {
     const next = await listAdminPlants();
@@ -99,8 +103,87 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
     setOriginal(row || null);
     setDraft(row ? structuredClone(row.profile) : emptyPlant());
     setPublished(row?.published || false);
+    setEditLang('en');
     setError('');
     setNotice('');
+  };
+
+  const updateTranslationField = (langKey: 'ar' | 'ml', field: keyof PlantTranslation, value: string) => {
+    setDraft((prev) => {
+      if (!prev) return prev;
+      const existingLang = prev.translations?.[langKey] || {};
+      const nextTranslations = {
+        ...(prev.translations || {}),
+        [langKey]: {
+          ...existingLang,
+          [field]: value,
+        },
+      };
+      return {
+        ...prev,
+        ...(langKey === 'ml' && field === 'name' && value.trim() ? { malayalamName: value } : {}),
+        translations: nextTranslations,
+      };
+    });
+  };
+
+  const updateTranslationHealthField = (
+    langKey: 'ar' | 'ml',
+    field: 'issues' | 'symptoms' | 'prevention',
+    value: string
+  ) => {
+    setDraft((prev) => {
+      if (!prev) return prev;
+      const existingLang = prev.translations?.[langKey] || {};
+      const existingHealth = existingLang.health || {};
+      return {
+        ...prev,
+        translations: {
+          ...(prev.translations || {}),
+          [langKey]: {
+            ...existingLang,
+            health: {
+              ...existingHealth,
+              [field]: value,
+            },
+          },
+        },
+      };
+    });
+  };
+
+  const handleTranslateWithAI = async (targetLang: 'ar' | 'ml') => {
+    if (!draft || translating || busy) return;
+    const apiKey = getStoredApiKey();
+    if (!apiKey) {
+      setError(t('admin.translateNeedKey'));
+      return;
+    }
+    setTranslating(true);
+    setError('');
+    setNotice('');
+    try {
+      const provider = new GeminiProvider({ apiKey, model: getStoredModel() });
+      const translated = await provider.translatePlant(draft, targetLang);
+      setDraft((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          translations: {
+            ...(prev.translations || {}),
+            [targetLang]: {
+              ...(prev.translations?.[targetLang] || {}),
+              ...translated,
+            },
+          },
+        };
+      });
+      setNotice(t('admin.translateDraftNotice'));
+    } catch (e) {
+      setError(errorText(e));
+    } finally {
+      setTranslating(false);
+    }
   };
 
   if (!backend) {
@@ -181,6 +264,9 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
     );
   }
 
+  const activeTranslation: PlantTranslation =
+    editLang !== 'en' && draft ? draft.translations?.[editLang] || {} : {};
+
   return (
     <div className="admin-page">
       <div className="admin-heading">
@@ -225,81 +311,160 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
               {t('admin.backToList')}
             </button>
           </div>
-          <fieldset disabled={busy}>
-            <div className="admin-fields">
-              <label>
-                {t('admin.stableId')}
-                <input
-                  required
-                  disabled={!!original}
-                  dir="ltr"
-                  value={draft.id}
-                  onChange={(e) => {
-                    const id = e.target.value;
-                    setDraft({ ...draft, id, herbiqId: `HERBIQ:${id}` });
-                  }}
-                />
-                <small>{t('admin.stableIdHint')}</small>
-              </label>
-              <label>
-                {t('admin.qrId')}
-                <input required dir="ltr" value={draft.herbiqId} onChange={(e) => setDraft({ ...draft, herbiqId: e.target.value })} />
-                <small>{t('admin.qrIdHint')}</small>
-              </label>
-              {PROFILE_FIELDS.map(([key, label], index) => (
-                <label key={key}>
-                  {label}
-                  {index < 5 ? (
-                    <input required value={draft[key] || ''} maxLength={5000} onChange={(e) => setDraft({ ...draft, [key]: e.target.value })} />
-                  ) : (
+
+          {/* Language Tabs */}
+          <div className="admin-actions" role="tablist" aria-label="Plant translation languages">
+            {(
+              [
+                ['en', t('admin.langTabEn')],
+                ['ml', t('admin.langTabMl')],
+                ['ar', t('admin.langTabAr')],
+              ] as const
+            ).map(([code, label]) => (
+              <button
+                key={code}
+                type="button"
+                role="tab"
+                id={`admin-lang-tab-${code}`}
+                aria-selected={editLang === code}
+                onClick={() => setEditLang(code)}
+                style={
+                  editLang === code
+                    ? { background: '#00e5ff', color: '#060b18', fontWeight: 700 }
+                    : undefined
+                }
+              >
+                {label}
+              </button>
+            ))}
+
+            {editLang !== 'en' && (
+              <button
+                type="button"
+                id="admin-translate-ai-btn"
+                disabled={busy || translating || !getStoredApiKey()}
+                title={!getStoredApiKey() ? t('admin.translateNeedKey') : undefined}
+                onClick={() => void handleTranslateWithAI(editLang)}
+              >
+                {translating ? t('admin.translating') : t('admin.translateWithAI')}
+              </button>
+            )}
+          </div>
+
+          <fieldset disabled={busy || translating}>
+            {editLang === 'en' ? (
+              <div className="admin-fields">
+                <label>
+                  {t('admin.stableId')}
+                  <input
+                    required
+                    disabled={!!original}
+                    dir="ltr"
+                    value={draft.id}
+                    onChange={(e) => {
+                      const id = e.target.value;
+                      setDraft({ ...draft, id, herbiqId: `HERBIQ:${id}` });
+                    }}
+                  />
+                  <small>{t('admin.stableIdHint')}</small>
+                </label>
+                <label>
+                  {t('admin.qrId')}
+                  <input required dir="ltr" value={draft.herbiqId} onChange={(e) => setDraft({ ...draft, herbiqId: e.target.value })} />
+                  <small>{t('admin.qrIdHint')}</small>
+                </label>
+                {PROFILE_FIELDS.map(([key, label], index) => (
+                  <label key={key}>
+                    {label}
+                    {index < 5 ? (
+                      <input required value={draft[key] || ''} maxLength={5000} onChange={(e) => setDraft({ ...draft, [key]: e.target.value })} />
+                    ) : (
+                      <textarea
+                        rows={3}
+                        required={key !== 'culturalImportance'}
+                        maxLength={5000}
+                        value={draft[key] || ''}
+                        onChange={(e) => setDraft({ ...draft, [key]: e.target.value })}
+                      />
+                    )}
+                  </label>
+                ))}
+                {(['issues', 'symptoms', 'prevention'] as const).map((key) => (
+                  <label key={key}>
+                    Plant health — {key}
+                    <textarea
+                      required
+                      rows={3}
+                      maxLength={5000}
+                      value={draft.health[key]}
+                      onChange={(e) => setDraft({ ...draft, health: { ...draft.health, [key]: e.target.value } })}
+                    />
+                  </label>
+                ))}
+                <label>
+                  {t('admin.photoUrl')}
+                  <input required dir="ltr" value={draft.image} onChange={(e) => setDraft({ ...draft, image: e.target.value })} />
+                </label>
+                <label>
+                  {t('admin.uploadPhoto')}
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file)
+                        void run(async () => {
+                          const image = await uploadPhoto(file);
+                          setDraft((d) => (d ? { ...d, image } : d));
+                          setNotice(t('admin.photoUploadedNotice'));
+                        });
+                    }}
+                  />
+                  <small>{t('admin.uploadPhotoHint')}</small>
+                </label>
+                <label>
+                  {t('admin.modelUrl')}
+                  <input dir="ltr" value={draft.model3D || ''} onChange={(e) => setDraft({ ...draft, model3D: e.target.value })} />
+                </label>
+              </div>
+            ) : (
+              <div className="admin-fields" dir={editLang === 'ar' ? 'rtl' : 'ltr'} lang={editLang}>
+                {TRANSLATABLE_STRING_FIELDS.map(([key, label], index) => (
+                  <label key={key}>
+                    {label} ({editLang.toUpperCase()})
+                    {index < 2 ? (
+                      <input
+                        value={(activeTranslation[key] as string) || ''}
+                        maxLength={5000}
+                        placeholder={draft[key as keyof Plant] as string}
+                        onChange={(e) => updateTranslationField(editLang, key, e.target.value)}
+                      />
+                    ) : (
+                      <textarea
+                        rows={3}
+                        maxLength={5000}
+                        value={(activeTranslation[key] as string) || ''}
+                        placeholder={(draft[key as keyof Plant] as string) || ''}
+                        onChange={(e) => updateTranslationField(editLang, key, e.target.value)}
+                      />
+                    )}
+                  </label>
+                ))}
+                {(['issues', 'symptoms', 'prevention'] as const).map((key) => (
+                  <label key={key}>
+                    Translated health — {key} ({editLang.toUpperCase()})
                     <textarea
                       rows={3}
-                      required={key !== 'culturalImportance'}
                       maxLength={5000}
-                      value={draft[key] || ''}
-                      onChange={(e) => setDraft({ ...draft, [key]: e.target.value })}
+                      value={activeTranslation.health?.[key] || ''}
+                      placeholder={draft.health[key]}
+                      onChange={(e) => updateTranslationHealthField(editLang, key, e.target.value)}
                     />
-                  )}
-                </label>
-              ))}
-              {(['issues', 'symptoms', 'prevention'] as const).map((key) => (
-                <label key={key}>
-                  Plant health — {key}
-                  <textarea
-                    required
-                    rows={3}
-                    maxLength={5000}
-                    value={draft.health[key]}
-                    onChange={(e) => setDraft({ ...draft, health: { ...draft.health, [key]: e.target.value } })}
-                  />
-                </label>
-              ))}
-              <label>
-                {t('admin.photoUrl')}
-                <input required dir="ltr" value={draft.image} onChange={(e) => setDraft({ ...draft, image: e.target.value })} />
-              </label>
-              <label>
-                {t('admin.uploadPhoto')}
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file)
-                      void run(async () => {
-                        const image = await uploadPhoto(file);
-                        setDraft((d) => (d ? { ...d, image } : d));
-                        setNotice(t('admin.photoUploadedNotice'));
-                      });
-                  }}
-                />
-                <small>{t('admin.uploadPhotoHint')}</small>
-              </label>
-              <label>
-                {t('admin.modelUrl')}
-                <input dir="ltr" value={draft.model3D || ''} onChange={(e) => setDraft({ ...draft, model3D: e.target.value })} />
-              </label>
-            </div>
+                  </label>
+                ))}
+              </div>
+            )}
+
             {draft.image && <img className="admin-photo" src={draft.image} alt="Plant photo preview" />}
             <label className="admin-check">
               <input type="checkbox" checked={draft.arAvailable} onChange={(e) => setDraft({ ...draft, arAvailable: e.target.checked })} />
@@ -358,7 +523,13 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
                   <div>
                     <strong>{row.profile.name}</strong>
                     <p>
-                      <span lang="ml">{row.profile.malayalamName}</span> · <bdi dir="ltr">{row.qr_id}</bdi>
+                      <span lang="ml">{row.profile.malayalamName}</span>
+                      {row.profile.translations?.ar?.name && (
+                        <>
+                          {' '}· <span lang="ar" dir="rtl">{row.profile.translations.ar.name}</span>
+                        </>
+                      )}{' '}
+                      · <bdi dir="ltr">{row.qr_id}</bdi>
                     </p>
                     <span>{row.published ? t('admin.published') : t('admin.hidden')}</span>
                   </div>
