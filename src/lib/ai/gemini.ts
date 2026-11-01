@@ -337,23 +337,18 @@ export class GeminiProvider implements AIProvider {
 
   async testKey(): Promise<boolean> {
     if (!this.apiKey) return false;
-    const body = {
-      contents: [{ role: 'user', parts: [{ text: 'Reply with OK' }] }],
-      generationConfig: { maxOutputTokens: 256 },
-    };
-
     try {
-      const response = await this.postWithModelFallback(':generateContent', body);
+      const response = await this.fetchImpl(`${GEMINI_API_BASE}?pageSize=1`, {
+        method: 'GET',
+        headers: {
+          'x-goog-api-key': this.apiKey,
+        },
+      });
       if (response.status === 400 || response.status === 401 || response.status === 403) {
         return false;
       }
-      if (!response.ok) {
-        const errText = await response.text().catch(() => '');
-        throw mapHttpError(response.status, errText, this.apiKey);
-      }
-      return true;
-    } catch (err) {
-      if (err instanceof AIError && err.code === 'INVALID_KEY') return false;
+      return response.ok;
+    } catch {
       return false;
     }
   }
