@@ -11,6 +11,12 @@ import { DEFAULT_GEMINI_MODEL } from './key-storage';
 import { buildPlantScanPrompt, buildPlantTranslationPrompt } from './prompts';
 
 const GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
+const FALLBACK_MODELS = [
+  'gemini-flash-latest',
+  'gemini-3.8-flash',
+  'gemini-3.5-flash',
+  'gemini-2.5-flash',
+] as const;
 
 export interface GeminiProviderConfig {
   apiKey: string;
@@ -44,7 +50,10 @@ function mapHttpError(status: number, bodyText: string, apiKey: string): AIError
 function extractTextFromCandidate(payload: any): string {
   const parts = payload?.candidates?.[0]?.content?.parts;
   if (!Array.isArray(parts)) return '';
-  return parts.map((p: any) => (typeof p?.text === 'string' ? p.text : '')).join('');
+  return parts
+    .filter((p: any) => !p?.thought)
+    .map((p: any) => (typeof p?.text === 'string' ? p.text : ''))
+    .join('');
 }
 
 export function parseAndValidateScanResult(
@@ -130,9 +139,53 @@ export class GeminiProvider implements AIProvider {
     };
   }
 
+  private candidateModels(): string[] {
+    const list: string[] = [this.model];
+    for (const m of FALLBACK_MODELS) {
+      if (!list.includes(m)) list.push(m);
+    }
+    return list;
+  }
+
+  private async postWithModelFallback(
+    endpointSuffix: string,
+    body: unknown,
+    signal?: AbortSignal
+  ): Promise<Response> {
+    const models = this.candidateModels();
+    let lastResponse: Response | null = null;
+
+    for (let i = 0; i < models.length; i++) {
+      const m = models[i];
+      const url = `${GEMINI_API_BASE}/${encodeURIComponent(m)}${endpointSuffix}`;
+      let response: Response;
+      try {
+        response = await this.fetchImpl(url, {
+          method: 'POST',
+          headers: this.headers(),
+          body: JSON.stringify(body),
+          signal,
+        });
+      } catch (err: any) {
+        if (err?.name === 'AbortError') throw err;
+        throw new AIError(
+          'NETWORK_ERROR',
+          redactSecret(err instanceof Error ? err.message : 'Network error', this.apiKey)
+        );
+      }
+
+      lastResponse = response;
+      if (response.status === 404 && i < models.length - 1) {
+        continue;
+      }
+      return response;
+    }
+
+    return lastResponse!;
+  }
+
   async *chat(messages: ChatTurn[], opts?: ChatOptions): AsyncIterable<string> {
     this.ensureKey();
-    const url = `${GEMINI_API_BASE}/${encodeURIComponent(this.model)}:streamGenerateContent?alt=sse`;
 
     const contents = messages.map((m) => ({
       role: m.role === 'model' ? 'model' : 'user',
@@ -143,7 +196,7 @@ export class GeminiProvider implements AIProvider {
       contents,
       generationConfig: {
         temperature: 0.4,
-        maxOutputTokens: 1024,
+        maxOutputTokens: 4096,
       },
     };
 
@@ -153,21 +206,11 @@ export class GeminiProvider implements AIProvider {
       };
     }
 
-    let response: Response;
-    try {
-      response = await this.fetchImpl(url, {
-        method: 'POST',
-        headers: this.headers(),
-        body: JSON.stringify(body),
-        signal: opts?.signal,
-      });
-    } catch (err: any) {
-      if (err?.name === 'AbortError') throw err;
-      throw new AIError(
-        'NETWORK_ERROR',
-        redactSecret(err instanceof Error ? err.message : 'Network error', this.apiKey)
-      );
-    }
+    const response = await this.postWithModelFallback(
+      ':streamGenerateContent?alt=sse',
+      body,
+      opts?.signal
+    );
 
     if (!response.ok) {
       const errText = await response.text().catch(() => '');
@@ -238,7 +281,6 @@ export class GeminiProvider implements AIProvider {
     const mimeType = match ? match[1] : 'image/jpeg';
     const base64Data = match ? match[2] : imageDataUrl.trim();
 
-    const url = `${GEMINI_API_BASE}/${encodeURIComponent(this.model)}:generateContent`;
     const prompt = buildPlantScanPrompt(lang, catalog);
 
     const body = {
@@ -280,19 +322,7 @@ export class GeminiProvider implements AIProvider {
       },
     };
 
-    let response: Response;
-    try {
-      response = await this.fetchImpl(url, {
-        method: 'POST',
-        headers: this.headers(),
-        body: JSON.stringify(body),
-      });
-    } catch (err: any) {
-      throw new AIError(
-        'NETWORK_ERROR',
-        redactSecret(err instanceof Error ? err.message : 'Network error', this.apiKey)
-      );
-    }
+    const response = await this.postWithModelFallback(':generateContent', body);
 
     if (!response.ok) {
       const errText = await response.text().catch(() => '');
@@ -307,18 +337,13 @@ export class GeminiProvider implements AIProvider {
 
   async testKey(): Promise<boolean> {
     if (!this.apiKey) return false;
-    const url = `${GEMINI_API_BASE}/${encodeURIComponent(this.model)}:generateContent`;
     const body = {
       contents: [{ role: 'user', parts: [{ text: 'Reply with OK' }] }],
-      generationConfig: { maxOutputTokens: 5 },
+      generationConfig: { maxOutputTokens: 256 },
     };
 
     try {
-      const response = await this.fetchImpl(url, {
-        method: 'POST',
-        headers: this.headers(),
-        body: JSON.stringify(body),
-      });
+      const response = await this.postWithModelFallback(':generateContent', body);
       if (response.status === 400 || response.status === 401 || response.status === 403) {
         return false;
       }
@@ -335,7 +360,6 @@ export class GeminiProvider implements AIProvider {
 
   async translatePlant(plant: Plant, targetLang: 'ar' | 'ml'): Promise<PlantTranslation> {
     this.ensureKey();
-    const url = `${GEMINI_API_BASE}/${encodeURIComponent(this.model)}:generateContent`;
     const prompt = buildPlantTranslationPrompt(plant, targetLang);
 
     const body = {
@@ -383,19 +407,7 @@ export class GeminiProvider implements AIProvider {
       },
     };
 
-    let response: Response;
-    try {
-      response = await this.fetchImpl(url, {
-        method: 'POST',
-        headers: this.headers(),
-        body: JSON.stringify(body),
-      });
-    } catch (err: any) {
-      throw new AIError(
-        'NETWORK_ERROR',
-        redactSecret(err instanceof Error ? err.message : 'Network error', this.apiKey)
-      );
-    }
+    const response = await this.postWithModelFallback(':generateContent', body);
 
     if (!response.ok) {
       const errText = await response.text().catch(() => '');

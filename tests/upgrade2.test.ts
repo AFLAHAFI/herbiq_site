@@ -281,6 +281,45 @@ test('AI provider: streaming chat, 401 invalid key, 429 quota, and scanner JSON 
     () => parseAndValidateScanResult(JSON.stringify({ is_plant: 'yes' })),
     (err: any) => err instanceof AIError && err.code === 'PARSE_ERROR'
   );
+
+  // 5. Automatic 404 model fallback (e.g. gemini-2.5-flash deprecated for new keys -> falls back to gemini-flash-latest)
+  const triedUrls: string[] = [];
+  const fallbackProvider = new GeminiProvider({
+    apiKey: secretKey,
+    model: 'gemini-2.5-flash',
+    fetchFn: async (input) => {
+      const url = String(input);
+      triedUrls.push(url);
+      if (url.includes('gemini-2.5-flash')) {
+        return new Response(
+          JSON.stringify({ error: { code: 404, message: 'Model no longer available to new users' } }),
+          { status: 404 }
+        );
+      }
+      return new Response(
+        JSON.stringify({
+          candidates: [
+            {
+              content: {
+                parts: [
+                  { text: 'internal reasoning', thought: true },
+                  { text: validScanJson },
+                ],
+              },
+            },
+          ],
+        }),
+        { status: 200 }
+      );
+    },
+  });
+
+  const fallbackScan = await fallbackProvider.identifyPlant('data:image/jpeg;base64,AA==', 'en', [
+    { id: 'tulsi', name: 'Tulsi', scientificName: 'Ocimum tenuiflorum' },
+  ]);
+  assert.equal(fallbackScan.matched_catalog_id, 'tulsi');
+  assert.ok(triedUrls.length >= 2, 'Should retry with fallback model on 404');
+  assert.ok(triedUrls[1].includes('gemini-flash-latest'));
 });
 
 test('Key safety: Gemini API key is isolated and never sent in any Supabase request', async () => {

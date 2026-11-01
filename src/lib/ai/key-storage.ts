@@ -1,11 +1,13 @@
 export const GEMINI_LOCAL_STORAGE_KEY = 'herbiq.gemini.key';
 export const GEMINI_SESSION_STORAGE_KEY = 'herbiq.gemini.key.session';
 export const GEMINI_MODEL_STORAGE_KEY = 'herbiq.gemini.model';
-export const DEFAULT_GEMINI_MODEL = 'gemini-2.5-flash';
+export const DEFAULT_GEMINI_MODEL = 'gemini-flash-latest';
 
 export const AVAILABLE_GEMINI_MODELS = [
-  { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash (Recommended)' },
-  { id: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash' },
+  { id: 'gemini-flash-latest', label: 'Gemini Flash Latest (Recommended)' },
+  { id: 'gemini-3.8-flash', label: 'Gemini 3.8 Flash' },
+  { id: 'gemini-3.5-flash', label: 'Gemini 3.5 Flash' },
+  { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash (Legacy)' },
 ] as const;
 
 let memoryKey = '';
@@ -145,6 +147,9 @@ export function getStoredModel(): string {
   try {
     if (typeof window !== 'undefined' && window.localStorage) {
       const m = window.localStorage.getItem(GEMINI_MODEL_STORAGE_KEY)?.trim();
+      if (m === 'gemini-2.5-flash' || m === 'gemini-2.0-flash') {
+        return DEFAULT_GEMINI_MODEL;
+      }
       if (m && /^[a-z0-9.-]+$/.test(m)) return m;
     }
   } catch {
