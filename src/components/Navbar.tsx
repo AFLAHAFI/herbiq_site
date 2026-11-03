@@ -7,6 +7,12 @@ import {
   type OfflineSyncStatus,
 } from '../lib/offline-sync';
 import {
+  getInstallState,
+  promptInstall,
+  subscribeInstallState,
+  type InstallState,
+} from '../lib/pwa-install';
+import {
   Leaf,
   Sparkles,
   Menu,
@@ -20,6 +26,9 @@ import {
   Download,
   WifiOff,
   CheckCircle2,
+  Share,
+  PlusSquare,
+  MoreVertical,
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -27,35 +36,30 @@ interface NavbarProps {
   onNavigate: (page: Page) => void;
 }
 
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>;
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
-}
-
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, setLang, t } = useI18n();
   const [syncStatus, setSyncStatus] = useState<OfflineSyncStatus>(() => getOfflineSyncStatus());
-  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [installState, setInstallState] = useState<InstallState>(() => getInstallState());
+  const [installHelpOpen, setInstallHelpOpen] = useState(false);
 
   useEffect(() => {
-    const unsub = subscribeOfflineSync((st) => setSyncStatus(st));
-    const onBeforeInstall = (e: Event) => {
-      e.preventDefault();
-      setInstallPrompt(e as BeforeInstallPromptEvent);
-    };
-    window.addEventListener('beforeinstallprompt', onBeforeInstall);
+    const unsubSync = subscribeOfflineSync((st) => setSyncStatus(st));
+    const unsubInstall = subscribeInstallState((st) => setInstallState(st));
     return () => {
-      unsub();
-      window.removeEventListener('beforeinstallprompt', onBeforeInstall);
+      unsubSync();
+      unsubInstall();
     };
   }, []);
 
+  const showInstall = !installState.installed;
+
   const handleInstallApp = async () => {
-    if (!installPrompt) return;
-    await installPrompt.prompt();
-    await installPrompt.userChoice.catch(() => {});
-    setInstallPrompt(null);
+    setMobileMenuOpen(false);
+    const outcome = await promptInstall();
+    // Browser has not offered a native prompt (iPhone Safari, Firefox, in-app browsers,
+    // or Chrome still evaluating) → show clear manual steps instead of doing nothing.
+    if (outcome === 'unavailable') setInstallHelpOpen(true);
   };
 
   const navItems: { id: Page; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
@@ -154,15 +158,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
         {/* Language Switcher + Install App + Action Badge */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-          {installPrompt && (
+          {showInstall && (
             <button
               type="button"
               onClick={() => void handleInstallApp()}
               id="install-pwa-btn"
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/40 hover:bg-[#10B981]/30 transition-all"
+              aria-label="Install HerbiQ App"
+              title="Install HerbiQ App"
+              className="max-[359px]:hidden inline-flex items-center gap-1.5 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/40 hover:bg-[#10B981]/30 transition-all shrink-0"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>Install App</span>
+              <Download className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+              <span className="hidden sm:inline">Install App</span>
             </button>
           )}
 
@@ -220,7 +226,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="xl:hidden bg-[#060B18] border-b border-[#00E5FF]/25 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
-          {installPrompt && (
+          {showInstall && (
             <button
               type="button"
               onClick={() => void handleInstallApp()}
@@ -253,6 +259,74 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               </button>
             );
           })}
+        </div>
+      )}
+
+      {/* Manual install instructions (iPhone Safari / browsers without a native prompt) */}
+      {installHelpOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Install HerbiQ App"
+          id="install-help-dialog"
+          className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/70 p-4"
+          onClick={() => setInstallHelpOpen(false)}
+        >
+          <div
+            className="w-full max-w-md rounded-2xl bg-[#0B142B] border border-[#10B981]/40 p-5 space-y-4 text-start"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-lg font-bold text-[#F8FAFC] flex items-center gap-2">
+                <Download className="w-5 h-5 text-[#10B981]" /> Install HerbiQ App
+              </h2>
+              <button
+                type="button"
+                aria-label="Close"
+                onClick={() => setInstallHelpOpen(false)}
+                className="p-1.5 rounded-lg text-[#94A3B8] hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {installState.isIOS ? (
+              <ol className="list-decimal ps-5 space-y-2 text-sm text-[#CBD5E1]">
+                <li>Open this site in <strong>Safari</strong>.</li>
+                <li>
+                  Tap the <strong>Share</strong> button <Share className="inline w-4 h-4 text-[#00E5FF]" /> at the bottom.
+                </li>
+                <li>
+                  Choose <strong>“Add to Home Screen”</strong> <PlusSquare className="inline w-4 h-4 text-[#00E5FF]" />, then tap <strong>Add</strong>.
+                </li>
+              </ol>
+            ) : installState.isAndroid ? (
+              <ol className="list-decimal ps-5 space-y-2 text-sm text-[#CBD5E1]">
+                <li>Open this site in <strong>Chrome</strong> (not inside WhatsApp/Instagram browser).</li>
+                <li>
+                  Tap the menu <MoreVertical className="inline w-4 h-4 text-[#00E5FF]" /> (top-right).
+                </li>
+                <li>Choose <strong>“Install app”</strong> or <strong>“Add to Home screen”</strong>.</li>
+              </ol>
+            ) : (
+              <ol className="list-decimal ps-5 space-y-2 text-sm text-[#CBD5E1]">
+                <li>Use <strong>Chrome</strong> or <strong>Edge</strong>.</li>
+                <li>Click the install icon <Download className="inline w-4 h-4 text-[#00E5FF]" /> at the right end of the address bar,</li>
+                <li>or open the browser menu → <strong>“Install HerbiQ”</strong> / <strong>“Apps → Install this site as an app”</strong>.</li>
+              </ol>
+            )}
+
+            <p className="text-xs text-[#94A3B8]">
+              After installing, HerbiQ opens full-screen from your home screen and works offline. New plants added by the admin sync automatically when you are online.
+            </p>
+            <button
+              type="button"
+              onClick={() => setInstallHelpOpen(false)}
+              className="w-full py-2.5 rounded-xl bg-[#10B981] text-[#060B18] font-bold text-sm"
+            >
+              OK
+            </button>
+          </div>
         </div>
       )}
     </header>

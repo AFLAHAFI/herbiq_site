@@ -1,10 +1,12 @@
-const SHELL_CACHE = 'herbiq-shell-v2';
+const SHELL_CACHE = 'herbiq-shell-v3';
 const ASSET_CACHE = 'herbiq-assets-v1';
 
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
 ];
 
 self.addEventListener('install', (event) => {

@@ -1,3 +1,4 @@
+import './lib/pwa-install';
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import {I18nProvider} from './i18n';
