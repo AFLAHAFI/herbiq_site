@@ -43,6 +43,7 @@ export interface Plant {
   image: string;
   arAvailable: boolean;
   model3D?: string;
+  pdfUrl?: string;
   health: PlantHealth;
   culturalImportance?: string;
   translations?: PlantTranslations;

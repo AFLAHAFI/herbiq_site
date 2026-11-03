@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import type { Lang, Plant, PlantTranslation } from '../types';
 import { useI18n } from '../i18n';
 import { PROFILE_FIELDS, TRANSLATABLE_STRING_FIELDS } from '../lib/plant-validation';
-import { savePlant, uploadModel3D, uploadPhoto, type PlantRow } from '../lib/admin-api';
+import { savePlant, uploadModel3D, uploadPdf, uploadPhoto, type PlantRow } from '../lib/admin-api';
 import { errorText } from '../lib/backend';
 import {
   BULK_SHEET_HEADERS,
@@ -149,6 +149,15 @@ export const BulkImportPanel: React.FC<BulkImportPanelProps> = ({
         ...item.plant,
         arAvailable: true,
       },
+    }));
+  };
+
+  const handleAttachRowPdf = (rowIndex: number, file: File | undefined) => {
+    if (!file) return;
+    updateStagedItem(rowIndex, (item) => ({
+      ...item,
+      pdfFileRef: file.name,
+      matchedPdfFile: file,
     }));
   };
 
@@ -334,10 +343,16 @@ export const BulkImportPanel: React.FC<BulkImportPanelProps> = ({
             finalModelUrl = await uploadModel3D(item.matchedModelFile);
           }
 
+          let finalPdfUrl = item.plant.pdfUrl || '';
+          if (item.matchedPdfFile) {
+            finalPdfUrl = await uploadPdf(item.matchedPdfFile);
+          }
+
           const finalPlant: Plant = {
             ...item.plant,
             image: finalImageUrl,
             ...(finalModelUrl ? { model3D: finalModelUrl } : {}),
+            ...(finalPdfUrl ? { pdfUrl: finalPdfUrl } : {}),
             arAvailable: finalModelUrl ? item.plant.arAvailable : false,
           };
 
@@ -414,7 +429,7 @@ export const BulkImportPanel: React.FC<BulkImportPanelProps> = ({
           ref={filesInputRef}
           type="file"
           multiple
-          accept=".zip,.xlsx,.csv,image/jpeg,image/png,image/webp,.glb"
+          accept=".zip,.xlsx,.csv,image/jpeg,image/png,image/webp,.glb,.pdf,application/pdf"
           className="hidden"
           onChange={(e) => {
             void handleFilesSelected(e.target.files);
@@ -849,6 +864,19 @@ export const BulkImportPanel: React.FC<BulkImportPanelProps> = ({
                             <span className="text-slate-400 block">🧊 No 3D .glb</span>
                           )}
                         </div>
+                        <div>
+                          {item.matchedPdfFile ? (
+                            <span className="text-emerald-300 block">
+                              📄 ✓ <bdi dir="ltr">{item.matchedPdfFile.name}</bdi> (PDF)
+                            </span>
+                          ) : p.pdfUrl ? (
+                            <span className="text-cyan-300 block truncate max-w-[180px]" dir="ltr">
+                              📄 PDF: {p.pdfUrl}
+                            </span>
+                          ) : (
+                            <span className="text-slate-400 block">📄 Auto PDF Sheet</span>
+                          )}
+                        </div>
                       </td>
                       <td className="p-3 align-top">
                         {hasError ? (
@@ -908,6 +936,19 @@ export const BulkImportPanel: React.FC<BulkImportPanelProps> = ({
                               className="hidden"
                               onChange={(e) => {
                                 handleAttachRowModel(item.rowIndex, e.target.files?.[0]);
+                                e.target.value = '';
+                              }}
+                            />
+                          </label>
+
+                          <label className="!m-0 inline-flex items-center cursor-pointer px-2.5 py-1.5 rounded-lg border border-amber-400 bg-[#102333] text-white text-xs">
+                            📄 PDF
+                            <input
+                              type="file"
+                              accept=".pdf,application/pdf"
+                              className="hidden"
+                              onChange={(e) => {
+                                handleAttachRowPdf(item.rowIndex, e.target.files?.[0]);
                                 e.target.value = '';
                               }}
                             />

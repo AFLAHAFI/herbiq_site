@@ -14,6 +14,7 @@ values (
     'image/png',
     'image/webp',
     'model/gltf-binary',
+    'application/pdf',
     'application/octet-stream'
   ]
 )
@@ -26,6 +27,7 @@ set
     'image/png',
     'image/webp',
     'model/gltf-binary',
+    'application/pdf',
     'application/octet-stream'
   ];
 

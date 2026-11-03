@@ -104,6 +104,7 @@ export function validatePlant(p: Plant) {
   }
   if (!p.image || !safeAssetUrl(p.image)) throw new Error('Choose a photo or a valid HTTPS image URL.');
   if (!safeAssetUrl(p.model3D || '')) throw new Error('Model URL must be an /assets/ path or HTTPS URL.');
+  if (!safeAssetUrl(p.pdfUrl || '')) throw new Error('PDF URL must be an /assets/ path or HTTPS URL.');
   if (p.arAvailable && !p.model3D) throw new Error('Add a GLB model URL before enabling 3D/AR.');
   if (
     !p.health ||
@@ -137,6 +138,7 @@ export function emptyPlant(): Plant {
     image: '',
     arAvailable: false,
     model3D: '',
+    pdfUrl: '',
     health: { issues: '', symptoms: '', prevention: '' },
     translations: {},
   };

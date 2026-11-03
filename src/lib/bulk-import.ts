@@ -13,6 +13,8 @@ export interface BulkStagedItem {
   imagePreviewUrl?: string;
   modelFileRef: string;
   matchedModelFile?: File;
+  pdfFileRef?: string;
+  matchedPdfFile?: File;
   isExistingInDb: boolean;
   validationErrors: string[];
 }
@@ -29,6 +31,7 @@ export const BULK_SHEET_HEADERS = [
   'category',
   'image_file',
   'model_file',
+  'pdf_file',
   'arAvailable',
   'description',
   'traditionalUses',
@@ -623,6 +626,7 @@ export function revalidateStagedItem(
     ...p,
     image: item.matchedImageFile ? 'https://placeholder.local/matched.jpg' : p.image,
     model3D: item.matchedModelFile ? 'https://placeholder.local/matched.glb' : p.model3D,
+    pdfUrl: item.matchedPdfFile ? 'https://placeholder.local/matched.pdf' : p.pdfUrl,
   };
 
   if (item.imageFileRef && !item.matchedImageFile && !/^https:\/\/|^\/assets\//.test(p.image)) {
@@ -630,6 +634,9 @@ export function revalidateStagedItem(
   }
   if (item.modelFileRef && !item.matchedModelFile && !/^https:\/\/|^\/assets\//.test(p.model3D || '')) {
     errors.push(`3D model file "${item.modelFileRef}" not found in uploaded folder.`);
+  }
+  if (item.pdfFileRef && !item.matchedPdfFile && !/^https:\/\/|^\/assets\//.test(p.pdfUrl || '')) {
+    errors.push(`PDF file "${item.pdfFileRef}" not found in uploaded folder.`);
   }
 
   try {
@@ -705,9 +712,11 @@ async function expandUploadedFiles(
                 ? 'image/webp'
                 : ext === 'glb'
                   ? 'model/gltf-binary'
-                  : ext === 'csv'
-                    ? 'text/csv'
-                    : 'application/octet-stream';
+                  : ext === 'pdf'
+                    ? 'application/pdf'
+                    : ext === 'csv'
+                      ? 'text/csv'
+                      : 'application/octet-stream';
         const virtualFile = new File([bytes], baseName, { type: mime });
         expanded.push({ relPath: entryPath.toLowerCase(), file: virtualFile });
       }
@@ -757,6 +766,18 @@ export async function parseBulkUploadFiles(
 
   const modelAssets = allFiles
     .filter((e) => /\.glb$/i.test(e.file.name))
+    .map((e) => {
+      const baseName = e.file.name.toLowerCase();
+      return {
+        relPath: e.relPath,
+        baseName,
+        stem: baseName.replace(/\.[^.]+$/, ''),
+        file: e.file,
+      };
+    });
+
+  const pdfAssets = allFiles
+    .filter((e) => /\.pdf$/i.test(e.file.name))
     .map((e) => {
       const baseName = e.file.name.toLowerCase();
       return {
@@ -830,17 +851,26 @@ export async function parseBulkUploadFiles(
 
     const imageRef = getField(record, 'image_file', 'imageFile', 'image', 'photo', 'photo_file');
     const modelRef = getField(record, 'model_file', 'modelFile', 'model3D', 'model', 'glb_file');
+    const pdfRef = getField(record, 'pdf_file', 'pdfFile', 'pdfUrl', 'pdf', 'datasheet');
 
     const matchedImageFile = findMatchingAssetFile(imageRef, id, imageAssets);
     const matchedModelFile = findMatchingAssetFile(modelRef, id, modelAssets);
+    const matchedPdfFile = findMatchingAssetFile(pdfRef, id, pdfAssets);
 
     const isDirectImageUrl = /^https:\/\/|^\/assets\//.test(imageRef);
     const isDirectModelUrl = /^https:\/\/|^\/assets\//.test(modelRef);
+    const isDirectPdfUrl = /^https:\/\/|^\/assets\//.test(pdfRef);
 
     const model3DValue = matchedModelFile
       ? ''
       : isDirectModelUrl
         ? modelRef
+        : '';
+
+    const pdfUrlValue = matchedPdfFile
+      ? ''
+      : isDirectPdfUrl
+        ? pdfRef
         : '';
 
     const has3D = Boolean(matchedModelFile || model3DValue);
@@ -877,6 +907,7 @@ export async function parseBulkUploadFiles(
       herbiqId,
       arAvailable,
       ...(model3DValue ? { model3D: model3DValue } : {}),
+      ...(pdfUrlValue ? { pdfUrl: pdfUrlValue } : {}),
       image: matchedImageFile ? '' : isDirectImageUrl ? imageRef : '',
       translations,
     };
@@ -897,6 +928,8 @@ export async function parseBulkUploadFiles(
         imagePreviewUrl: previewUrl,
         modelFileRef: modelRef,
         matchedModelFile,
+        pdfFileRef: pdfRef,
+        matchedPdfFile,
         isExistingInDb: existingIds.has(id),
         validationErrors: [],
       },
@@ -931,6 +964,7 @@ export function plantToSheetRow(plant: Plant, published = true): string[] {
     category: plant.category,
     image_file: plant.image,
     model_file: plant.model3D || '',
+    pdf_file: plant.pdfUrl || '',
     arAvailable: plant.arAvailable ? 'true' : 'false',
     description: plant.description,
     traditionalUses: plant.traditionalUses,
@@ -983,6 +1017,7 @@ export function buildSampleTemplateRows(): string[][] {
     category: 'Herb',
     image: 'images/tulsi.jpg',
     model3D: 'models/tulsi.glb',
+    pdfUrl: 'pdfs/tulsi.pdf',
     arAvailable: true,
     description: 'Sacred aromatic herb widely used in traditional Ayurvedic care.',
     traditionalUses: 'Used in herbal teas for seasonal colds, coughs, and immunity.',
@@ -1064,6 +1099,10 @@ export function buildSampleTemplateZip(): Uint8Array {
     {
       name: 'herbiq_bulk_template/models/PUT_GLB_MODELS_HERE.txt',
       data: encoder.encode('Optional: Place your .glb 3D models in this folder.\n'),
+    },
+    {
+      name: 'herbiq_bulk_template/pdfs/PUT_PDFS_HERE.txt',
+      data: encoder.encode('Optional: Place your .pdf plant data sheets in this folder.\n'),
     },
   ]);
 }

@@ -27,7 +27,10 @@ import {
   saveApiKey,
 } from '../src/lib/ai/key-storage';
 import { refreshCatalog } from '../src/lib/catalog';
-import { validateGlbBuffer } from '../src/lib/admin-api';
+import { validateGlbBuffer, validatePdfBuffer, type PlantRow } from '../src/lib/admin-api';
+import { generatePlantPdfBytes } from '../src/lib/plant-pdf';
+import { loadOfflineCatalog, saveOfflineCatalog } from '../src/lib/offline-sync';
+import { computeAdminAnalytics, recordPlantView, recordQrScan } from '../src/lib/analytics';
 import {
   buildSampleTemplateRows,
   createStoredZipArchive,
@@ -391,7 +394,7 @@ test('Key safety: Gemini API key is isolated and never sent in any Supabase requ
   }
 });
 
-test('Bulk Import: CSV/XLSX multi-language (EN/ML/AR) round-trip, folder/ZIP asset matching, and GLB validation', async () => {
+test('Bulk Import: CSV/XLSX multi-language (EN/ML/AR) round-trip, folder/ZIP asset matching (JPG + GLB + PDF), and validation', async () => {
   // 1. Multi-language CSV and XLSX round-trip (English, Malayalam, Arabic)
   const sampleRows = buildSampleTemplateRows();
   const csvText = serializeRowsToCsv(sampleRows);
@@ -407,7 +410,7 @@ test('Bulk Import: CSV/XLSX multi-language (EN/ML/AR) round-trip, folder/ZIP ass
   assert.ok(parsedXlsx[1].includes('തുളസി'), 'Malayalam text preserved in XLSX');
   assert.ok(parsedXlsx[1].includes('الريحان المقدس (تولسي)'), 'Arabic text preserved in XLSX');
 
-  // 2. Folder / ZIP auto-matching of spreadsheet + images/tulsi.jpg + models/tulsi.glb
+  // 2. Folder / ZIP auto-matching of spreadsheet + images/tulsi.jpg + models/tulsi.glb + pdfs/tulsi.pdf
   const fakeJpg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0x00, 0x10, 0x4a, 0x46, 0x49, 0x46]);
   const validGlb = new Uint8Array(24);
   const glbView = new DataView(validGlb.buffer);
@@ -415,14 +418,19 @@ test('Bulk Import: CSV/XLSX multi-language (EN/ML/AR) round-trip, folder/ZIP ass
   glbView.setUint32(4, 2, true); // version 2
   glbView.setUint32(8, 24, true); // length
 
-  // Validate GLB check
+  const validPdf = generatePlantPdfBytes(PLANTS[0]);
+
+  // Validate GLB & PDF checks
   assert.doesNotThrow(() => validateGlbBuffer(validGlb.buffer));
   assert.throws(() => validateGlbBuffer(fakeJpg.buffer), /Invalid 3D model/);
+  assert.doesNotThrow(() => validatePdfBuffer(validPdf.buffer as ArrayBuffer));
+  assert.throws(() => validatePdfBuffer(fakeJpg.buffer), /Invalid PDF format/);
 
   const zipBytes = createStoredZipArchive([
     { name: 'my_plants/plants_data.xlsx', data: xlsxBytes },
     { name: 'my_plants/images/tulsi.jpg', data: fakeJpg },
     { name: 'my_plants/models/tulsi.glb', data: validGlb },
+    { name: 'my_plants/pdfs/tulsi.pdf', data: validPdf },
   ]);
 
   const zipFile = new File([zipBytes], 'my_plants.zip', { type: 'application/zip' });
@@ -438,6 +446,66 @@ test('Bulk Import: CSV/XLSX multi-language (EN/ML/AR) round-trip, folder/ZIP ass
   assert.equal(item.matchedImageFile?.name, 'tulsi.jpg');
   assert.ok(item.matchedModelFile, 'Should match models/tulsi.glb from folder/ZIP');
   assert.equal(item.matchedModelFile?.name, 'tulsi.glb');
+  assert.ok(item.matchedPdfFile, 'Should match pdfs/tulsi.pdf from folder/ZIP');
+  assert.equal(item.matchedPdfFile?.name, 'tulsi.pdf');
   assert.equal(item.plant.arAvailable, true);
   assert.equal(item.validationErrors.length, 0);
+});
+
+test('Offline/Online Auto-Sync & Admin Analytics (#4, #6, #9)', () => {
+  // Set up mock localStorage for Node environment
+  const store = new Map<string, string>();
+  const prevStorage = (globalThis as any).localStorage;
+  (globalThis as any).localStorage = {
+    getItem: (k: string) => store.get(k) ?? null,
+    setItem: (k: string, v: string) => {
+      store.set(k, v);
+    },
+    removeItem: (k: string) => {
+      store.delete(k);
+    },
+  };
+
+  try {
+    // 1. Offline/Online Catalog Sync: initial 15 plants downloaded -> later Admin adds 12 more (27 total)
+    const initialBatch = PLANTS.slice(0, 15);
+    const firstSync = saveOfflineCatalog(initialBatch);
+    assert.equal(firstSync.mergedPlants.length, 15);
+    assert.equal(firstSync.newlyAddedCount, 0);
+
+    const loadedFirst = loadOfflineCatalog();
+    assert.equal(loadedFirst?.plants.length, 15);
+
+    const updatedBatch = PLANTS.slice(0, 27);
+    const secondSync = saveOfflineCatalog(updatedBatch);
+    assert.equal(secondSync.mergedPlants.length, 27);
+    assert.equal(secondSync.newlyAddedCount, 12, 'Should detect 12 newly added plants when syncing online');
+
+    // 2. Analytics & QR Scan Counter
+    recordPlantView('tulsi');
+    recordPlantView('tulsi');
+    recordQrScan('tulsi');
+    recordQrScan('neem');
+
+    const adminRows: PlantRow[] = PLANTS.slice(0, 5).map((p) => ({
+      id: p.id,
+      qr_id: p.herbiqId,
+      published: true,
+      profile: p,
+      translations: p.translations,
+      revision: 1,
+      updated_at: new Date().toISOString(),
+    }));
+
+    const summary = computeAdminAnalytics(adminRows);
+    assert.equal(summary.totalPlants, 5);
+    assert.equal(summary.publishedCount, 5);
+    assert.equal(summary.totalViews, 2);
+    assert.equal(summary.totalQrScans, 2);
+    assert.equal(summary.topPlants[0].id, 'tulsi');
+    assert.equal(summary.topPlants[0].qrScans, 1);
+    assert.equal(summary.topPlants[0].views, 2);
+  } finally {
+    (globalThis as any).localStorage = prevStorage;
+  }
 });

@@ -1,6 +1,11 @@
 import { publicBackend } from './backend';
 import { replacePublicCatalog } from '../data/plants';
 import rawPlantsData from '../data/herbiq-plants.json';
+import {
+  loadOfflineCatalog,
+  markUsingOfflineCatalog,
+  saveOfflineCatalog,
+} from './offline-sync';
 import type { Plant, PlantTranslations } from '../types';
 
 let sequence = 0;
@@ -55,29 +60,46 @@ function mergePlantRow(row: { profile: Plant; translations?: PlantTranslations |
 export async function refreshCatalog() {
   if (!publicBackend) return;
   const ticket = ++sequence;
-  let { data, error } = await publicBackend
-    .from('herbiq_plants')
-    .select('profile, translations')
-    .eq('published', true)
-    .order('id')
-    .abortSignal(AbortSignal.timeout(15000));
 
-  // Fallback if migration 003_i18n has not yet been applied on the remote database
-  if (error && String(error.message || '').includes('translations')) {
-    const fallback = await publicBackend
+  try {
+    let { data, error } = await publicBackend
       .from('herbiq_plants')
-      .select('profile')
+      .select('profile, translations')
       .eq('published', true)
       .order('id')
       .abortSignal(AbortSignal.timeout(15000));
-    data = fallback.data as any;
-    error = fallback.error;
-  }
 
-  if (ticket !== sequence) return;
-  if (error) {
+    // Fallback if migration 003_i18n has not yet been applied on the remote database
+    if (error && String(error.message || '').includes('translations')) {
+      const fallback = await publicBackend
+        .from('herbiq_plants')
+        .select('profile')
+        .eq('published', true)
+        .order('id')
+        .abortSignal(AbortSignal.timeout(15000));
+      data = fallback.data as any;
+      error = fallback.error;
+    }
+
+    if (ticket !== sequence) return;
+    if (error) {
+      throw error;
+    }
+
+    const merged = (data || []).map((row: any) => mergePlantRow(row));
+    replacePublicCatalog(merged);
+    saveOfflineCatalog(merged);
+  } catch (err) {
+    if (ticket !== sequence) return;
+    // If the device is offline and we have a saved offline catalog, serve it seamlessly!
+    const isBrowserOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+    const cached = loadOfflineCatalog();
+    if (isBrowserOffline && cached && cached.plants.length > 0) {
+      replacePublicCatalog(cached.plants);
+      markUsingOfflineCatalog(cached.plants, cached.updatedAt);
+      return;
+    }
     replacePublicCatalog([]);
-    throw error;
+    throw err;
   }
-  replacePublicCatalog((data || []).map((row: any) => mergePlantRow(row)));
 }

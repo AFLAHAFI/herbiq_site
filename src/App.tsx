@@ -4,7 +4,13 @@ import { Page } from './types';
 import { useI18n, parseLangFromHash } from './i18n';
 import { backendConfigured } from './lib/backend';
 import { refreshCatalog } from './lib/catalog';
-import { PLANTS } from './data/plants';
+import {
+  loadOfflineCatalog,
+  markUsingOfflineCatalog,
+  registerServiceWorker,
+} from './lib/offline-sync';
+import { flushOfflineAnalyticsQueue } from './lib/analytics';
+import { PLANTS, replacePublicCatalog } from './data/plants';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './components/HomePage';
@@ -15,6 +21,8 @@ const AskHerbiQPage = lazy(() => import('./components/AskHerbiQPage').then((m) =
 const ARExperiencePage = lazy(() => import('./components/ARExperiencePage').then((m) => ({ default: m.ARExperiencePage })));
 const AboutPage = lazy(() => import('./components/AboutPage').then((m) => ({ default: m.AboutPage })));
 const QRScannerPage = lazy(() => import('./components/QRScannerPage').then((m) => ({ default: m.QRScannerPage })));
+
+registerServiceWorker();
 
 export default function App() {
   const { t, dir } = useI18n();
@@ -72,7 +80,16 @@ export default function App() {
       await refreshCatalog();
       setCatalogError(false);
     } catch {
-      setCatalogError(true);
+      // If offline cached catalog exists, use it instead of showing an error
+      const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+      const cached = loadOfflineCatalog();
+      if (isOffline && cached && cached.plants.length > 0) {
+        replacePublicCatalog(cached.plants);
+        markUsingOfflineCatalog(cached.plants, cached.updatedAt);
+        setCatalogError(false);
+      } else {
+        setCatalogError(true);
+      }
     } finally {
       setCatalogLoading(false);
       setCatalogVersion((v) => v + 1);
@@ -84,11 +101,28 @@ export default function App() {
     const refresh = () => {
       if (document.visibilityState === 'visible') void reloadCatalog();
     };
+    const handleOnline = () => {
+      flushOfflineAnalyticsQueue();
+      void reloadCatalog();
+    };
+    const handleOffline = () => {
+      const cached = loadOfflineCatalog();
+      if (cached && cached.plants.length > 0) {
+        markUsingOfflineCatalog(cached.plants, cached.updatedAt);
+      } else {
+        markUsingOfflineCatalog(PLANTS, null);
+      }
+      setCatalogVersion((v) => v + 1);
+    };
     window.addEventListener('focus', refresh);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
     const timer = window.setInterval(refresh, 60000);
     return () => {
       clearInterval(timer);
       window.removeEventListener('focus', refresh);
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
     };
   }, [reloadCatalog]);
 

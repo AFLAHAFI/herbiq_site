@@ -1,16 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Page } from '../types';
 import { SUPPORTED_LANGS, LANGUAGE_LABELS, useI18n } from '../i18n';
-import { Leaf, Sparkles, Menu, X, Compass, MessageSquareCode, Eye, Info, QrCode, Globe } from 'lucide-react';
+import {
+  getOfflineSyncStatus,
+  subscribeOfflineSync,
+  type OfflineSyncStatus,
+} from '../lib/offline-sync';
+import {
+  Leaf,
+  Sparkles,
+  Menu,
+  X,
+  Compass,
+  MessageSquareCode,
+  Eye,
+  Info,
+  QrCode,
+  Globe,
+  Download,
+  WifiOff,
+  CheckCircle2,
+} from 'lucide-react';
 
 interface NavbarProps {
   currentPage: Page;
   onNavigate: (page: Page) => void;
 }
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, setLang, t } = useI18n();
+  const [syncStatus, setSyncStatus] = useState<OfflineSyncStatus>(() => getOfflineSyncStatus());
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+
+  useEffect(() => {
+    const unsub = subscribeOfflineSync((st) => setSyncStatus(st));
+    const onBeforeInstall = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e as BeforeInstallPromptEvent);
+    };
+    window.addEventListener('beforeinstallprompt', onBeforeInstall);
+    return () => {
+      unsub();
+      window.removeEventListener('beforeinstallprompt', onBeforeInstall);
+    };
+  }, []);
+
+  const handleInstallApp = async () => {
+    if (!installPrompt) return;
+    await installPrompt.prompt();
+    await installPrompt.userChoice.catch(() => {});
+    setInstallPrompt(null);
+  };
 
   const navItems: { id: Page; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'home', label: t('nav.home'), icon: Leaf },
@@ -29,6 +75,35 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#00E5FF]/20 bg-[#060B18]/90 backdrop-blur-md">
+      {/* Offline or Newly Synced Banner */}
+      {(!syncStatus.online || syncStatus.usingOfflineCache || syncStatus.newlyAddedCount > 0) && (
+        <div
+          role="status"
+          id="offline-sync-banner"
+          className={`w-full px-3 py-1 text-[11px] font-semibold flex items-center justify-center gap-2 border-b ${
+            !syncStatus.online || syncStatus.usingOfflineCache
+              ? 'bg-amber-950/90 text-amber-200 border-amber-500/30'
+              : 'bg-emerald-950/90 text-emerald-200 border-emerald-500/30'
+          }`}
+        >
+          {!syncStatus.online || syncStatus.usingOfflineCache ? (
+            <>
+              <WifiOff className="w-3.5 h-3.5 shrink-0 text-amber-400" />
+              <span>
+                Offline Mode — {syncStatus.totalPlants} plants available offline. New plants will auto-sync when online.
+              </span>
+            </>
+          ) : (
+            <>
+              <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-400" />
+              <span>
+                Synced +{syncStatus.newlyAddedCount} new plants ({syncStatus.totalPlants} total saved for offline use)
+              </span>
+            </>
+          )}
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-3 min-w-0">
         {/* Brand Logo */}
         <button
@@ -77,8 +152,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           })}
         </nav>
 
-        {/* Language Switcher + Action Badge */}
+        {/* Language Switcher + Install App + Action Badge */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          {installPrompt && (
+            <button
+              type="button"
+              onClick={() => void handleInstallApp()}
+              id="install-pwa-btn"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/40 hover:bg-[#10B981]/30 transition-all"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Install App</span>
+            </button>
+          )}
+
           <div
             role="group"
             aria-label={t('nav.language')}
@@ -133,6 +220,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="xl:hidden bg-[#060B18] border-b border-[#00E5FF]/25 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
+          {installPrompt && (
+            <button
+              type="button"
+              onClick={() => void handleInstallApp()}
+              id="mobile-install-pwa-btn"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/40"
+            >
+              <Download className="w-4 h-4" />
+              <span>Install HerbiQ App (Offline Ready)</span>
+            </button>
+          )}
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPage === item.id;

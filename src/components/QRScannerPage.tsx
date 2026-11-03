@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 import { getPlantByHerbiqId } from '../data/plants';
+import { recordQrScan } from '../lib/analytics';
 import { useI18n } from '../i18n';
 import { Camera, ArrowLeft } from 'lucide-react';
 
@@ -68,6 +69,7 @@ export const QRScannerPage: React.FC<Props> = ({ onBack, onScanSuccess, onScanWi
     accepted.current = true;
     setBusy(true);
     try {
+      recordQrScan(plant.id);
       await stop();
       if (alive.current) onScanSuccess(plant.id);
     } catch {

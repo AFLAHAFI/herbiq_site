@@ -1,0 +1,19 @@
+{
+  "name": "HerbiQ — Medicinal Plant Education & AI Scanner",
+  "short_name": "HerbiQ",
+  "description": "Explore Ayurvedic & Kerala medicinal plants in English, Malayalam, and Arabic with offline catalog sync, 3D/AR models, QR scanner, and AI botanical guide.",
+  "start_url": "/#page=home",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#060B18",
+  "theme_color": "#060B18",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/plants/1.jpg",
+      "sizes": "800x600",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

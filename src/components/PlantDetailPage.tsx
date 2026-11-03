@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Plant } from '../types';
 import { useI18n } from '../i18n';
 import { PlantImage } from './PlantImage';
-import { ArrowLeft, MessageSquareCode, Eye, ShieldAlert, CheckCircle2, MapPin, BookOpen, Sparkles, Flower2, HeartPulse, QrCode } from 'lucide-react';
+import { recordPlantView } from '../lib/analytics';
+import { downloadPlantPdfFile, printPlantInfoCard } from '../lib/plant-pdf';
+import {
+  ArrowLeft,
+  MessageSquareCode,
+  Eye,
+  ShieldAlert,
+  CheckCircle2,
+  MapPin,
+  BookOpen,
+  Sparkles,
+  Flower2,
+  HeartPulse,
+  QrCode,
+  FileDown,
+  Printer,
+} from 'lucide-react';
 
 interface PlantDetailPageProps {
   plant: Plant;
@@ -20,10 +36,15 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
   onNavigateToScan,
 }) => {
   const { t, localizePlant } = useI18n();
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
   const plant = localizePlant(rawPlant);
   const catLabel = t(`categories.${rawPlant.category}`);
   const displayCat = catLabel !== `categories.${rawPlant.category}` ? catLabel : plant.category;
   const arabicName = rawPlant.translations?.ar?.name;
+
+  useEffect(() => {
+    recordPlantView(rawPlant.id);
+  }, [rawPlant.id]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-in fade-in duration-300 text-start">
@@ -130,7 +151,7 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
           )}
 
           {/* Interactive CTA Buttons */}
-          <div className="pt-2 flex flex-col xl:flex-row flex-wrap gap-3">
+          <div className="pt-2 flex flex-col xl:flex-row flex-wrap gap-2.5">
             <button
               onClick={() => onNavigateToAskWithQuestion(t('detail.askPromptTemplate', { name: plant.name }))}
               id="detail-ask-herbiq-btn"
@@ -157,6 +178,30 @@ export const PlantDetailPage: React.FC<PlantDetailPageProps> = ({
             >
               <QrCode className="w-4 h-4" />
               <span>{t('detail.scanQr')}</span>
+            </button>
+
+            <button
+              type="button"
+              disabled={downloadingPdf}
+              onClick={() => {
+                setDownloadingPdf(true);
+                void downloadPlantPdfFile(rawPlant).finally(() => setDownloadingPdf(false));
+              }}
+              id="detail-download-pdf-btn"
+              className="py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#F59E0B]/20 text-[#F59E0B] border border-[#F59E0B]/40 text-xs font-bold transition-all flex items-center justify-center gap-2 flex-1 sm:flex-none"
+            >
+              <FileDown className="w-4 h-4" />
+              <span>{rawPlant.pdfUrl ? 'Download PDF' : 'Download PDF Sheet'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => void printPlantInfoCard(rawPlant)}
+              id="detail-print-pdf-btn"
+              className="py-3 px-4 rounded-xl bg-[#060B18] hover:bg-[#00E5FF]/20 text-[#F8FAFC] border border-[#94A3B8]/40 text-xs font-bold transition-all flex items-center justify-center gap-2 flex-1 sm:flex-none"
+            >
+              <Printer className="w-4 h-4 text-[#00E5FF]" />
+              <span>Print Info Card</span>
             </button>
           </div>
         </div>

@@ -167,3 +167,50 @@ export async function uploadModel3D(file: File): Promise<string> {
   if (error) throw error;
   return backend!.storage.from('herbiq-images').getPublicUrl(path).data.publicUrl;
 }
+
+export function validatePdfBuffer(buffer: ArrayBuffer): void {
+  if (!buffer || buffer.byteLength < 8) {
+    throw new Error('Invalid PDF: file is too small to be a valid .pdf document.');
+  }
+  if (buffer.byteLength > 20 * 1024 * 1024) {
+    throw new Error('PDF document must be smaller than 20 MB.');
+  }
+  const bytes = new Uint8Array(buffer, 0, 5);
+  // "%PDF-" === [0x25, 0x50, 0x44, 0x46, 0x2d]
+  if (
+    bytes[0] !== 0x25 ||
+    bytes[1] !== 0x50 ||
+    bytes[2] !== 0x44 ||
+    bytes[3] !== 0x46 ||
+    bytes[4] !== 0x2d
+  ) {
+    throw new Error('Invalid PDF format: please upload a valid .pdf file.');
+  }
+}
+
+export async function uploadPdf(file: File): Promise<string> {
+  await requireAdmin();
+  if (!file.name.toLowerCase().endsWith('.pdf')) {
+    throw new Error('Only .pdf files are supported.');
+  }
+  const buffer = await file.arrayBuffer();
+  validatePdfBuffer(buffer);
+
+  const path = `pdfs/${crypto.randomUUID()}.pdf`;
+  const primaryBlob = new Blob([buffer], { type: 'application/pdf' });
+
+  let { error } = await backend!.storage
+    .from('herbiq-images')
+    .upload(path, primaryBlob, { contentType: 'application/pdf', upsert: false });
+
+  if (error && /mime|type|not supported/i.test(String(error.message || ''))) {
+    const fallbackBlob = new Blob([buffer], { type: 'image/webp' });
+    const retry = await backend!.storage
+      .from('herbiq-images')
+      .upload(path, fallbackBlob, { contentType: 'image/webp', upsert: false });
+    error = retry.error;
+  }
+
+  if (error) throw error;
+  return backend!.storage.from('herbiq-images').getPublicUrl(path).data.publicUrl;
+}

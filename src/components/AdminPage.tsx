@@ -1,7 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { backend, errorText } from '../lib/backend';
-import { listAdminPlants, savePlant, deletePlant, uploadPhoto, uploadModel3D, requireAdmin, type PlantRow } from '../lib/admin-api';
+import {
+  listAdminPlants,
+  savePlant,
+  deletePlant,
+  uploadPhoto,
+  uploadModel3D,
+  uploadPdf,
+  requireAdmin,
+  type PlantRow,
+} from '../lib/admin-api';
 import { emptyPlant, PROFILE_FIELDS, TRANSLATABLE_STRING_FIELDS } from '../lib/plant-validation';
+import { computeAdminAnalytics } from '../lib/analytics';
+import { downloadPlantPdfFile, printPlantInfoCard } from '../lib/plant-pdf';
 import { getStoredApiKey, getStoredModel } from '../lib/ai/key-storage';
 import { GeminiProvider } from '../lib/ai/gemini';
 import { useI18n } from '../i18n';
@@ -28,6 +39,7 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
   const [editLang, setEditLang] = useState<Lang>('en');
   const [translating, setTranslating] = useState(false);
   const [bulkOpen, setBulkOpen] = useState(false);
+  const [analyticsOpen, setAnalyticsOpen] = useState(true);
 
   const load = async () => {
     const next = await listAdminPlants();
@@ -187,6 +199,8 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
       setTranslating(false);
     }
   };
+
+  const analytics = useMemo(() => computeAdminAnalytics(rows), [rows]);
 
   if (!backend) {
     return (
@@ -445,6 +459,32 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
                   />
                   <small>{t('admin.uploadModelHint')}</small>
                 </label>
+                <label>
+                  PDF Data Sheet URL (optional)
+                  <input
+                    dir="ltr"
+                    placeholder="https://... or /assets/..."
+                    value={draft.pdfUrl || ''}
+                    onChange={(e) => setDraft({ ...draft, pdfUrl: e.target.value })}
+                  />
+                </label>
+                <label>
+                  Upload Custom Plant PDF (.pdf)
+                  <input
+                    type="file"
+                    accept=".pdf,application/pdf"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file)
+                        void run(async () => {
+                          const pdfUrl = await uploadPdf(file);
+                          setDraft((d) => (d ? { ...d, pdfUrl } : d));
+                          setNotice('PDF document uploaded. Save the plant to publish it.');
+                        });
+                    }}
+                  />
+                  <small>Optional custom PDF brochure (up to 20 MB). Every plant also gets an automatic PDF Info Card.</small>
+                </label>
               </div>
             ) : (
               <div className="admin-fields" dir={editLang === 'ar' ? 'rtl' : 'ltr'} lang={editLang}>
@@ -511,6 +551,14 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
             >
               📁 {t('admin.bulkUploadBtn')}
             </button>
+            <button
+              type="button"
+              id="admin-analytics-toggle-btn"
+              disabled={busy}
+              onClick={() => setAnalyticsOpen((v) => !v)}
+            >
+              📊 {analyticsOpen ? 'Hide Analytics' : 'Show Analytics'}
+            </button>
             <button disabled={busy} onClick={() => void run(load)}>
               {t('admin.refresh')}
             </button>
@@ -537,6 +585,103 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
               ⬇ {t('admin.bulkExportCsv')}
             </button>
           </div>
+
+          {/* Admin Analytics & QR Scan Counter Dashboard */}
+          {analyticsOpen && (
+            <section
+              aria-label="Admin Analytics & QR Scan Counter"
+              id="admin-analytics-panel"
+              className="p-4 sm:p-5 rounded-2xl bg-[#0b142b] border border-[#00e5ff]/30 space-y-4 my-4"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h2 className="text-lg font-bold text-white">📊 HerbiQ Analytics &amp; QR Scan Insights</h2>
+                  <p className="text-xs text-slate-400">
+                    Real-time catalog readiness, multi-language coverage, and QR scan / plant view engagement
+                  </p>
+                </div>
+                {analytics.pendingOfflineEvents > 0 && (
+                  <span className="px-2.5 py-1 rounded-full bg-amber-950 text-amber-300 border border-amber-500/40 text-xs font-semibold">
+                    ⚡ {analytics.pendingOfflineEvents} offline events queued
+                  </span>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                <div className="p-3 rounded-xl bg-[#060b18] border border-slate-800">
+                  <span className="text-[11px] text-slate-400 block">Total Plants</span>
+                  <strong className="text-xl text-cyan-300">{analytics.totalPlants}</strong>
+                  <span className="text-[11px] text-emerald-400 block">
+                    {analytics.publishedCount} published · {analytics.hiddenCount} hidden
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#060b18] border border-slate-800">
+                  <span className="text-[11px] text-slate-400 block">QR Code Scans</span>
+                  <strong className="text-xl text-emerald-300">{analytics.totalQrScans}</strong>
+                  <span className="text-[11px] text-slate-400 block">Camera &amp; code lookups</span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#060b18] border border-slate-800">
+                  <span className="text-[11px] text-slate-400 block">Plant Page Views</span>
+                  <strong className="text-xl text-amber-300">{analytics.totalViews}</strong>
+                  <span className="text-[11px] text-slate-400 block">Detail sheet visits</span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#060b18] border border-slate-800">
+                  <span className="text-[11px] text-slate-400 block">3D / AR Models</span>
+                  <strong className="text-xl text-cyan-300">{analytics.modelsCount}</strong>
+                  <span className="text-[11px] text-slate-400 block">Interactive .glb assets</span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#060b18] border border-slate-800">
+                  <span className="text-[11px] text-slate-400 block">PDF Data Sheets</span>
+                  <strong className="text-xl text-emerald-300">{analytics.totalPlants}</strong>
+                  <span className="text-[11px] text-slate-400 block">
+                    {analytics.customPdfCount} custom .pdf + 100% auto
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[#060b18] border border-slate-800">
+                  <span className="text-[11px] text-slate-400 block">Languages (ML / AR)</span>
+                  <strong className="text-xl text-amber-300">
+                    {analytics.mlCount} / {analytics.arCount}
+                  </strong>
+                  <span className="text-[11px] text-slate-400 block">Malayalam &amp; Arabic ready</span>
+                </div>
+              </div>
+
+              {analytics.topPlants.some((p) => p.totalInteractions > 0) && (
+                <div className="pt-2 border-t border-slate-800">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-cyan-300 mb-2">
+                    Top Scanned &amp; Viewed Plants
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                    {analytics.topPlants
+                      .filter((p) => p.totalInteractions > 0)
+                      .map((item) => (
+                        <div
+                          key={item.id}
+                          className="p-2.5 rounded-xl bg-[#060b18] border border-slate-800 flex items-center justify-between gap-2 text-xs"
+                        >
+                          <div className="min-w-0">
+                            <strong className="text-white block truncate">{item.name}</strong>
+                            <span className="text-amber-300 text-[11px]" lang="ml">
+                              {item.malayalamName}
+                            </span>
+                          </div>
+                          <div className="text-end shrink-0">
+                            <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/30 font-semibold block">
+                              {item.qrScans} QR · {item.views} views
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
 
           {bulkOpen && (
             <BulkImportPanel
@@ -586,13 +731,29 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
                       )}{' '}
                       · <bdi dir="ltr">{row.qr_id}</bdi>
                     </p>
-                    <span>{row.published ? t('admin.published') : t('admin.hidden')}</span>
+                    <span>
+                      {row.published ? t('admin.published') : t('admin.hidden')}
+                      {row.profile.model3D ? ' · 🧊 3D' : ''}
+                      {row.profile.pdfUrl ? ' · 📄 Custom PDF' : ' · 📄 Auto PDF'}
+                    </span>
                   </div>
                   <div className="admin-actions">
                     <button disabled={busy} onClick={() => edit(row)}>
                       {t('admin.edit')}
                     </button>
                     <button onClick={() => setLabels([row.profile])}>{t('admin.qrLabel')}</button>
+                    <button
+                      type="button"
+                      onClick={() => void downloadPlantPdfFile(row.profile)}
+                    >
+                      📄 PDF
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void printPlantInfoCard(row.profile)}
+                    >
+                      🖨 Info Card
+                    </button>
                     <button
                       disabled={busy}
                       onClick={() => {
