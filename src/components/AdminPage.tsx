@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { backend, errorText } from '../lib/backend';
-import { listAdminPlants, savePlant, deletePlant, uploadPhoto, requireAdmin, type PlantRow } from '../lib/admin-api';
+import { listAdminPlants, savePlant, deletePlant, uploadPhoto, uploadModel3D, requireAdmin, type PlantRow } from '../lib/admin-api';
 import { emptyPlant, PROFILE_FIELDS, TRANSLATABLE_STRING_FIELDS } from '../lib/plant-validation';
 import { getStoredApiKey, getStoredModel } from '../lib/ai/key-storage';
 import { GeminiProvider } from '../lib/ai/gemini';
 import { useI18n } from '../i18n';
 import type { Lang, Plant, PlantTranslation } from '../types';
 import { QRLabels } from './QRLabels';
+import { BulkImportPanel, exportCatalogSpreadsheet } from './BulkImportPanel';
 
 export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
   const { t } = useI18n();
@@ -26,6 +27,7 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
   const [labels, setLabels] = useState<Plant[] | null>(null);
   const [editLang, setEditLang] = useState<Lang>('en');
   const [translating, setTranslating] = useState(false);
+  const [bulkOpen, setBulkOpen] = useState(false);
 
   const load = async () => {
     const next = await listAdminPlants();
@@ -426,6 +428,23 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
                   {t('admin.modelUrl')}
                   <input dir="ltr" value={draft.model3D || ''} onChange={(e) => setDraft({ ...draft, model3D: e.target.value })} />
                 </label>
+                <label>
+                  {t('admin.uploadModel')}
+                  <input
+                    type="file"
+                    accept=".glb,model/gltf-binary"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file)
+                        void run(async () => {
+                          const model3D = await uploadModel3D(file);
+                          setDraft((d) => (d ? { ...d, model3D, arAvailable: true } : d));
+                          setNotice(t('admin.modelUploadedNotice'));
+                        });
+                    }}
+                  />
+                  <small>{t('admin.uploadModelHint')}</small>
+                </label>
               </div>
             ) : (
               <div className="admin-fields" dir={editLang === 'ar' ? 'rtl' : 'ltr'} lang={editLang}>
@@ -483,6 +502,15 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
             <button disabled={busy} onClick={() => edit()}>
               {t('admin.addPlant')}
             </button>
+            <button
+              type="button"
+              id="admin-bulk-upload-btn"
+              disabled={busy}
+              onClick={() => setBulkOpen((v) => !v)}
+              style={{ background: '#00e5ff', color: '#060b18', fontWeight: 700 }}
+            >
+              📁 {t('admin.bulkUploadBtn')}
+            </button>
             <button disabled={busy} onClick={() => void run(load)}>
               {t('admin.refresh')}
             </button>
@@ -492,7 +520,34 @@ export function AdminPage({ onChanged }: { onChanged: () => Promise<void> }) {
             >
               {t('admin.printSelected', { count: selected.length })}
             </button>
+            <button
+              type="button"
+              id="admin-export-xlsx-btn"
+              disabled={!rows.length || busy}
+              onClick={() => exportCatalogSpreadsheet(rows, 'xlsx')}
+            >
+              ⬇ {t('admin.bulkExportXlsx')}
+            </button>
+            <button
+              type="button"
+              id="admin-export-csv-btn"
+              disabled={!rows.length || busy}
+              onClick={() => exportCatalogSpreadsheet(rows, 'csv')}
+            >
+              ⬇ {t('admin.bulkExportCsv')}
+            </button>
           </div>
+
+          {bulkOpen && (
+            <BulkImportPanel
+              existingRows={rows}
+              onClose={() => setBulkOpen(false)}
+              onCompleted={async () => {
+                await load();
+                await onChanged();
+              }}
+            />
+          )}
           <label>
             {t('admin.searchPlants')}
             <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t('admin.searchPlaceholder')} />

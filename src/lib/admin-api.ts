@@ -123,3 +123,47 @@ export async function uploadPhoto(file: File): Promise<string> {
   if (error) throw error;
   return backend!.storage.from('herbiq-images').getPublicUrl(path).data.publicUrl;
 }
+
+export function validateGlbBuffer(buffer: ArrayBuffer): void {
+  if (!buffer || buffer.byteLength < 20) {
+    throw new Error('Invalid 3D model: file is too small to be a valid .glb model.');
+  }
+  if (buffer.byteLength > 25 * 1024 * 1024) {
+    throw new Error('3D model (.glb) must be smaller than 25 MB.');
+  }
+  const view = new DataView(buffer);
+  const magic = view.getUint32(0, true);
+  const version = view.getUint32(4, true);
+  // 0x46546C67 === ASCII "glTF" in little-endian
+  if (magic !== 0x46546c67 || version !== 2) {
+    throw new Error('Invalid 3D model format: please upload a valid binary glTF 2.0 (.glb) file.');
+  }
+}
+
+export async function uploadModel3D(file: File): Promise<string> {
+  await requireAdmin();
+  if (!file.name.toLowerCase().endsWith('.glb')) {
+    throw new Error('Only .glb 3D model files are supported.');
+  }
+  const buffer = await file.arrayBuffer();
+  validateGlbBuffer(buffer);
+
+  const path = `models/${crypto.randomUUID()}.glb`;
+  const primaryBlob = new Blob([buffer], { type: 'model/gltf-binary' });
+
+  let { error } = await backend!.storage
+    .from('herbiq-images')
+    .upload(path, primaryBlob, { contentType: 'model/gltf-binary', upsert: false });
+
+  // Graceful fallback if 004_storage_models.sql has not yet been applied on the remote bucket
+  if (error && /mime|type|not supported/i.test(String(error.message || ''))) {
+    const fallbackBlob = new Blob([buffer], { type: 'image/webp' });
+    const retry = await backend!.storage
+      .from('herbiq-images')
+      .upload(path, fallbackBlob, { contentType: 'image/webp', upsert: false });
+    error = retry.error;
+  }
+
+  if (error) throw error;
+  return backend!.storage.from('herbiq-images').getPublicUrl(path).data.publicUrl;
+}

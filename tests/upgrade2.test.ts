@@ -27,6 +27,16 @@ import {
   saveApiKey,
 } from '../src/lib/ai/key-storage';
 import { refreshCatalog } from '../src/lib/catalog';
+import { validateGlbBuffer } from '../src/lib/admin-api';
+import {
+  buildSampleTemplateRows,
+  createStoredZipArchive,
+  parseBulkUploadFiles,
+  parseCsvToRows,
+  parseXlsxToRows,
+  serializeRowsToCsv,
+  serializeRowsToXlsx,
+} from '../src/lib/bulk-import';
 
 function collectLeafKeys(obj: Record<string, any>, prefix = ''): string[] {
   const keys: string[] = [];
@@ -379,4 +389,55 @@ test('Key safety: Gemini API key is isolated and never sent in any Supabase requ
     globalThis.fetch = originalFetch;
     removeApiKey({ localStorage: mockLocal, sessionStorage: mockSession });
   }
+});
+
+test('Bulk Import: CSV/XLSX multi-language (EN/ML/AR) round-trip, folder/ZIP asset matching, and GLB validation', async () => {
+  // 1. Multi-language CSV and XLSX round-trip (English, Malayalam, Arabic)
+  const sampleRows = buildSampleTemplateRows();
+  const csvText = serializeRowsToCsv(sampleRows);
+  assert.ok(csvText.startsWith('\uFEFF'), 'CSV should start with UTF-8 BOM for Excel compatibility');
+  const parsedCsv = parseCsvToRows(csvText);
+  assert.equal(parsedCsv.length, 2);
+  assert.ok(parsedCsv[1].includes('തുളസി'), 'Malayalam text preserved in CSV');
+  assert.ok(parsedCsv[1].includes('الريحان المقدس (تولسي)'), 'Arabic text preserved in CSV');
+
+  const xlsxBytes = serializeRowsToXlsx(sampleRows, 'HerbiQ Test');
+  const parsedXlsx = await parseXlsxToRows(xlsxBytes.buffer as ArrayBuffer);
+  assert.equal(parsedXlsx.length, 2);
+  assert.ok(parsedXlsx[1].includes('തുളസി'), 'Malayalam text preserved in XLSX');
+  assert.ok(parsedXlsx[1].includes('الريحان المقدس (تولسي)'), 'Arabic text preserved in XLSX');
+
+  // 2. Folder / ZIP auto-matching of spreadsheet + images/tulsi.jpg + models/tulsi.glb
+  const fakeJpg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0x00, 0x10, 0x4a, 0x46, 0x49, 0x46]);
+  const validGlb = new Uint8Array(24);
+  const glbView = new DataView(validGlb.buffer);
+  glbView.setUint32(0, 0x46546c67, true); // "glTF"
+  glbView.setUint32(4, 2, true); // version 2
+  glbView.setUint32(8, 24, true); // length
+
+  // Validate GLB check
+  assert.doesNotThrow(() => validateGlbBuffer(validGlb.buffer));
+  assert.throws(() => validateGlbBuffer(fakeJpg.buffer), /Invalid 3D model/);
+
+  const zipBytes = createStoredZipArchive([
+    { name: 'my_plants/plants_data.xlsx', data: xlsxBytes },
+    { name: 'my_plants/images/tulsi.jpg', data: fakeJpg },
+    { name: 'my_plants/models/tulsi.glb', data: validGlb },
+  ]);
+
+  const zipFile = new File([zipBytes], 'my_plants.zip', { type: 'application/zip' });
+  const bulkParsed = await parseBulkUploadFiles([zipFile], new Set(['tulsi']));
+  assert.equal(bulkParsed.spreadsheetName, 'plants_data.xlsx');
+  assert.equal(bulkParsed.items.length, 1);
+
+  const item = bulkParsed.items[0];
+  assert.equal(item.plant.id, 'tulsi-sample');
+  assert.equal(item.plant.malayalamName, 'തുളസി');
+  assert.equal(item.plant.translations?.ar?.name, 'الريحان المقدس (تولسي)');
+  assert.ok(item.matchedImageFile, 'Should match images/tulsi.jpg from folder/ZIP');
+  assert.equal(item.matchedImageFile?.name, 'tulsi.jpg');
+  assert.ok(item.matchedModelFile, 'Should match models/tulsi.glb from folder/ZIP');
+  assert.equal(item.matchedModelFile?.name, 'tulsi.glb');
+  assert.equal(item.plant.arAvailable, true);
+  assert.equal(item.validationErrors.length, 0);
 });
